@@ -65,25 +65,25 @@
 		</nav>
 
 		<table class="table table-condensed">
-			<c:forEach var="voyagelist" items="${voyagelist}">
+<%-- 			<c:forEach var="voyagelist" items="${voyagelist}"> --%>
 				<tr>
 					<td><img src="${voyagelist.photo}" alt="image"
-						class="img-thumbnail"> <br /> Destination :
-						${voyagelist.destination} <br /> Prix Initial :
-						${voyagelist.prix} <br /> Prix Soldé :
+						class="img-thumbnail">
+						<br /> Destination :
+						${voyagelist.destination} 
+						<br /> Prix Initial :
+						${voyagelist.prix} 
+						<br /> Prix Soldé :
 						${voyagelist.prix}*${voyagelist.remise}
 						<button type="button" class="btn btn-default">
-							<a href="href="
-								${pageContext.request.contextPath}/bovoyage/getvoyage?id=${voyagelist.id}">
-								Voir l'offre</a>
+							Voir l'offre
 						</button></td>
-
-				</tr>
-			</c:forEach>
+						<td></td>
+						</tr>
+<%-- 			</c:forEach> --%>
 		</table>
 		<nav aria-label="...">
-			<ul class="pagination pagination-lg">...
-			</ul>
+<!-- 			<UL CLASS="PAGINATION PAGINATION-LG"></UL> -->
 		</nav>
 	</div>
 
