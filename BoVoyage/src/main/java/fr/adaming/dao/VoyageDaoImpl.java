@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import fr.adaming.model.Voyage;
 @Repository
 public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao {
 
-	@Autowired
+	@PersistenceContext
 	private EntityManagerFactory emf;
 
 	public EntityManagerFactory getEmf() {
