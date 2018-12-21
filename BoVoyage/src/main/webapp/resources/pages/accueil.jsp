@@ -13,15 +13,15 @@
 
 <title>Bienvenue dans BoVoyage-Voyages Nordiques</title>
 
-<link rel="stylesheet" href="ressources/css/bootstrap.css">
-<link rel="stylesheet" href="ressources/css/monCSS.css">
+<link rel="stylesheet" href="resources/css/bootstrap.css">
+<link rel="stylesheet" href="resources/css/monCSS.css">
 
-<script type="text/javascript" src="ressources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="ressources/js/bootstrap.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/bootstrap.js"></script>
 
 </head>
 <body>
-	<%@include file="template/header.html"%>
+<%@include file="header.html"%>
 
 	<div class="row">
 		<nav class="navbar navbar-default">
@@ -74,7 +74,7 @@
 						<br /> Prix Initial : ${voyagelist.prix} 
 						<br /> Prix Soldé : ${voyagelist.prix}*${voyagelist.remise}
 
-					<a href="href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${voyagelist.id}">	<button type="button" class="btn btn-default">Voir
+					<button type="button" class="btn btn-default"><a href="href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${voyagelist.id}">	Voir
 							l'offre</a></button></td>
 			</c:forEach>
 			</tr>
@@ -85,6 +85,6 @@
 		</nav>
 	</div>
 
-	<%@include file="template/footer.html"%>
+	<%@include file="footer.html"%>
 </body>
 </html>
