@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IAgenceDao;
 import fr.adaming.model.Agence;
+import fr.adaming.model.Destination;
 
 @Service("agService") 
 @Transactional
@@ -19,6 +20,7 @@ public class AgenceServiceImpl implements IAgenceService{
 	@Autowired
 	public void setAgDao(IAgenceDao agDao) {
 		this.agDao = agDao;
+		agDao.setGeneric(Agence.class);
 	}
 
 	@Override

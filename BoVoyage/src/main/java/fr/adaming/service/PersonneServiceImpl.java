@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
 import fr.adaming.dao.IPersonneDao;
+import fr.adaming.model.Destination;
 import fr.adaming.model.Personne;
 
 @Service("peService")
@@ -19,6 +20,7 @@ public class PersonneServiceImpl implements IPersonneService{
 	@Autowired
 	public void setPeDao(IPersonneDao peDao) {
 		this.peDao = peDao;
+		peDao.setGeneric(Personne.class);
 	}
 
 	@Override

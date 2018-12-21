@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import fr.adaming.model.Vehicule;
 
 @Repository
-public class VehiculeDaoImpl extends GenericDaoImpl<Vehicule>{
+public class VehiculeDaoImpl extends GenericDaoImpl<Vehicule> implements IVehiculeDao{
 
 }

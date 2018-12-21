@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
 import fr.adaming.dao.IPrestationDao;
+import fr.adaming.model.Destination;
 import fr.adaming.model.Prestation;
 
 @Service("prService")
@@ -20,6 +21,7 @@ public class PrestationServiceImpl implements IPrestationService{
 	@Autowired
 	public void setPrDao(IPrestationDao prDao) {
 		this.prDao = prDao;
+		prDao.setGeneric(Prestation.class);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
 import fr.adaming.dao.IHotelDao;
+import fr.adaming.model.Destination;
 import fr.adaming.model.Hotel;
 
 @Service("hoService")
@@ -20,6 +21,7 @@ public class HotelServiceImpl implements IHotelService{
 	@Autowired
 	public void setHoDao(IHotelDao hoDao) {
 		this.hoDao = hoDao;
+		hoDao.setGeneric(Hotel.class);
 	}
 
 	@Override

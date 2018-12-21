@@ -24,7 +24,9 @@ public class VoyageServiceImpl implements IVoyageService {
 	
 	@Autowired
 	public void setDeDao(IDestinationDao deDao) {
+		
 		this.deDao = deDao;
+		deDao.setGeneric(Destination.class);
 	}
 
 	@Autowired

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
 import fr.adaming.dao.IVehiculeDao;
+import fr.adaming.model.Destination;
 import fr.adaming.model.Vehicule;
 
 @Service("veService")
@@ -19,6 +20,7 @@ public class VehiculeServiceImpl implements IVehiculeService{
 	@Autowired
 	public void setVeDao(IVehiculeDao veDao) {
 		this.veDao = veDao;
+		veDao.setGeneric(Vehicule.class);
 	}
 
 	@Override

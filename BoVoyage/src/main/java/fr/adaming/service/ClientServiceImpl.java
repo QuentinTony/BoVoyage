@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IClientDao;
 import fr.adaming.model.Client;
+import fr.adaming.model.Destination;
 
 @Service("clService")
 @Transactional
@@ -19,6 +20,7 @@ public class ClientServiceImpl implements IClientService{
 	@Autowired
 	public void setClDao(IClientDao clDao) {
 		this.clDao = clDao;
+		clDao.setGeneric(Client.class);
 	}
 
 

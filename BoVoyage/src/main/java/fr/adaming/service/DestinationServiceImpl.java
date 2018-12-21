@@ -11,7 +11,7 @@ import fr.adaming.model.Destination;
 
 @Service("deService")
 @Transactional
-public class DestinationVoyageImpl implements IDestinationService{
+public class DestinationServiceImpl implements IDestinationService{
 	
 	private IDestinationDao deDao;
 
@@ -19,6 +19,7 @@ public class DestinationVoyageImpl implements IDestinationService{
 	@Autowired
 	public void setDeDao(IDestinationDao deDao) {
 		this.deDao = deDao;
+		deDao.setGeneric(Destination.class);
 	}
 
 	@Override

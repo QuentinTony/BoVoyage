@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import fr.adaming.model.Assurance;
 
 @Repository
-public class AssuranceDaoImpl extends GenericDaoImpl<Assurance>{
+public class AssuranceDaoImpl extends GenericDaoImpl<Assurance> implements IAssuranceDao{
 
 }

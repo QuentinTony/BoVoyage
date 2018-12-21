@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IAssuranceDao;
 import fr.adaming.model.Assurance;
+import fr.adaming.model.Destination;
 
 @Service("asService") 
 @Transactional
@@ -18,6 +19,7 @@ public class AssuranceServiceImpl implements IAssuranceService {
 	@Autowired
 	public void setAsDao(IAssuranceDao asDao) {
 		this.asDao = asDao; 
+		asDao.setGeneric(Assurance.class);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
 import fr.adaming.dao.IPassagerDao;
+import fr.adaming.model.Destination;
 import fr.adaming.model.Passager;
 
 @Service("paService")
@@ -19,6 +20,7 @@ public class PassagerServiceImpl implements IPassagerService {
 	@Autowired
 	public void setPaDao(IPassagerDao paDao) {
 		this.paDao = paDao;
+		paDao.setGeneric(Passager.class);
 	}
 
 	@Override
