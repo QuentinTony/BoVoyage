@@ -9,11 +9,11 @@ public interface IGenericDao<T extends Serializable> {
 
 	public T add(final T newInstance);
 
-	public T getById(final long id);
+	public T getById(long id);
 
 	public List<T> getAll();
 
-	public int update(final T transientObject);
+	public int update(T transientObject);
 
-	public void delete(final T persistentObject);
+	public void delete(T persistentObject);
 }
