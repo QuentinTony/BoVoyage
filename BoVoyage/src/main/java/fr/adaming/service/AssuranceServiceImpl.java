@@ -17,7 +17,7 @@ public class AssuranceServiceImpl implements IAssuranceService {
 	
 	@Autowired
 	public void setAsDao(IAssuranceDao asDao) {
-		this.asDao = asDao; kjhgv
+		this.asDao = asDao; 
 	}
 
 	@Override
