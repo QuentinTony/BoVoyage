@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.IAssuranceDao;
 import fr.adaming.model.Assurance;
 
-@Service("asService")
+@Service("asService") 
 @Transactional
 public class AssuranceServiceImpl implements IAssuranceService {
 	
@@ -17,7 +17,7 @@ public class AssuranceServiceImpl implements IAssuranceService {
 	
 	@Autowired
 	public void setAsDao(IAssuranceDao asDao) {
-		this.asDao = asDao;
+		this.asDao = asDao; kjhgv
 	}
 
 	@Override

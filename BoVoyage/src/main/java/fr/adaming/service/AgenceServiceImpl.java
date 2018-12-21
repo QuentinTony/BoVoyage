@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.IAgenceDao;
 import fr.adaming.model.Agence;
 
-@Service("agService")
+@Service("agService") 
 @Transactional
 public class AgenceServiceImpl implements IAgenceService{
 	
