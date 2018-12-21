@@ -18,12 +18,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="voyages")
-public class Voyage implements Serializable{
+@Table(name = "voyages")
+public class Voyage implements Serializable {
 
-	//declaration des attributs
+	// declaration des attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Temporal(TemporalType.DATE)
 	private Date dateDepart;
@@ -33,30 +33,30 @@ public class Voyage implements Serializable{
 	private double remise;
 	private String villeDepart;
 	private int nombrePersonne;
-	
-	//transformation de l'association UML en JAVA
+	private int stockPassager;
+
+	// transformation de l'association UML en JAVA
 	@OneToOne
 	private Destination destination;
 	@OneToOne
 	private Hotel hotel;
 	@ManyToMany
-	@JoinTable(name="pas_voy", joinColumns = @JoinColumn(name = "pa_id"), inverseJoinColumns = @JoinColumn(name = "vo_id"))
+	@JoinTable(name = "pas_voy", joinColumns = @JoinColumn(name = "pa_id"), inverseJoinColumns = @JoinColumn(name = "vo_id"))
 	private List<Passager> listPassager;
 	@OneToOne
 	private Vehicule vehicule;
-	@OneToMany(mappedBy="voyage")
+	@OneToMany(mappedBy = "voyage")
 	private List<Prestation> listPrestation;
 	@OneToOne
 	private Assurance assurance;
-	
-	
-	//declaration des constructeurs
+
+	// declaration des constructeurs
 	public Voyage() {
 		super();
 	}
 
-	public Voyage(Date dateDepart, Date dateRetour, double prix, double remise, String villeDepart,
-			int nombrePersonne) {
+	public Voyage(Date dateDepart, Date dateRetour, double prix, double remise, String villeDepart, int nombrePersonne,
+			int stockPassager) {
 		super();
 		this.dateDepart = dateDepart;
 		this.dateRetour = dateRetour;
@@ -64,10 +64,11 @@ public class Voyage implements Serializable{
 		this.remise = remise;
 		this.villeDepart = villeDepart;
 		this.nombrePersonne = nombrePersonne;
+		this.stockPassager = stockPassager;
 	}
 
 	public Voyage(long id, Date dateDepart, Date dateRetour, double prix, double remise, String villeDepart,
-			int nombrePersonne) {
+			int nombrePersonne, int stockPassager) {
 		super();
 		this.id = id;
 		this.dateDepart = dateDepart;
@@ -76,11 +77,29 @@ public class Voyage implements Serializable{
 		this.remise = remise;
 		this.villeDepart = villeDepart;
 		this.nombrePersonne = nombrePersonne;
+		this.stockPassager = stockPassager;
 	}
 
-	//getters et setters
+	// getters et setters
+
 	public long getId() {
 		return id;
+	}
+
+	public int getStockPassager() {
+		return stockPassager;
+	}
+
+	public void setStockPassager(int stockPassager) {
+		this.stockPassager = stockPassager;
+	}
+
+	public List<Passager> getListPassager() {
+		return listPassager;
+	}
+
+	public void setListPassager(List<Passager> listPassager) {
+		this.listPassager = listPassager;
 	}
 
 	public void setId(long id) {
@@ -134,8 +153,6 @@ public class Voyage implements Serializable{
 	public void setNombrePersonne(int nombrePersonne) {
 		this.nombrePersonne = nombrePersonne;
 	}
-	
-	
 
 	public Destination getDestination() {
 		return destination;
@@ -168,8 +185,6 @@ public class Voyage implements Serializable{
 	public void setListPrestation(List<Prestation> listPrestation) {
 		this.listPrestation = listPrestation;
 	}
-	
-	
 
 	public Assurance getAssurance() {
 		return assurance;
@@ -182,10 +197,8 @@ public class Voyage implements Serializable{
 	@Override
 	public String toString() {
 		return "Voyage [id=" + id + ", dateDepart=" + dateDepart + ", dateRetour=" + dateRetour + ", prix=" + prix
-				+ ", remise=" + remise + ", villeDepart=" + villeDepart + ", nombrePersonne=" + nombrePersonne + "]";
+				+ ", remise=" + remise + ", villeDepart=" + villeDepart + ", nombrePersonne=" + nombrePersonne
+				+ ", stockPassager=" + stockPassager + "]";
 	}
 
-	
-	
-	
 }

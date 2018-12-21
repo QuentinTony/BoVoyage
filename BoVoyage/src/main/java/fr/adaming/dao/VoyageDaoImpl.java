@@ -82,16 +82,4 @@ public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao 
 		return q.getResultList();
 	}
 
-	@Override
-	public List<Voyage> getVoyageByMonth(Month m) {
-		EntityManager em = emf.createEntityManager();
-		String req = "FROM Voyage v WHERE v.dateDepart.month LIKE :pPays";
-		
-		Query q = em.createQuery(req);
-		q.setParameter("pPays", "%" + pays + "%");
-		return q.getResultList();
-	}
-	
-	
-
 }
