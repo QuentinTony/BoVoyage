@@ -1,5 +1,6 @@
 package fr.adaming.dao;
 
+import java.time.Month;
 import java.util.Date;
 import java.util.List;
 
@@ -29,10 +30,9 @@ public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao 
 	@Override
 	public List<Voyage> getVoyageByPrix(double prix) {
 		EntityManager em = emf.createEntityManager();
-		String req = "FROM Voyage v WHERE v.prix<=:pPrix";
+		String req = "FROM Voyage v WHERE v.prix <= :pPrix";
 		Query q = em.createQuery(req);
 		q.setParameter("pPrix", prix);
-		//
 		return q.getResultList();
 	}
 
@@ -48,7 +48,7 @@ public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao 
 	@Override
 	public List<Voyage> getVoyageByDateDepart(Date dd) {
 		EntityManager em = emf.createEntityManager();
-		String req = "FROM Voyage v WHERE v.dateDepart=:pDate";
+		String req = "FROM Voyage v WHERE v.dateDepart >= :pDate";
 		Query q = em.createQuery(req);
 		q.setParameter("pDate", dd);
 		return q.getResultList();
@@ -57,7 +57,7 @@ public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao 
 	@Override
 	public List<Voyage> getVoyageByDateRetour(Date dr) {
 		EntityManager em = emf.createEntityManager();
-		String req = "FROM Voyage v WHERE v.dateRetour=:pDate";
+		String req = "FROM Voyage v WHERE v.dateRetour <= :pDate";
 		Query q = em.createQuery(req);
 		q.setParameter("pDate", dr);
 		return q.getResultList();
@@ -66,7 +66,7 @@ public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao 
 	@Override
 	public List<Voyage> getVoyageByDateDepRet(Date dd, Date dr) {
 		EntityManager em = emf.createEntityManager();
-		String req = "FROM Voyage v WHERE v.dateDepart=:pDateD AND v.dateRetou=:pDateR";
+		String req = "FROM Voyage v WHERE v.dateDepart = :pDateD AND v.dateRetour = :pDateR";
 		Query q = em.createQuery(req);
 		q.setParameter("pDateD", dd);
 		q.setParameter("pDateR", dr);
@@ -81,5 +81,17 @@ public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao 
 		q.setParameter("pPays", "%" + pays + "%");
 		return q.getResultList();
 	}
+
+	@Override
+	public List<Voyage> getVoyageByMonth(Month m) {
+		EntityManager em = emf.createEntityManager();
+		String req = "FROM Voyage v WHERE v.dateDepart.month LIKE :pPays";
+		
+		Query q = em.createQuery(req);
+		q.setParameter("pPays", "%" + pays + "%");
+		return q.getResultList();
+	}
+	
+	
 
 }

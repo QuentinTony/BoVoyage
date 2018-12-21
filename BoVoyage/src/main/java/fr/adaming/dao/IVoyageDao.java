@@ -1,5 +1,6 @@
 package fr.adaming.dao;
 
+import java.time.Month;
 import java.util.Date;
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface IVoyageDao extends IGenericDao<Voyage>{
 	public List<Voyage> getVoyageByDateDepart(Date dd);
 	public List<Voyage> getVoyageByDateRetour(Date dr);
 	public List<Voyage> getVoyageByDateDepRet(Date dd, Date dr);
+	public List<Voyage> getVoyageByMonth(Month m);
 }
