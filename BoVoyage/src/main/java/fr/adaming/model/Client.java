@@ -20,7 +20,7 @@ public class Client extends Personne implements Serializable{
 	private Date dateExpiration;
 	@Transient
 	private int cleSecurite;
-	@Transient
+
 	private boolean active;
 	
 	//transformation de UML en JAVA
@@ -31,21 +31,13 @@ public class Client extends Personne implements Serializable{
 	public Client() {
 		super();
 	}
-	public Client(String nom, String prenom, Date dn, String mail, String telephone, long numeroCarte,
-			Date dateExpiration, int cleSecurite, boolean active) {
+	public Client(String nom, String prenom, Date dn, String mail, String telephone) {
 		super(nom, prenom, dn, mail, telephone);
-		this.numeroCarte = numeroCarte;
-		this.dateExpiration = dateExpiration;
-		this.cleSecurite = cleSecurite;
-		this.active = active;
+		
 	}
-	public Client(long id, String nom, String prenom, Date dn, String mail, String telephone, long numeroCarte,
-			Date dateExpiration, int cleSecurite, boolean active) {
+	public Client(long id, String nom, String prenom, Date dn, String mail, String telephone) {
 		super(id, nom, prenom, dn, mail, telephone);
-		this.numeroCarte = numeroCarte;
-		this.dateExpiration = dateExpiration;
-		this.cleSecurite = cleSecurite;
-		this.active = active;
+
 	}
 	
 	//getters et setters
