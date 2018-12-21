@@ -13,15 +13,15 @@
 
 <title>Bienvenue dans BoVoyage-Voyages Nordiques</title>
 
-<link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/css/monCSS.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/monCSS.css">
 
-<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 
 </head>
 <body>
-<%@include file="header.html"%>
+	<%@include file='template/header.html' %>
 
 	<div class="row">
 		<nav class="navbar navbar-default">
@@ -68,16 +68,18 @@
 			<c:forEach var="voyagelist" items="${voyagelist}">
 				<tr>
 					<td><img src="${voyagelist.photo}" alt="image"
-						class="img-thumbnail">
-						 <br />
-						  Destination :	${voyagelist.destination} 
-						<br /> Prix Initial : ${voyagelist.prix} 
-						<br /> Prix Soldé : ${voyagelist.prix}*${voyagelist.remise}
+						class="img-thumbnail"> <br /> Destination :
+						${voyagelist.destination} <br /> Prix Initial :
+						${voyagelist.prix} <br /> Prix Soldé :
+						${voyagelist.prix}*${voyagelist.remise}
+						<button type="button" class="btn btn-default">
+							<a href="href="
+								${pageContext.request.contextPath}/bovoyage/getvoyage?id=${voyagelist.id}">
+								Voir l'offre</a>
+						</button></td>
 
-					<button type="button" class="btn btn-default"><a href="href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${voyagelist.id}">	Voir
-							l'offre</a></button></td>
+				</tr>
 			</c:forEach>
-			</tr>
 		</table>
 		<nav aria-label="...">
 			<ul class="pagination pagination-lg">...
@@ -85,6 +87,6 @@
 		</nav>
 	</div>
 
-	<%@include file="footer.html"%>
+	<%@include file="template/footer.html"%>
 </body>
 </html>

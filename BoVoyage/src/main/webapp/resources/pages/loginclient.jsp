@@ -19,9 +19,6 @@
 </head>
 <body>
 
-<%@include file="template/header.html"%>
-
-<br/><br/>
 <form>
   <div class="form-group">
     <label for="email">Adresse Electronique</label>
@@ -36,6 +33,6 @@
 <br/><br/>
 <a href="accueil.jsp" class="btn btn-default btn-lg active" role="button">Revenir à la page d'accueil</a>
 <br/><br/>
-<%@include file="template/footer.html"%>
+
 </body>
 </html>

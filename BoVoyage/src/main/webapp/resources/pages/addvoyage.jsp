@@ -18,9 +18,6 @@
 <script type="text/javascript" src="ressources/js/bootstrap.js"></script>
 </head>
 <body>
-<%@include file="template/header.html"%>
 
-BLALALALALALA
-<%@include file="template/footer.html"%>
 </body>
 </html>
