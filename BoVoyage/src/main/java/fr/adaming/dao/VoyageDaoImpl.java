@@ -32,7 +32,6 @@ public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao 
 		String req = "FROM Voyage v WHERE v.prix<=:pPrix";
 		Query q = em.createQuery(req);
 		q.setParameter("pPrix", prix);
-		//
 		return q.getResultList();
 	}
 
