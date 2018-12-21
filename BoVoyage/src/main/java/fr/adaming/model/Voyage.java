@@ -200,5 +200,5 @@ public class Voyage implements Serializable {
 				+ ", remise=" + remise + ", villeDepart=" + villeDepart + ", nombrePersonne=" + nombrePersonne
 				+ ", stockPassager=" + stockPassager + "]";
 	}
-
+//
 }
