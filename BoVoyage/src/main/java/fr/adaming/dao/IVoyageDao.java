@@ -14,5 +14,5 @@ public interface IVoyageDao extends IGenericDao<Voyage>{
 	public List<Voyage> getVoyageByDateDepart(Date dd);
 	public List<Voyage> getVoyageByDateRetour(Date dr);
 	public List<Voyage> getVoyageByDateDepRet(Date dd, Date dr);
-	public List<Voyage> getVoyageByMonth(Month m);
+
 }
