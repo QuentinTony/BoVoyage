@@ -20,7 +20,7 @@ public class Client extends Personne implements Serializable{
 	private Date dateExpiration;
 	@Transient
 	private int cleSecurite;
-
+	@Transient
 	private boolean active;
 	
 	//transformation de UML en JAVA
