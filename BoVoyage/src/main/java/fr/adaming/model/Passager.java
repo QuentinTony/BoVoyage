@@ -50,8 +50,6 @@ public class Passager extends Personne implements Serializable{
 		this.numero = numero;
 	}
 	
-	
-
 	public List<Voyage> getListVoyage() {
 		return listVoyage;
 	}
