@@ -7,18 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
+import fr.adaming.dao.IPrestationDao;
 import fr.adaming.model.Prestation;
 
 @Service("prService")
 @Transactional
 public class PrestationServiceImpl implements IPrestationService{
 	
-	private IGenericDao<Prestation> prDao;
+	private IPrestationDao prDao;
 
+	
 	@Autowired
-	public void setPrDao(IGenericDao<Prestation> prDao) {
+	public void setPrDao(IPrestationDao prDao) {
 		this.prDao = prDao;
-		prDao.setGeneric(Prestation.class);
 	}
 
 	@Override

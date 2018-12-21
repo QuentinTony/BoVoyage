@@ -7,19 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
+import fr.adaming.dao.IPersonneDao;
 import fr.adaming.model.Personne;
 
 @Service("peService")
 @Transactional
 public class PersonneServiceImpl implements IPersonneService{
 	
-	private IGenericDao<Personne> peDao;
-	
-	
+	private IPersonneDao peDao;
+
 	@Autowired
-	public void setPeDao(IGenericDao<Personne> peDao) {
+	public void setPeDao(IPersonneDao peDao) {
 		this.peDao = peDao;
-		peDao.setGeneric(Personne.class);
 	}
 
 	@Override
@@ -42,8 +41,12 @@ public class PersonneServiceImpl implements IPersonneService{
 
 	@Override
 	public int deletePersonne(Personne personne) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			peDao.delete(personne);
+			return 1;
+		}catch (Exception ex) {
+			return 0;
+		}
 	}
 
 	@Override

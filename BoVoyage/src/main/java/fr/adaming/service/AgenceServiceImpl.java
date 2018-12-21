@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.adaming.dao.IGenericDao;
+import fr.adaming.dao.IAgenceDao;
 import fr.adaming.model.Agence;
 
 @Service("agService")
 @Transactional
 public class AgenceServiceImpl implements IAgenceService{
 	
-	private IGenericDao<Agence> agDao;
+	private IAgenceDao agDao;
 
+	
 	@Autowired
-	public void setAgDao(IGenericDao<Agence> agDao) {
+	public void setAgDao(IAgenceDao agDao) {
 		this.agDao = agDao;
-		agDao.setGeneric(Agence.class);
 	}
 
 	@Override

@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.adaming.dao.IGenericDao;
+import fr.adaming.dao.IDestinationDao;
 import fr.adaming.model.Destination;
 
 @Service("deService")
 @Transactional
 public class DestinationVoyageImpl implements IDestinationService{
 	
-	private IGenericDao<Destination> deDao;
+	private IDestinationDao deDao;
 
+	
 	@Autowired
-	public void setDeDao(IGenericDao<Destination> deDao) {
+	public void setDeDao(IDestinationDao deDao) {
 		this.deDao = deDao;
-		deDao.setGeneric(Destination.class);
 	}
 
 	@Override
@@ -41,8 +41,13 @@ public class DestinationVoyageImpl implements IDestinationService{
 
 	@Override
 	public int deleteDestination(Destination destination) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			deDao.delete(destination);
+			return 1;
+		}catch (Exception ex) {
+			return 0;
+		}
+	
 	}
 
 	@Override

@@ -7,20 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
+import fr.adaming.dao.IPassagerDao;
 import fr.adaming.model.Passager;
 
 @Service("paService")
 @Transactional
 public class PassagerServiceImpl implements IPassagerService {
 	
-	private IGenericDao<Passager> paDao;
+	private IPassagerDao paDao;
 	
-	
-
 	@Autowired
-	public void setPaDao(IGenericDao<Passager> paDao) {
+	public void setPaDao(IPassagerDao paDao) {
 		this.paDao = paDao;
-		paDao.setGeneric(Passager.class);
 	}
 
 	@Override
@@ -43,8 +41,13 @@ public class PassagerServiceImpl implements IPassagerService {
 
 	@Override
 	public int deletePassager(Passager passager) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			paDao.delete(passager);
+			return 1;
+		}catch (Exception ex) {
+			return 0;
+		}
+		
 	}
 
 	@Override

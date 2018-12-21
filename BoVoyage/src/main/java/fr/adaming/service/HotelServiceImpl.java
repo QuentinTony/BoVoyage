@@ -7,18 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
+import fr.adaming.dao.IHotelDao;
 import fr.adaming.model.Hotel;
 
 @Service("hoService")
 @Transactional
 public class HotelServiceImpl implements IHotelService{
 	
-	private IGenericDao<Hotel> hoDao;
+	private IHotelDao hoDao;
 	
-	 @Autowired
-	public void setHoDao(IGenericDao<Hotel> hoDao) {
+	
+	@Autowired
+	public void setHoDao(IHotelDao hoDao) {
 		this.hoDao = hoDao;
-		hoDao.setGeneric(Hotel.class);
 	}
 
 	@Override
@@ -41,8 +42,12 @@ public class HotelServiceImpl implements IHotelService{
 
 	@Override
 	public int deleteHotel(Hotel hotel) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			hoDao.delete(hotel);
+			return 1;
+		}catch (Exception ex) {
+			return 0;
+		}
 	}
 
 	@Override

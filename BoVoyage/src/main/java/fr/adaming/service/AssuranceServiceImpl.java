@@ -6,20 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.adaming.dao.IGenericDao;
+import fr.adaming.dao.IAssuranceDao;
 import fr.adaming.model.Assurance;
 
 @Service("asService")
 @Transactional
 public class AssuranceServiceImpl implements IAssuranceService {
 	
-	private IGenericDao<Assurance> asDao;
-	
+	private IAssuranceDao asDao;
 	
 	@Autowired
-	public void setAsDao(IGenericDao<Assurance> asDao) {
+	public void setAsDao(IAssuranceDao asDao) {
 		this.asDao = asDao;
-		asDao.setGeneric(Assurance.class);
 	}
 
 	@Override
@@ -42,8 +40,13 @@ public class AssuranceServiceImpl implements IAssuranceService {
 
 	@Override
 	public int deleteAssurance(Assurance assurance) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			asDao.delete(assurance);
+			return 1;
+		}catch (Exception ex) {
+			return 0;
+		}
+		
 	}
 
 	@Override

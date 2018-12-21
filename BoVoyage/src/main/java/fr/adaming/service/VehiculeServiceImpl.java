@@ -7,19 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGenericDao;
+import fr.adaming.dao.IVehiculeDao;
 import fr.adaming.model.Vehicule;
 
 @Service("veService")
 @Transactional
 public class VehiculeServiceImpl implements IVehiculeService{
 	
-	private IGenericDao<Vehicule> veDao;
-	
+	private IVehiculeDao veDao;
 	
 	@Autowired
-	public void setVeDao(IGenericDao<Vehicule> veDao) {
+	public void setVeDao(IVehiculeDao veDao) {
 		this.veDao = veDao;
-		veDao.setGeneric(Vehicule.class);
 	}
 
 	@Override
@@ -42,8 +41,12 @@ public class VehiculeServiceImpl implements IVehiculeService{
 
 	@Override
 	public int deleteVehicule(Vehicule vehicule) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			veDao.delete(vehicule);
+			return 1;
+		}catch (Exception ex) {
+			return 0;
+		}
 	}
 
 	@Override
