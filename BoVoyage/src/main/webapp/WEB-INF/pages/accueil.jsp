@@ -1,10 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<!-- AJouter la tagLib core de jstl -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!-- ajout de la taglIb form de spring MVC -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 
 <title>Bienvenue dans BoVoyage-Voyages Nordiques</title>
+
+<link rel="stylesheet" href="ressources/css/bootstrap.css">
+<link rel="stylesheet" href="ressources/css/monCSS.css">
+
+<script type="text/javascript" src="ressources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="ressources/js/bootstrap.js"></script>
 
 </head>
 <body>
@@ -50,23 +63,26 @@
 			</div>
 			<!-- /.container-fluid -->
 		</nav>
-		
-<table class="table table-condensed">
-<tr>
-<td>
-<img src="..." alt="image" class="img-thumbnail">
-<br/>
-Destination : .......
-<br/>
-Prix Initial : .......
-<br/>
-Prix Soldé : .......
 
-<button type="button" class="btn btn-default">Voir l'offre</button>
-</td>
-</tr>
-</table>
-<nav aria-label="..."><ul class="pagination pagination-lg">...</ul></nav>
+		<table class="table table-condensed">
+			<c:forEach var="voyagelist" items="${voyagelist}">
+				<tr>
+					<td><img src="${voyagelist.photo}" alt="image"
+						class="img-thumbnail">
+						 <br />
+						  Destination :	${voyagelist.destination} 
+						<br /> Prix Initial : ${voyagelist.prix} 
+						<br /> Prix Soldé : ${voyagelist.prix}*${voyagelist.remise}
+
+					<a href="href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${voyagelist.id}">	<button type="button" class="btn btn-default">Voir
+							l'offre</a></button></td>
+			</c:forEach>
+			</tr>
+		</table>
+		<nav aria-label="...">
+			<ul class="pagination pagination-lg">...
+			</ul>
+		</nav>
 	</div>
 
 	<%@include file="template/footer.html"%>
