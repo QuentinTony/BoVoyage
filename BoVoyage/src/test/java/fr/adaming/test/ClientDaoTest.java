@@ -52,7 +52,7 @@ public class ClientDaoTest {
 	@Test
 	@Rollback
 	public void testadd() {
-		Client cl=new Client("zdqefsg", "qdfsgdf", new Date(), "c@c", "0678943256", 4567, new Date(), 234, true);
+		Client cl=new Client("zdqefsg", "qdfsgdf", new Date(), "c@c", "0678943256");
 		Client clNew=clDao.add(cl);
 		List<Client> liste=clDao.getAll();
 		assertEquals(3, liste.size());
