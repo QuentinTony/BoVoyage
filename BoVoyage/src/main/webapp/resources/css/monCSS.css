@@ -28,4 +28,52 @@ section{
 	background-position:100px 0px
 	}
 	
+	.check{
+width: 20px;
+border: 2px;
+border-radius: 30%;
+
+}
+
+.gmail{
+width: 30px;
+border-radius: 30%;
+}
+
+.chat{
+width: 30px;
+border-radius: 30%;
+}
+
+.plane{
+width: 30px;
+border-radius: 30%;
+}
+
+.newsletter--input{
+position: absolute;
+right: 50px;
+width: 230px;
+top: 950px;
+}
+
+.iconos{
+position: absolute;
+right: 90px;
+top: 1030px;
+}
+.newsletter__cta{
+color: darkblue;
+}
+
+.contactanos{
+position: absolute;
+top: 950px;
+color: darkblue;
+}
+
+.footer{
+background-color: lightblue;
+}
+	
 }
