@@ -32,6 +32,7 @@ public class VoyageServiceImpl implements IVoyageService {
 	@Autowired
 	public void setVoDao(IVoyageDao voDao) {
 		this.voDao = voDao;
+		voDao.setGeneric(Voyage.class);
 	}
 
 	@Override
