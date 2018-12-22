@@ -13,15 +13,21 @@
 
 <title>Bienvenue dans BoVoyage-Voyages Nordiques</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/monCSS.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/monCSS.css">
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 </head>
 <body>
-	<%@include file='template/header.html' %>
+
+	<%@include file='template/header.html'%>
 
 	<div class="row">
 		<nav class="navbar navbar-default">
@@ -35,7 +41,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Accueil</a>
+					<a class="navbar-brand" href="#">BoVoyage</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,29 +70,8 @@
 			<!-- /.container-fluid -->
 		</nav>
 
-		<table class="table table-condensed">
-<%-- 			<c:forEach var="voyagelist" items="${voyagelist}"> --%>
-				<tr>
-					<td><img src="${voyagelist.photo}" alt="image"
-						class="img-thumbnail">
-						<br /> Destination :
-						${voyagelist.destination} 
-						<br /> Prix Initial :
-						${voyagelist.prix} 
-						<br /> Prix Soldé :
-						${voyagelist.prix}*${voyagelist.remise}
-						<button type="button" class="btn btn-default">
-							Voir l'offre
-						</button></td>
-						<td></td>
-						</tr>
-<%-- 			</c:forEach> --%>
-		</table>
-		<nav aria-label="...">
-<!-- 			<UL CLASS="PAGINATION PAGINATION-LG"></UL> -->
-		</nav>
 	</div>
 
-	<%@include file="template/footer.html"%>
+
 </body>
 </html>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-<!-- AJouter la tagLib core de jstl -->
+	<!-- AJouter la tagLib core de jstl -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- ajout de la taglIb form de spring MVC -->
@@ -23,29 +22,39 @@
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 </head>
 <body>
+
 	<%@include file='template/header.html'%>
+
+	<!-- PARTIE AJOUT -->
+
 	<div class="panel panel-info"
 		style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
 		<div class="panel-heading"
 			style="background-color: lightblue; color: darkblue">
-			<b>Supprimer une destination</b>
+			<b>Ajouter un hôtel</b>
 		</div>
 		<div class="panel-body">
 			<form>
 
-				<label for="voyage">Voyage :</label> <br /> <select
-					class="form-control" >
-					<c:forEach items="${listVoyage}" >
-						<option>Sélectionnez un voyage</option>
-						<option value="${listVoyage}">${listVoyage}</option>
-						
-					</c:forEach>
-				</select> <br /> <br />
-				<button type="submit" class="btn btn-default ">Supprimer</button>
+				<label for="type">Type de Voiture:</label> <br /> <input type="text"
+					placeholder="Entrez un type de voiture" id="type" /> <br /> <br /> <br /> <label
+					for="prix">Prix /Jour /personne:</label> <br /> <input
+					type="number" placeholder="Entrez un prix" id="prix" /> <br /> <br />
+				<div
+					style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
+					<label id="labelimage">Insérer une image :</label>
+					<div class="input-group" id="img">
+						<span class="input-group-btn"><br /> <span
+							class="btn btn-default btn-file"> Charger une photo <input
+								type="file" id="imgInp">
+						</span> </span> <img id='img-upload' style="width: 30%" />
+					</div>
+				</div>
+				<br /> <br />
+				<button type="submit" class="btn btn-default ">Ajouter</button>
 
 			</form>
 		</div>
 	</div>
-
 </body>
 </html>

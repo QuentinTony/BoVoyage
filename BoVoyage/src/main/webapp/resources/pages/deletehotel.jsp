@@ -33,11 +33,11 @@
 		<div class="panel-body">
 			<form>
 
-				<label for="voyage">Voyage :</label> <br /> <select
-					class="form-control" >
-					<c:forEach items="${listVoyage}" >
-						<option>Sélectionnez un voyage</option>
-						<option value="${listVoyage}">${listVoyage}</option>
+				<label for="destination">Destination :</label> <br /> <select
+					class="form-control" id="destination">
+					<c:forEach items="${listhotel}" >
+						<option>Sélectionnez une catégorie</option>
+						<option value=">${listhotel.id}">${listhotel.type}</option>
 						
 					</c:forEach>
 				</select> <br /> <br />

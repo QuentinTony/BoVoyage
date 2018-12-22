@@ -1,34 +1,5 @@
-section{
-	
-	background: url(image.jpg);
-	background-size : cover;
-	width:100%;
-	height:300px;
-	position:relative;
-	overflow: hidden;
-	}
-	
-.snow1{
-	background: url(snow.jpg);
-	background-repeat: repeat;
-	width:100%;
-	height:300px;
-	position:absolute;
-	top: 0;
-	left:0;
-	animation:animateOne 10s infinite linear;
-}
-
-@keyframes animateOne{
-	0%{
-	background-position:0px 0px
-	}
-	
-	100%{
-	background-position:100px 0px
-	}
-	
-	.check{
+******FOOTER********
+.check{
 width: 20px;
 border: 2px;
 border-radius: 30%;
@@ -76,4 +47,96 @@ color: darkblue;
 background-color: lightblue;
 }
 	
+}
+
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+***********NEIGE******************
+section{
+background-color: lightblue}
+
+.snowflake {
+    position: absolute;
+    display: block;
+    position: absolute;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-image: -webkit-radial-gradient(
+        center,
+        circle farthest-corner,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-image: -moz-radial-gradient(
+        center,
+        circle farthest-corner,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-image: -ms-radial-gradient(
+        center,
+        circle farthest-corner,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-image: radial-gradient(
+        center,
+        circle farthest-corner,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+#snow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+********BUTTON******
+#btnsubmit{
+	background-color: lightblue !important;
+	
+}
+
+#btnsubmit:hover{
+	background-color: darkblue !important;
+	
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+   
 }
