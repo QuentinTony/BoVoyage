@@ -16,5 +16,7 @@ public interface IClientService {
 
 	public int updateClient(Client client);
 	
+	public int virement(Client client, double prix);
+	
 
 }
