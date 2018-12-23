@@ -33,15 +33,17 @@ public class VoyageDaoImpl extends GenericDaoImpl<Voyage> implements IVoyageDao 
 
 	@Override
 	public List<Voyage> getVoyageByDateDepart(Date dd) {
-
+		System.out.println(dd);
 		String req = "FROM Voyage v WHERE v.dateDepart >= :pDate";
 		Query q = em.createQuery(req);
 		q.setParameter("pDate", dd);
+		System.out.println(q.getResultList().size());
 		return q.getResultList();
 	}
 
 	@Override
 	public List<Voyage> getVoyageByDateRetour(Date dr) {
+		System.out.println(dr);
 		String req = "FROM Voyage v WHERE v.dateRetour <= :pDate";
 		Query q = em.createQuery(req);
 		q.setParameter("pDate", dr);
