@@ -35,19 +35,17 @@ public class DestinationServiceImpl implements IDestinationService{
 	}
 
 	@Override
-	public Destination getHotel(long id) {
+	public Destination getDestination(long id) {
 		
 		return deDao.getById(id);
 	}
 
 	@Override
 	public int deleteDestination(Destination destination) {
-		try {
+		
 			deDao.delete(destination);
 			return 1;
-		}catch (Exception ex) {
-			return 0;
-		}
+		
 	
 	}
 

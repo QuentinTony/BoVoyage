@@ -23,7 +23,7 @@
 </head>
 <body>
 
-	<%@include file='template/header.html'%>
+	<%@include file='template/headerAgence.html'%>
 
 	<!-- PARTIE AJOUT -->
 
@@ -34,26 +34,26 @@
 			<b>Ajouter un hôtel</b>
 		</div>
 		<div class="panel-body">
-			<form>
-
-				<label for="type">Type de Voiture:</label> <br /> <input type="text"
-					placeholder="Entrez un type de voiture" id="type" /> <br /> <br /> <br /> <label
-					for="prix">Prix /Jour /personne:</label> <br /> <input
-					type="number" placeholder="Entrez un prix" id="prix" /> <br /> <br />
+			<form:form method="POST" action="addvoiturep"
+		commandName="addVoiture" cssClass="form-horizontal">
+				<label for="type">Type de Voiture:</label> <br /> <form:input type="text"
+					placeholder="Entrez un type de voiture" id="type" path="type"/> <br /> <br /> <br /> <label
+					for="prix">Prix /Jour /personne:</label> <br /> <form:input
+					type="number" path="prix" placeholder="Entrez un prix" id="prix" /> <br /> <br />
 				<div
 					style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
 					<label id="labelimage">Insérer une image :</label>
 					<div class="input-group" id="img">
 						<span class="input-group-btn"><br /> <span
-							class="btn btn-default btn-file"> Charger une photo <input
-								type="file" id="imgInp">
+							class="btn btn-default btn-file"> Charger une photo <form:input
+								type="file" id="imgInp" path="photo"/>
 						</span> </span> <img id='img-upload' style="width: 30%" />
 					</div>
 				</div>
 				<br /> <br />
 				<button type="submit" class="btn btn-default ">Ajouter</button>
 
-			</form>
+			</form:form>
 		</div>
 	</div>
 </body>

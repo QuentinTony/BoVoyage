@@ -1,112 +1,91 @@
-var Snowflake = (function() {
-
-    var flakes;
-    var flakesTotal = 250;
-    var wind = 0;
-    var mouseX;
-    var mouseY;
-
-    function Snowflake(size, x, y, vx, vy) {
-        this.size = size;
-        this.x = x;
-        this.y = y;
-        this.vx = vx;
-        this.vy = vy;
-        this.hit = false;
-        this.melt = false;
-        this.div = document.createElement('div');
-        this.div.classList.add('snowflake');
-        this.div.style.width = this.size + 'px';
-        this.div.style.height = this.size + 'px';
-    }
-
-    Snowflake.prototype.move = function() {
-        if (this.hit) {
-            if (Math.random() > 0.995) this.melt = true;
-        } else {
-            this.x += this.vx + Math.min(Math.max(wind, -10), 10);
-            this.y += this.vy;
-        }
-
-        // Wrap the snowflake to within the bounds of the page
-        if (this.x > window.innerWidth + this.size) {
-            this.x -= window.innerWidth + this.size;
-        }
-
-        if (this.x < -this.size) {
-            this.x += window.innerWidth + this.size;
-        }
-
-        if (this.y > window.innerHeight + this.size) {
-            this.x = Math.random() * window.innerWidth;
-            this.y -= window.innerHeight + this.size * 2;
-            this.melt = false;
-        }
-
-        var dx = mouseX - this.x;
-        var dy = mouseY - this.y;
-        this.hit = !this.melt && this.y < mouseY && dx * dx + dy * dy < 2400;
-    };
-
-    Snowflake.prototype.draw = function() {
-        this.div.style.transform =
-        this.div.style.MozTransform =
-        this.div.style.webkitTransform =
-            'translate3d(' + this.x + 'px' + ',' + this.y + 'px,0)';
-    };
-
-    function update() {
-        for (var i = flakes.length; i--; ) {
-            var flake = flakes[i];
-            flake.move();
-            flake.draw();
-        }
-        requestAnimationFrame(update);
-    }
-
-    Snowflake.init = function(container) {
-        flakes = [];
-
-        for (var i = flakesTotal; i--; ) {
-            var size = (Math.random() + 0.2) * 12 + 1;
-            var flake = new Snowflake(
-                size,
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerHeight,
-                Math.random() - 0.5,
-                size * 0.3
-            );
-            container.appendChild(flake.div);
-            flakes.push(flake);
-        }
-    
-    container.onmousemove = function(event) {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-        wind = (mouseX - window.innerWidth / 2) / window.innerWidth * 6;
-    };
-
-      container.ontouchstart = function(event) {
-          mouseX = event.targetTouches[0].clientX;
-          mouseY = event.targetTouches[0].clientY;
-          event.preventDefault();
-    };
-
-    window.ondeviceorientation = function(event) {
-        if (event) {
-            wind = event.gamma / 10;
-        }
-    };
-    
-    update();
-    };
-
-    return Snowflake;
-
-}());
-
-window.onload = function() {
-  setTimeout(function() {
-    Snowflake.init(document.getElementById('snow'));
-  }, 500);
+window.onload = function(){
+	//canvas init
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	
+	//canvas dimensions
+	var W = window.innerWidth;
+	var H = 150;
+	canvas.width = W;
+	canvas.height = H;
+	
+	//snowflake particles
+	var mp = 25; //max particles
+	var particles = [];
+	for(var i = 0; i < mp; i++)
+	{
+		particles.push({
+			x: Math.random()*W, //x-coordinate
+			y: Math.random()*H, //y-coordinate
+			r: Math.random()*4+1, //radius
+			d: Math.random()*mp //density
+		})
+	}
+	
+	//Lets draw the flakes
+	function draw()
+	{
+		ctx.clearRect(0, 0, W, H);
+		
+		ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+		ctx.beginPath();
+		for(var i = 0; i < mp; i++)
+		{
+			var p = particles[i];
+			ctx.moveTo(p.x, p.y);
+			ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+		}
+		ctx.fill();
+		update();
+	}
+	
+	//Function to move the snowflakes
+	//angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
+	var angle = 0;
+	function update()
+	{
+		angle += 0.01;
+		for(var i = 0; i < mp; i++)
+		{
+			var p = particles[i];
+			//Updating X and Y coordinates
+			//We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+			//Every particle has its own density which can be used to make the downward movement different for each flake
+			//Lets make it more random by adding in the radius
+			p.y += Math.cos(angle+p.d) + 1 + p.r/2;
+			p.x += Math.sin(angle) * 2;
+			
+			//Sending flakes back from the top when it exits
+			//Lets make it a bit more organic and let flakes enter from the left and right also.
+			if(p.x > W+5 || p.x < -5 || p.y > H)
+			{
+				if(i%3 > 0) //66.67% of the flakes
+				{
+					particles[i] = {x: Math.random()*W, y: -10, r: p.r, d: p.d};
+				}
+				else
+				{
+					//If the flake is exitting from the right
+					if(Math.sin(angle) > 0)
+					{
+						//Enter from the left
+						particles[i] = {x: -5, y: Math.random()*H, r: p.r, d: p.d};
+					}
+					else
+					{
+						//Enter from the right
+						particles[i] = {x: W+5, y: Math.random()*H, r: p.r, d: p.d};
+					}
+				}
+			}
+		}
+	}
+	
+	//animation loop
+	setInterval(draw, 33);
 }
+
+
+
+
+

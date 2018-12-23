@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,9 +38,8 @@ public class VoyageController {
 	public ModelAndView afficheListe() {
 		//Récuperer la liste de la BD
 		
-		List<Voyage> listVoyage= voService.getAllVoyage();
-		
-		return new ModelAndView("accueil","listVoyage",listVoyage);
+		List<Voyage> listvoyage= voService.getAllVoyage();
+		return new ModelAndView("accueil","listVoyage",listvoyage);
 		
 	}
 	
@@ -125,8 +125,9 @@ public class VoyageController {
 		//5*************************************************GET***************************************************************
 		
 		@RequestMapping(value="/getvoyage", method=RequestMethod.GET)
-		public String getVoyage(Model model) {
-			model.addAttribute("voyage", new Voyage());
+		public String getVoyage(Model model, @RequestParam(value = "id") long id) {
+			Voyage vOut = voService.getVoyage(id);
+			model.addAttribute("voyage", vOut);
 			return "getvoyage";
 		}
 		

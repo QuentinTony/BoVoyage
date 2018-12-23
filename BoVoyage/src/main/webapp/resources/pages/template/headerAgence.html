@@ -1,0 +1,91 @@
+<header>
+<canvas id="canvas" style="position: absolute;z-index: 2"></canvas>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="z-index: 1;height:10%">
+		
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img
+						src="${pageContext.request.contextPath}/resources/image/header1.jpg"
+						alt="Finlande" style="width: 100%;">
+					<div class="carousel-caption"></div>
+				</div>
+				<div class="item">
+					<img
+						src="${pageContext.request.contextPath}/resources/image/header2.jpg"
+						alt="Norvege" style="width: 100%;">
+					<div class="carousel-caption"></div>
+				</div>
+				
+			</div>
+		</div>
+
+
+<nav class="navbar navbar-inverse" style="background-color: lightblue; border-radius:0%;border-color: darkblue;border-width: 3px;">
+	<ul class="nav nav-pills" style="color:darkblue;">
+	<li>
+	<a class="navbar-brand" href='${pageContext.request.contextPath}/bovoyage/listvoyage' style="color:darkblue;">BoVoyage</a>
+	</li>
+	<li class="dropdown">
+		  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voyage<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li role="presentation"><a
+					href='${pageContext.request.contextPath}/bovoyage/addvoyage'>Ajouter</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/bovoyage/deletevoyage">Supprimer</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/bovoyage/updatevoyage">Modifier</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/bovoyage/getvoyage">Rechercher</a></li>
+			</ul>
+		</li>
+			<li class="dropdown">
+		  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Destination<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li role="presentation"><a
+					href='${pageContext.request.contextPath}/destination/adddestination'>Ajouter</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/destination/deletedestination">Supprimer</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/destination/updatedestination">Modifier</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/destination/getdestination">Rechercher</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+		  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hôtel<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li role="presentation"><a
+					href='${pageContext.request.contextPath}/hotel/addhotel'>Ajouter</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/hotel/deletehotel">Supprimer</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/hotel/updatehotel">Modifier</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/hotel/gethotel">Rechercher</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+		  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voiture<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li role="presentation"><a
+					href='${pageContext.request.contextPath}/voiture/addvoiture'>Ajouter</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/voiture/deletevoiture">Supprimer</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/voiture/updatevoiture">Modifier</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/voiture/getvoiture">Rechercher</a></li>
+			</ul>
+		</li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/agent/sedeconnecter">Deconnexion</a></li>
+	</ul>
+
+</nav>
+</header>

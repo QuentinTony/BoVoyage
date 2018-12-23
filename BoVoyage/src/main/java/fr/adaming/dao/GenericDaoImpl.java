@@ -45,6 +45,7 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
 
 	@Override
 	public List<T> getAll() {
+		System.out.println("DAO" + em.createQuery("FROM " + generic.getName()).getResultList());
 		return em.createQuery("FROM " + generic.getName()).getResultList();
 	}
 
@@ -59,7 +60,8 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
 
 	@Override
 	public void delete(T o) {
-		em.remove(o);
+		em.remove(em.contains(o) ? o : em.merge(o));
+	
 	}
 
 }

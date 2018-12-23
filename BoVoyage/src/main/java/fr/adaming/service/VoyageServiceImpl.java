@@ -45,10 +45,10 @@ public class VoyageServiceImpl implements IVoyageService {
 	public List<Voyage> getAllVoyage() {
 		List<Voyage> liste=voDao.getAll();
 		
-		for(Voyage vo: liste) {
-			Destination de=deDao.getById(vo.getDestination().getId());
-			vo.setDestination(de);
-		}
+//		for(Voyage vo: liste) {
+//			Destination de=deDao.getById(vo.getDestination().getId());
+//			vo.setDestination(de);
+//		}
 		return liste;
 	}
 

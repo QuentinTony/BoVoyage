@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 @Entity
 @Table(name="destinations")
 public class Destination implements Serializable{
@@ -98,6 +100,7 @@ public class Destination implements Serializable{
 	public Byte[] getPhoto() {
 		return photo;
 	}
+	
 	public void setPhoto(Byte[] photo) {
 		this.photo = photo;
 	}

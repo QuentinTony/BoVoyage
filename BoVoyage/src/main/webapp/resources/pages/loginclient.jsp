@@ -30,21 +30,22 @@
 	<br />
 	<br />
 
-	<form>
+	<form:form method="POST" action="isexistclientp"
+		commandName="isExistClient" cssClass="form-horizontal">
 		<div class="panel panel-info" style="width:30%; position:relative;left:35%; text-align: center;color:darkblue">
 			<div class="panel-heading" style=" background-color: lightblue;color:darkblue"><b>Accès à votre espace Client de BoVoyage</b></div>
 			<div class="panel-body">
-				<label for="email">Adresse Electronique</label> <br /> <input
+				<label for="email">Adresse Electronique</label> <br /> <form:input path="email"
 					type="email" class="form-control " id="email" style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre adresse électronique"> <br /> <label
-					for="mdp">Mot de passe</label> <br /> <input type="password"
+					placeholder="Entrez votre adresse électronique"/> <br /> <label
+					for="mdp">Mot de passe</label> <br /> <form:input path="mdp" type="password"
 					class="form-control" id="mdp" style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre mot de passe"> <br />
+					placeholder="Entrez votre mot de passe"/> <br />
 				<button type="submit" class="btn btn-default " >Entrez dans
 					votre espace Client</button>
 			</div>
 		</div>
-	</form>
+	</form:form>
 	<br />
 	<br />
 	<div   style="width:30%; position:relative;left:35%; text-align: center;">

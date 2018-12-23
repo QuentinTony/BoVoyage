@@ -23,7 +23,7 @@
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 </head>
 <body>
-	<%@include file='template/header.html'%>
+	<%@include file='template/headerAgence.html'%>
 	<div class="panel panel-info"
 		style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
 		<div class="panel-heading"
@@ -31,19 +31,19 @@
 			<b>Supprimer une destination</b>
 		</div>
 		<div class="panel-body">
-			<form>
-
-				<label for="destination">Destination :</label> <br /> <select
-					class="form-control" id="destination">
+			<form:form  method="POST" action="deletehotelp"
+		commandName="deleteHotel" cssClass="form-horizontal">
+				<label for="destination">Hôtel :</label> <br /> <form:select
+					class="form-control" id="hotel" path="id">
 					<c:forEach items="${listhotel}" >
 						<option>Sélectionnez une catégorie</option>
 						<option value=">${listhotel.id}">${listhotel.type}</option>
 						
 					</c:forEach>
-				</select> <br /> <br />
+				</form:select> <br /> <br />
 				<button type="submit" class="btn btn-default ">Supprimer</button>
 
-			</form>
+			</form:form>
 		</div>
 	</div>
 

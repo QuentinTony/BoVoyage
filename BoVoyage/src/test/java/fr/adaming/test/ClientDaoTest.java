@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class ClientDaoTest {
 	}
 
 	@Test
+	@Ignore
 	@Transactional(readOnly=true)
 	public void testgetById() {
 		Client clOut=clDao.getById(1);
@@ -38,6 +40,7 @@ public class ClientDaoTest {
 	}
 
 	@Test
+	@Ignore
 	@Transactional(readOnly=true)
 	public void testgetAllSize() {
 		List<Client> liste=clDao.getAll();
@@ -45,6 +48,7 @@ public class ClientDaoTest {
 	}
 	
 	@Test
+	@Ignore
 	@Transactional(readOnly=true)
 	public void testgetAllFirst() {
 		List<Client> liste=clDao.getAll();
@@ -53,6 +57,7 @@ public class ClientDaoTest {
 	}
 	
 	@Test
+	@Ignore
 	@Transactional(readOnly=true)
 	public void testgetAllLast() {
 		List<Client> liste=clDao.getAll();
@@ -61,6 +66,7 @@ public class ClientDaoTest {
 	}
 	
 	@Test
+	@Ignore
 	@Rollback(true)
 	@Transactional
 	public void testaddSizeListe() {
@@ -71,6 +77,7 @@ public class ClientDaoTest {
 	}
 	
 	@Test
+	@Ignore
 	@Rollback(true)
 	@Transactional
 	public void testaddObject() {
@@ -81,6 +88,7 @@ public class ClientDaoTest {
 	}
 	
 	@Test
+	@Ignore
 	@Rollback(true)
 	@Transactional
 	public void testDeleteSizeListe() {
@@ -91,6 +99,7 @@ public class ClientDaoTest {
 	}
 	
 	@Test
+	@Ignore
 	@Rollback(true)
 	@Transactional
 	public void testupDate() {

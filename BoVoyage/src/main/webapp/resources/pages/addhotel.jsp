@@ -22,7 +22,7 @@
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 </head>
 <body>
-	<%@include file='template/header.html'%>
+	<%@include file='template/headerAgence.html'%>
 
 	<!-- PARTIE AJOUT -->
 
@@ -33,44 +33,59 @@
 			<b>Ajouter un hôtel</b>
 		</div>
 		<div class="panel-body">
-			<form>
-
-				<label for="nom">Nom:</label> <br /> <input type="text"
-					placeholder="Entrez un nom" id="nom" /> <br /> <br /> <label
-					for="categorie">Catégorie :</label> <br /> <select
-					class="form-control" id="categorie">
+			<form:form method="POST" action="addhotelnp" commandName="addHotel"
+				cssClass="form-horizontal">
+				<label for="nom">Nom:</label>
+				<br />
+				<form:input type="text" placeholder="Entrez un nom" id="nom"  path="type"/>
+				<br />
+				<br />
+				<label for="categorie">Catégorie :</label>
+				<br />
+				<form:select class="form-control" path="categorie" id="categorie">
 					<option>Sélectionnez une catégorie</option>
 					<option value="1">1 *</option>
 					<option value="2">2**</option>
 					<option value="3">3***</option>
 					<option value="3">4****</option>
 					<option value="3">5*****</option>
-				</select> <br /> <label for="hebergement">Hébergement :</label> <br /> <select
-					class="form-control" id="hebergement">
+				</form:select>
+				<br />
+				<label for="hebergement">Hébergement :</label>
+				<br />
+				<form:select class="form-control" path="hebergement" id="hebergement">
 					<option>Sélectionnez une catégorie</option>
 					<option value="complet">Pension complète</option>
 					<option value="demi">Demi pension</option>
 					<option value="petit">Petit-Déjeuner</option>
 					<option value="seul">Hébergement seul</option>
-				</select> <br /> <label for="prix">Prix /Jour /personne:</label> <br /> <input
-					type="number" placeholder="Entrez un prix" id="prix" /> <br /> <br />
-				<label for="prix">Description:</label> <br />
-				<textarea rows="5" cols="50"></textarea>
-				<br /> <br />
+				</form:select>
+				<br />
+				<label for="prix">Prix /Jour /personne:</label>
+				<br />
+				<form:input type="number" path="prix" placeholder="Entrez un prix" id="prix" />
+				<br />
+				<br />
+				<label for="prix">Description:</label>
+				<br />
+				<form:textarea path="description" rows="5" cols="50"></form:textarea>
+				<br />
+				<br />
 				<div
 					style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
 					<label id="labelimage">Insérer une image :</label>
 					<div class="input-group" id="img">
 						<span class="input-group-btn"><br /> <span
-							class="btn btn-default btn-file"> Charger une photo <input
-								type="file" id="imgInp">
+							class="btn btn-default btn-file"> Charger une photo <form:input path="photo"
+								type="file" id="imgInp"/>
 						</span> </span> <img id='img-upload' style="width: 30%" />
 					</div>
 				</div>
-				<br /> <br />
+				<br />
+				<br />
 				<button type="submit" class="btn btn-default ">Ajouter</button>
 
-			</form>
+			</form:form>
 		</div>
 	</div>
 

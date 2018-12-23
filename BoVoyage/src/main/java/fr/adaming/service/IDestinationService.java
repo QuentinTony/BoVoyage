@@ -12,7 +12,7 @@ public Destination addDestination(Destination destination);
 	
 	public List<Destination> getAllDestination();
 
-	public Destination getHotel(long id);
+	public Destination getDestination(long id);
 
 	public int deleteDestination(Destination destination);
 

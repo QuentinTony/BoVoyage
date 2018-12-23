@@ -23,7 +23,7 @@
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 </head>
 <body>
-	<%@include file='template/header.html'%>
+	<%@include file='template/headerAgence.html'%>
 	<div class="panel panel-info"
 		style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
 		<div class="panel-heading"

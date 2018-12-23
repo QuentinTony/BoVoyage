@@ -18,6 +18,7 @@
 <script type="text/javascript" src="ressources/js/bootstrap.js"></script>
 </head>
 <body>
+	<%@include file='template/headerAgence.html'%>
 
 </body>
 </html>

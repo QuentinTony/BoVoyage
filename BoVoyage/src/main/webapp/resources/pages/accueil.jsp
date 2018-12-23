@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-15"
+	pageEncoding="ISO-8859-15"%>
 
 <!-- AJouter la tagLib core de jstl -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -24,54 +24,65 @@
 	src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
+
+
 </head>
 <body>
-
 	<%@include file='template/header.html'%>
 
-	<div class="row">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-						aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">BoVoyage</a>
+
+	<c:forEach var="v" items="${listVoyage}">
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading"
+					style="font-size: 150%;background-image: ${v.destination.photo}">
+					<div style="color: darkblue; font-size: 150%; position: absolute;">
+						${v.destination.pays} - ${v.destination.villeArrive}</div>
+					<div
+						style="color: darkblue; font-size: 100%; text-decoration: line-through; text-align: right">${v.prix}¤</div>
+					<div style="color: red; font-size: 150%; text-align: right">${v.prix *(1- v.remise) }¤</div>
+
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered">
+
+						<tr>
+						<th>ID</th>
+							<th>Prix</th>
+							<th>Remise</th>
+							<th>Prix Soldé</th>
+							<th>Ville de Départ</th>
+							<th>Ville de Retour</th>
+							<th>Date de Départ</th>
+							<th>Date de Retour</th>
+						</tr>
+						<tr>
+						<td>${v.id}</td>
+							<td>${v.prix}</td>
+							<td>${v.remise*100}%</td>
+							<td>${v.prix *(1- v.remise) }</td>
+							<td>${v.villeDepart }</td>
+							<td>${v.destination.villeArrive }</td>
+							<td>${v.dateDepart}</td>
+							<td>${v.dateRetour}</td>
+						</tr>
+
+					</table>
+					<h3 style="text-align: center">Plus que ${v.stockPassager}
+						places disponibles</h3>
+							<button><a href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${v.id}">Voir les détails</a></button>
 				</div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Prix <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Inférieur à 100 </a></li>
-								<li><a href="#">De 100 à 300 </a></li>
-								<li><a href="#">De 300 à 500 </a></li>
-								<li><a href="#">Supérieur à 500</a></li>
-							</ul></li>
-					</ul>
-					<form class="navbar-form navbar-left">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
-				</div>
-				<!-- /.navbar-collapse -->
 			</div>
-			<!-- /.container-fluid -->
-		</nav>
-
-	</div>
+		</div>
+	</c:forEach>
 
 
+
+
+	<footer>
+
+		<%@include file='template/footer.html'%>
+	</footer>
 </body>
 </html>
