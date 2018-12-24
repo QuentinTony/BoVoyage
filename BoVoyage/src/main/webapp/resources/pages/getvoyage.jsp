@@ -36,7 +36,7 @@
 				<div class="panel-heading"
 					style="font-size: 150%;background-image: ${voyage.destination.photo}">
 					<div style="color: darkblue; font-size: 150%; position: absolute;">
-						${voyage.destination.pays} - ${voyage.destination.villeArrive}</div>
+						<b>${voyage.destination.pays}</b> - ${voyage.destination.villeArrive}</div>
 					<div
 						style="color: darkblue; font-size: 100%; text-decoration: line-through; text-align: right">${voyage.prix}¤</div>
 					<div style="color: red; font-size: 150%; text-align: right">${voyage.prix *(1- voyage.remise) }¤</div>
@@ -53,6 +53,7 @@
 							<th>Ville de Retour</th>
 							<th>Date de Départ</th>
 							<th>Date de Retour</th>
+							<th>Photo</th>
 						</tr>
 						<tr>
 							<td>${voyage.prix}</td>
@@ -62,6 +63,8 @@
 							<td>${voyage.destination.villeArrive }</td>
 							<td>${voyage.dateDepart}</td>
 							<td>${voyage.dateRetour}</td>
+														<td><img src="${voyage.destination.photo}"></td>
+							
 						</tr>
 
 					</table>

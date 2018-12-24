@@ -29,7 +29,7 @@ public class Destination implements Serializable{
 	private double latitude;
 	
 	@Lob
-	private Byte[] photo;
+	private byte[] photo;
 	private String villeArrive;
 	
 	//transformation de l'association UML en JAVA
@@ -44,7 +44,7 @@ public class Destination implements Serializable{
 	public Destination() {
 		super();
 	}
-	public Destination(String continent, String pays, double longitude, double latitude, Byte[] photo,
+	public Destination(String continent, String pays, double longitude, double latitude, byte[] photo,
 			String villeArrive) {
 		super();
 		this.continent = continent;
@@ -54,7 +54,7 @@ public class Destination implements Serializable{
 		this.photo = photo;
 		this.villeArrive = villeArrive;
 	}
-	public Destination(long id, String continent, String pays, double longitude, double latitude, Byte[] photo,
+	public Destination(long id, String continent, String pays, double longitude, double latitude, byte[] photo,
 			String villeArrive) {
 		super();
 		this.id = id;
@@ -97,11 +97,11 @@ public class Destination implements Serializable{
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	public Byte[] getPhoto() {
+	public byte[] getPhoto() {
 		return photo;
 	}
 	
-	public void setPhoto(Byte[] photo) {
+	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 	public String getVilleArrive() {

@@ -31,19 +31,20 @@
 			<b>Supprimer une destination</b>
 		</div>
 		<div class="panel-body">
-			<form>
+			<form:form method="POST" action="deletevoyagep"
+				commandName="voyage" cssClass="form-horizontal">
 
-				<label for="voyage">Voyage :</label> <br /> <select
-					class="form-control" >
-					<c:forEach items="${listVoyage}" >
-						<option>Sélectionnez un voyage</option>
-						<option value="${listVoyage}">${listVoyage}</option>
+				<label for="voyage">Voyage :</label> <br /> <form:select
+					class="form-control" path="id" >
+					<c:forEach items="${listVoyage}"  var="list">
+						
+						<option value="${list.id}">${list.villeDepart} -  Du ${list.dateDepart} au ${list.dateRetour}</option>
 						
 					</c:forEach>
-				</select> <br /> <br />
+				</form:select> <br /> <br />
 				<button type="submit" class="btn btn-default ">Supprimer</button>
 
-			</form>
+			</form:form>
 		</div>
 	</div>
 

@@ -37,7 +37,7 @@
 		</div>
 		<div class="panel-body">
 			<form:form method="POST" action="adddestinationp"
-		commandName="destination" cssClass="form-horizontal" modelAttribute="destination" >
+		commandName="destination" cssClass="form-horizontal" modelAttribute="destination"  enctype="multipart/form-data">
 				<label for="continent">Continent :</label> <br /> 
 				<form:select class="form-control" id="continent" path="continent" onclick="liste()">
 					<form:option value="" label="Sélectionnez un continent"/>
@@ -112,7 +112,7 @@
 				<div class="input-group" id="img" style="display: none">
 					<span class="input-group-btn"><br /> <span
 						class="btn btn-default btn-file"> Charger une photo <input
-							type="file" id="imgInp" />
+							type="file" id="imgInp" name="file"/>
 					</span> </span> <img id='img-upload' style="width: 30%" />
 				</div>
 

@@ -27,15 +27,18 @@
 
 
 </head>
+<header><%@include file='template/header.html'%></header>
 <body>
-	<%@include file='template/header.html'%>
+
 
 
 	<c:forEach var="v" items="${listVoyage}">
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading"
-					style="font-size: 150%;background-image: ${v.destination.photo}">
+					style="font-size: 150%; background-image:${v.destination.photo}">
+					
+					
 					<div style="color: darkblue; font-size: 150%; position: absolute;">
 						${v.destination.pays} - ${v.destination.villeArrive}</div>
 					<div
@@ -47,7 +50,7 @@
 					<table class="table table-bordered">
 
 						<tr>
-						<th>ID</th>
+							<th>ID</th>
 							<th>Prix</th>
 							<th>Remise</th>
 							<th>Prix Soldé</th>
@@ -55,9 +58,10 @@
 							<th>Ville de Retour</th>
 							<th>Date de Départ</th>
 							<th>Date de Retour</th>
+							<th>Photo</th>
 						</tr>
 						<tr>
-						<td>${v.id}</td>
+							<td>${v.id}</td>
 							<td>${v.prix}</td>
 							<td>${v.remise*100}%</td>
 							<td>${v.prix *(1- v.remise) }</td>
@@ -65,24 +69,24 @@
 							<td>${v.destination.villeArrive }</td>
 							<td>${v.dateDepart}</td>
 							<td>${v.dateRetour}</td>
+							<td>${v.destination.photo}</td>
 						</tr>
 
 					</table>
 					<h3 style="text-align: center">Plus que ${v.stockPassager}
 						places disponibles</h3>
-							<button><a href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${v.id}">Voir les détails</a></button>
+					<button>
+						<a	href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${v.id}">Voir
+							les détails</a>
+					</button>
 				</div>
 
 			</div>
 		</div>
 	</c:forEach>
-
-
-
-
-	<footer>
-
-		<%@include file='template/footer.html'%>
-	</footer>
 </body>
+	<footer>
+	<%@include file='template/footer.html'%>
+	</footer>
+
 </html>

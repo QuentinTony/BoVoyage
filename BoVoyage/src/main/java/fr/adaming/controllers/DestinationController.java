@@ -1,5 +1,6 @@
 package fr.adaming.controllers;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -63,7 +64,16 @@ public class DestinationController {
 		}
 		
 		@RequestMapping(value="/adddestinationp", method=RequestMethod.POST)
-		public String submitAdd(@ModelAttribute("destination") Destination dOut , RedirectAttributes ra) {
+		public String submitAdd(@ModelAttribute("destination") Destination dOut ,MultipartFile file, RedirectAttributes ra) {
+			
+			try {
+				byte[] photo1 = file.getBytes();
+				dOut.setPhoto((byte[])photo1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			Destination vOut= dOutService.addDestination(dOut);
 		
 			
@@ -107,7 +117,6 @@ public class DestinationController {
 		public String deleteDestination(Model model) {
 			List<Destination> listDestination= dOutService.getAllDestination();
 			model.addAttribute("listdestination", listDestination);
-			System.out.println(listDestination);
 			model.addAttribute("destination", new Destination());
 			return "deletedestination";
 		}

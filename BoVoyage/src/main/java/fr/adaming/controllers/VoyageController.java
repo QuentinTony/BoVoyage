@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Destination;
 import fr.adaming.model.Voyage;
+import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IVoyageService;
 
 @Controller
@@ -27,6 +29,9 @@ public class VoyageController {
 
 	@Autowired
 	private IVoyageService voService;
+	
+	@Autowired
+	private IDestinationService deService;
 
 	public void setVoService(IVoyageService voService) {
 		this.voService = voService;
@@ -54,15 +59,16 @@ public class VoyageController {
 	
 		@RequestMapping(value="/addvoyage", method=RequestMethod.GET)
 		public String getAdd(Model modele) {
-			
+			List<Destination> listDestination = deService.getAllDestination();
+			modele.addAttribute("listdestination", listDestination);
 			modele.addAttribute("voyage", new Voyage());
 			return "addvoyage";
 		}
 		
 		@RequestMapping(value="/addvoyagep", method=RequestMethod.POST)
-		public String submitAdd(@ModelAttribute("voyage") Voyage vo , RedirectAttributes ra) {
-			
-		
+		public String submitAdd(@ModelAttribute("voyage") Voyage vo ,RedirectAttributes ra) {
+	
+		System.out.println(vo);
 			Voyage vOut= voService.addVoyage(vo);
 		
 			
@@ -104,12 +110,15 @@ public class VoyageController {
 
 		@RequestMapping(value="/deletevoyage", method=RequestMethod.GET)
 		public String deleteVoyage(Model model) {
+			List<Voyage> list = voService.getAllVoyage();
+			model.addAttribute("listVoyage", list);
 			model.addAttribute("voyage", new Voyage());
 			return "deletevoyage";
 		}
 		
 		@RequestMapping(value="/deletevoyagep", method=RequestMethod.POST)
 		public String submitdelete(@ModelAttribute("voyage") Voyage vo, RedirectAttributes ra) {
+		
 			
 		int verif= voService.deleteVoyage(vo);
 	if(verif!=0) {
@@ -133,8 +142,7 @@ public class VoyageController {
 		
 		@RequestMapping(value="/getvoyagep", method=RequestMethod.POST)
 		public String submitgetvoyage(@ModelAttribute("voyage") Voyage vo, RedirectAttributes ra) {
-			
-		Voyage vOut= voService.getVoyage(vo.getId());
+			Voyage vOut= voService.getVoyage(vo.getId());
 	if(vOut.getId()!=0) {
 				
 				//rediriger ver la methode /liste
