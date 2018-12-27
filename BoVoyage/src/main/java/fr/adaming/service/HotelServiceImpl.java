@@ -31,7 +31,7 @@ public class HotelServiceImpl implements IHotelService{
 	}
 
 	@Override
-	public List<Hotel> getAllHotel(long id) {
+	public List<Hotel> getAllHotel() {
 	
 		return hoDao.getAll();
 	}

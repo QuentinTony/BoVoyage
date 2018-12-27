@@ -9,7 +9,7 @@ public interface IHotelService {
 	
 	public Hotel addHotel(Hotel hotel);
 	
-	public List<Hotel> getAllHotel(long id);
+	public List<Hotel> getAllHotel();
 
 	public Hotel getHotel(long id);
 

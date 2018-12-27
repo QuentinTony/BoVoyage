@@ -1,6 +1,5 @@
-package fr.adaming.service;
+ package fr.adaming.service;
 
-import java.time.Month;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IDestinationDao;
 import fr.adaming.dao.IVoyageDao;
+import fr.adaming.model.Assurance;
 import fr.adaming.model.Destination;
+import fr.adaming.model.Hotel;
+import fr.adaming.model.Passager;
+import fr.adaming.model.Vehicule;
 import fr.adaming.model.Voyage;
 
 @Service("voService")
@@ -123,8 +126,30 @@ public class VoyageServiceImpl implements IVoyageService {
 		}
 		return liste;
 	}
-	
-	
-	
+
+	@Override
+	public int setHotel(Hotel ho, Voyage vo) {
+		vo.setHotel(ho);
+		return voDao.update(vo);
+		
+	}
+
+	@Override
+	public int setVehicule(Vehicule ve, Voyage vo) {
+		vo.setVehicule(ve);
+		return voDao.update(vo);
+	}
+
+	@Override
+	public int setAssurance(Assurance as, Voyage vo) {
+		vo.setAssurance(as);
+		return voDao.update(vo);
+	}
+
+	@Override
+	public int setPassager(List<Passager> pa, Voyage vo) {
+		vo.setListPassager(pa);
+		return voDao.update(vo);
+	}
 
 }
