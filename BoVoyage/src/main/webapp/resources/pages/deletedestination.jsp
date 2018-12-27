@@ -38,6 +38,7 @@
 				<br />
 				<form:select class="form-control" id="dest" path="id">
 					<c:forEach items="${listdestination}" var="list">
+						<option>Sélectionnez un véhicule</option>
 						<form:option value="${list.id}"
 							label="${list.pays} - ${list.villeArrive}" />
 					</c:forEach>

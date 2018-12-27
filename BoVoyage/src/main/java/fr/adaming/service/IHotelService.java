@@ -16,6 +16,9 @@ public interface IHotelService {
 	public int deleteHotel(Hotel hotel);
 
 	public int updateHotel(Hotel hotel);
+	
+	public List<Hotel> getAllByDestination(long id);
+
 
 
 }

@@ -43,14 +43,15 @@ public class VoyageController {
 	@Autowired
 	private IDestinationService deService;
 
+	@Autowired
 	private IHotelService hoService;
-
+	@Autowired
 	private IAssuranceService asService;
-
+	@Autowired
 	private IVehiculeService veService;
-
+	@Autowired
 	private IPassagerService paService;
-
+	@Autowired
 	private IClientService clService;
 
 	public void setClService(IClientService clService) {
@@ -193,28 +194,36 @@ public class VoyageController {
 	}
 
 	@RequestMapping(value = "/selectvoyage", method = RequestMethod.GET)
-	public String selectvoyage(Model model, Voyage vo) {
-		List<Hotel> Hotels = hoService.getAllHotel();
-		List<Assurance> Assurances = asService.getAllAssurance();
-		List<Passager> Passagers = new ArrayList<Passager>();
-		Passagers.add(new Passager());
-		model.addAttribute("voyage", vo);
-		model.addAttribute("listePassager", Passagers);
-		model.addAttribute("listeAssurance", Assurances);
-		model.addAttribute("listeHotel", Hotels);
-		model.addAttribute("nbrPassager", Passagers.size());
-		return "pannier";
+	public String selectvoyage(Model model,  @RequestParam(value = "id") long id) {
+		Voyage vOut = voService.getVoyage(id);
+		model.addAttribute("voyage", vOut);
+		
+		List<Hotel> listHotel = hoService.getAllByDestination(vOut.getDestination().getId());
+		model.addAttribute("listehotel", listHotel);
+		
+//		System.out.println("Controller" + listHotel);
+//		List<Assurance> Assurances = asService.getAllAssurance();
+//		List<Passager> Passagers = new ArrayList<Passager>();
+//		Passagers.add(new Passager());
+		
+		
+//		model.addAttribute("listePassager", Passagers);
+//		model.addAttribute("listeAssurance", Assurances);
+		
+//		model.addAttribute("nbrPassager", Passagers.size());
+		return "panier";
 	}
 
 	@RequestMapping(value = "/selectvoyagep", method = RequestMethod.POST)
-	public ModelAndView selectandsetVoyage(@ModelAttribute("voyage") Voyage vo,
-			@ModelAttribute("listePassager") List<Passager> pa, @ModelAttribute("assurance") Assurance as,
-			@ModelAttribute("hotel") Hotel ho, @ModelAttribute("vehicule") Vehicule ve) {
-		voService.setAssurance(as, vo);
-		voService.setHotel(ho, vo);
-		voService.setPassager(pa, vo);
-		voService.setVehicule(ve, vo);
+	public ModelAndView selectandsetVoyage(@ModelAttribute("voyage") Voyage vo
+		/*	@ModelAttribute("listePassager") List<Passager> pa, @ModelAttribute("assurance") Assurance as,*/
+		/*	@ModelAttribute("hotel") Hotel ho , @ModelAttribute("vehicule") Vehicule ve*/) {
+//		voService.setAssurance(as, vo);
+		//voService.setHotel(ho, vo);
+//		voService.setPassager(pa, vo);
+//		voService.setVehicule(ve, vo);
 		vo=voService.getVoyage(vo.getId());
+		voService.updateVoyage(vo);
 		return new ModelAndView("redirect:listvoyage", "voyage", vo);
 	}
 }

@@ -72,16 +72,29 @@
 			</ul>
 		</li>
 		<li class="dropdown">
-		  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voiture<span class="caret"></span></a>
+		  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Véhicule<span class="caret"></span></a>
 			<ul class="dropdown-menu">
 				<li role="presentation"><a
-					href='${pageContext.request.contextPath}/voiture/addvoiture'>Ajouter</a></li>
+					href='${pageContext.request.contextPath}/vehicule/addvehicule'>Ajouter</a></li>
 				<li role="presentation"><a
-					href="${pageContext.request.contextPath}/voiture/deletevoiture">Supprimer</a></li>
+					href="${pageContext.request.contextPath}/vehicule/deletevehicule">Supprimer</a></li>
 				<li role="presentation"><a
-					href="${pageContext.request.contextPath}/voiture/updatevoiture">Modifier</a></li>
+					href="${pageContext.request.contextPath}/vehicule/updatevehicule">Modifier</a></li>
 				<li role="presentation"><a
-					href="${pageContext.request.contextPath}/voiture/getvoiture">Rechercher</a></li>
+					href="${pageContext.request.contextPath}/vehicule/getvehicule">Rechercher</a></li>
+			</ul>
+		</li>
+				<li class="dropdown">
+		  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Prestation<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li role="presentation"><a
+					href='${pageContext.request.contextPath}/prestation/addprestation'>Ajouter</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/prestation/deleteprestation">Supprimer</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/prestation/updateprestation">Modifier</a></li>
+				<li role="presentation"><a
+					href="${pageContext.request.contextPath}/prestation/getprestation">Rechercher</a></li>
 			</ul>
 		</li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/agent/sedeconnecter">Deconnexion</a></li>

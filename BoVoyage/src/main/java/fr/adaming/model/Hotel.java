@@ -23,6 +23,7 @@ public class Hotel implements Serializable{
 	private long id;
 	private String type;
 	private String hebergement;
+	private int categorie;
 	private boolean selection;
 	@Lob
 	private byte[] photo;
@@ -77,6 +78,12 @@ public class Hotel implements Serializable{
 	public void setType(String type) {
 		this.type = type;
 	}
+	public int getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(int categorie) {
+		this.categorie = categorie;
+	}
 	public String getHebergement() {
 		return hebergement;
 	}
@@ -122,6 +129,7 @@ public class Hotel implements Serializable{
 	public void setVoyage(Voyage voyage) {
 		this.voyage = voyage;
 	}
+	
 	@Override
 	public String toString() {
 		return "Hotel [id=" + id + ", type=" + type + ", hebergement=" + hebergement + ", selection=" + selection

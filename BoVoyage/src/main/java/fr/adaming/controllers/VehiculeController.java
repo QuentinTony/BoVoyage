@@ -73,10 +73,10 @@ public class VehiculeController {
 				if(vOut.getId()!=0) {
 					
 					
-					return "listevoitures";
+					return "accueilAgence";
 				}else {
 					ra.addAttribute("msg", "L'ajout n'est pas fait");
-					return "redirect:addvoiture";
+					return "redirect:addvehicule";
 				}
 			}
 			
@@ -121,7 +121,7 @@ public class VehiculeController {
 		if(verif!=0) {
 					
 					//rediriger ver la methode /liste
-					return "listevoitures";
+					return "accueilAgence";
 				}else {
 					ra.addAttribute("msg", "La voiture  n'est pas effacé");
 					return "redirect:deletevehicule";

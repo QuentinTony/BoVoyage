@@ -58,4 +58,14 @@ public class HotelServiceImpl implements IHotelService{
 		return hoDao.update(hotel);
 	}
 
+	@Override
+	public List<Hotel> getAllByDestination(long id) {
+		System.out.println("Service");
+
+		return hoDao.getAllByDestination(id);
+	}
+	
+	
+	
+
 }

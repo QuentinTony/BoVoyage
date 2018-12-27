@@ -31,13 +31,13 @@
 			<b>Supprimer une voiture</b>
 		</div>
 		<div class="panel-body">
-			<form:form  method="POST" action="deletevoiturep"
-		commandName="deleteVoiture" cssClass="form-horizontal">
-				<label for="destination">Voiture :</label> <br /> <form:select
+			<form:form  method="POST" action="deletevehiculep"
+		commandName="vehicule" cssClass="form-horizontal">
+				<label for="voiture">Vehicule :</label> <br /> <form:select
 					class="form-control" id="voiture" path="id">
-					<c:forEach items="${listvoiture}" >
-						<option>Sélectionnez une voiture</option>
-						<option value=">${listvoiture.id}">${listvoiture.type}</option>
+					<c:forEach items="${listevoitures}" var="list" >
+						<option>Sélectionnez un véhicule</option>
+						<form:option value="${list.id}" label="${list.id} - ${list.type}"/></option>
 						
 					</c:forEach>
 				</form:select> <br /> <br />

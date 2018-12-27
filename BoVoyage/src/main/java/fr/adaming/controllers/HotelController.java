@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import fr.adaming.model.Destination;
 import fr.adaming.model.Hotel;
+import fr.adaming.model.Vehicule;
+import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IHotelService;
 
 @Controller
@@ -28,6 +30,8 @@ public class HotelController {
 
 	@Autowired
 	private IHotelService hoService;
+	@Autowired
+	private IDestinationService deService;
 
 	public void setHoService(IHotelService hoService) {
 		this.hoService = hoService;
@@ -36,10 +40,10 @@ public class HotelController {
 	//1********************************************LIST*********************************************************************
 	
 	@RequestMapping(value="/listhotel", method=RequestMethod.GET)
-	public ModelAndView afficheListe(@RequestParam(value= "id") long id) {
+	public ModelAndView afficheListe() {
 		
 		
-		List<Hotel> listHotel= hoService.getAllHotel(id);
+		List<Hotel> listHotel= hoService.getAllHotel();
 		return new ModelAndView("accueilAgence","listhotel",listHotel);
 		
 	}
@@ -50,7 +54,8 @@ public class HotelController {
 	
 		@RequestMapping(value="/addhotel", method=RequestMethod.GET)
 		public String getAdd(Model modele) {
-	
+			List<Destination> listDest = deService.getAllDestination();
+			modele.addAttribute("listdest", listDest);
 			modele.addAttribute("hotel", new Hotel());
 			return "addhotel";
 		}
@@ -73,7 +78,7 @@ public class HotelController {
 			if(hOut.getId()!=0) {
 				
 				
-				return "redirect:listhotel";
+				return "accueilAgence";
 			}else {
 				ra.addAttribute("msg", "L'ajout n'est pas fait");
 				return "redirect:addhotel";
@@ -108,7 +113,8 @@ public class HotelController {
 
 		@RequestMapping(value="/deletehotel", method=RequestMethod.GET)
 		public String deleteHotel(Model model) {
-			
+			List<Hotel> listHotel= hoService.getAllHotel();
+			model.addAttribute("listhotel", listHotel);
 			model.addAttribute("hotel", new Hotel());
 			return "deletehotel";
 		}
@@ -116,8 +122,8 @@ public class HotelController {
 		@RequestMapping(value="/deletehotelp", method=RequestMethod.POST)
 		public String submitdelete(@ModelAttribute("hotel") Hotel ho, RedirectAttributes ra) {
 		
-			
-		int verif= hoService.deleteHotel(ho);
+			Hotel hOut= hoService.getHotel(ho.getId());
+		int verif= hoService.deleteHotel(hOut);
 	if(verif!=0) {
 				
 				//rediriger ver la methode /liste

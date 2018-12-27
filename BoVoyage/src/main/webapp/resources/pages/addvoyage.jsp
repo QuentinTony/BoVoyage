@@ -70,6 +70,14 @@
 						name="num2" class="slider" min="0" max="1" value="0.5"
 						step="0.05"/> <span class="slider_label"> </span>
 				</p>
+				<br />
+				<form:select class="form-control" id="dest" path="destination.id">
+					<c:forEach items="${listdestination}" var="list">
+						<form:option value="${list.id}"
+							label="${list.pays} - ${list.villeArrive}" />
+					</c:forEach>
+				</form:select>
+				<br />
 
 							<button type="submit" class="btn btn-default ">Ajouter</button>
 

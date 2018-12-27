@@ -43,12 +43,10 @@ public class VehiculeServiceImpl implements IVehiculeService{
 
 	@Override
 	public int deleteVehicule(Vehicule vehicule) {
-		try {
+	
 			veDao.delete(vehicule);
 			return 1;
-		}catch (Exception ex) {
-			return 0;
-		}
+		
 	}
 
 	@Override

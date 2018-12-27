@@ -32,12 +32,11 @@
 		</div>
 		<div class="panel-body">
 			<form:form  method="POST" action="deletehotelp"
-		commandName="deleteHotel" cssClass="form-horizontal">
+		commandName="hotel" cssClass="form-horizontal">
 				<label for="destination">Hôtel :</label> <br /> <form:select
 					class="form-control" id="hotel" path="id">
-					<c:forEach items="${listhotel}" >
-						<option>Sélectionnez une catégorie</option>
-						<option value=">${listhotel.id}">${listhotel.type}</option>
+					<c:forEach items="${listhotel}"  var="list">
+					<form:option value="${list.id}" label="${list.type}* - ${list.type}"/>
 						
 					</c:forEach>
 				</form:select> <br /> <br />
