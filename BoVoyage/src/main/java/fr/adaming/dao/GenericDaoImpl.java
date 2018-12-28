@@ -51,7 +51,6 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
 	@Override
 	public int update(T o) {
 		if (em.merge(o) != null) {
-			em.refresh(o);
 			return 1;
 		} else {
 			return 0;
