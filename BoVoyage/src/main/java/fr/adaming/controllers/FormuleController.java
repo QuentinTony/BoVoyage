@@ -39,7 +39,6 @@ public class FormuleController {
 	private IFormuleService foService;
 	@Autowired
 	private IDestinationService deService;
-
 	@Autowired
 	private IHotelService hoService;
 	@Autowired
