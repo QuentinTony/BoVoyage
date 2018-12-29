@@ -2,7 +2,6 @@ package fr.adaming.service;
 
 import java.util.List;
 
-
 import fr.adaming.model.Prestation;
 
 public interface IPrestationService {
@@ -16,5 +15,8 @@ public interface IPrestationService {
 	public int deletePrestation(Prestation prestation);
 
 	public int updatePrestation(Prestation prestation);
+	
+	public List<Prestation> getAllByDestination(long id);
+
 
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.IGenericDao;
 import fr.adaming.dao.IPrestationDao;
 import fr.adaming.model.Destination;
+import fr.adaming.model.Hotel;
 import fr.adaming.model.Prestation;
 
 @Service("prService")
@@ -53,6 +54,14 @@ public class PrestationServiceImpl implements IPrestationService{
 		
 		return prDao.update(prestation);
 	}
+	
+	@Override
+	public List<Prestation> getAllByDestination(long id) {
+		System.out.println("Service");
+
+		return prDao.getAllByDestination(id);
+	}
+	
 	
 	
 	

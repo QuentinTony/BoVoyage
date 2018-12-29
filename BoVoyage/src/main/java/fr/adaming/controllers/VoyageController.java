@@ -113,7 +113,6 @@ public class VoyageController {
 	@RequestMapping(value = "/addvoyagep", method = RequestMethod.POST)
 	public String submitAdd(@ModelAttribute("voyage") Voyage vo, RedirectAttributes ra) {
 
-		System.out.println(vo);
 		Voyage vOut = voService.addVoyage(vo);
 
 		if (vOut.getId() != 0) {
@@ -193,37 +192,5 @@ public class VoyageController {
 		}
 	}
 
-	@RequestMapping(value = "/selectvoyage", method = RequestMethod.GET)
-	public String selectvoyage(Model model,  @RequestParam(value = "id") long id) {
-		Voyage vOut = voService.getVoyage(id);
-		model.addAttribute("voyage", vOut);
-		
-		List<Hotel> listHotel = hoService.getAllByDestination(vOut.getDestination().getId());
-		model.addAttribute("listehotel", listHotel);
-		
-//		System.out.println("Controller" + listHotel);
-//		List<Assurance> Assurances = asService.getAllAssurance();
-//		List<Passager> Passagers = new ArrayList<Passager>();
-//		Passagers.add(new Passager());
-		
-		
-//		model.addAttribute("listePassager", Passagers);
-//		model.addAttribute("listeAssurance", Assurances);
-		
-//		model.addAttribute("nbrPassager", Passagers.size());
-		return "panier";
-	}
 
-	@RequestMapping(value = "/selectvoyagep", method = RequestMethod.POST)
-	public ModelAndView selectandsetVoyage(@ModelAttribute("voyage") Voyage vo
-		/*	@ModelAttribute("listePassager") List<Passager> pa, @ModelAttribute("assurance") Assurance as,*/
-		/*	@ModelAttribute("hotel") Hotel ho , @ModelAttribute("vehicule") Vehicule ve*/) {
-//		voService.setAssurance(as, vo);
-		//voService.setHotel(ho, vo);
-//		voService.setPassager(pa, vo);
-//		voService.setVehicule(ve, vo);
-		vo=voService.getVoyage(vo.getId());
-		voService.updateVoyage(vo);
-		return new ModelAndView("redirect:listvoyage", "voyage", vo);
-	}
 }

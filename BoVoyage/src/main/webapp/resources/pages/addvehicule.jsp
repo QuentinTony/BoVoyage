@@ -64,6 +64,14 @@
 				</div>
 				<br />
 				<br />
+				<form:select class="form-control" id="dest" path="destination.id">
+					<c:forEach items="${listdest}" var="list">
+						<form:option value="${list.id}"
+							label="${list.pays} - ${list.villeArrive}" />
+					</c:forEach>
+				</form:select>
+				<br />
+				<br />
 				<button type="submit" class="btn btn-default ">Ajouter</button>
 
 			</form:form>

@@ -31,8 +31,8 @@
 <body>
 
 
-	<form:form method="POST" action="selectvoyagep" commandName="voyage"
-		cssClass="form-horizontal" modelAttribute="voyage">
+	<form:form method="POST" action="selectformulep" commandName="formule"
+		cssClass="form-horizontal" modelAttribute="formule">
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading"
@@ -47,6 +47,10 @@
 
 				</div>
 				<div class="panel-body">
+				
+				<label for="hotel" >Voici la liste des hôtels de ${voyage.destination.villeArrive }</label><div style="visibility: hidden">
+<form:input path="voyage.id" value="${voyage.id}" />
+<br/></div>
 					<table class="table table-bordered">
 
 						<tr>
@@ -86,8 +90,29 @@
 						</c:forEach>
 					</form:select>
 					
-					<br />
-				<label for="passager">Nombre de passagers :</label>
+<!-- 					<br /> <br /> <label for="prestation">Voici la liste des -->
+<%-- 						prestations possibles de ${voyage.destination.villeArrive}</label> --%>
+<%-- 					<form:select multiple="true" class="form-control" id="listPrestation" --%>
+<%-- 						path="prestation.id"> --%>
+<%-- 						<c:forEach items="${listPrestation}" var="list"> --%>
+<%-- 							<form:option value="${list.id}" --%>
+<%-- 								label="${list.type} - ${list.prix}" /> --%>
+<%-- 						</c:forEach> --%>
+<%-- 					</form:select> --%>
+
+					<br /> <br /> <label for="vehicule">Voici la liste des
+						Véhicule possibles de ${voyage.destination.villeArrive}</label>
+					<form:select class="form-control" id="vehicule"
+						path="vehicule.id">
+						<c:forEach items="${listVehicule}" var="list">
+							<form:option value="${list.id}"
+								label="${list.type} - ${list.prix}" />
+						</c:forEach>
+					</form:select>
+
+					<br /> 
+					
+					<label for="passager">Nombre de passagers :</label>
 				<br />
 				<form:input id="passager" type="number" path="nombrePersonne" />
 				<br />
@@ -97,7 +122,9 @@
 
 			</div>
 		</div>
-		<button type="submit" class="btn btn-default ">Ajouter la sélection au panier</button>
+		<button type="submit" class="btn btn-default ">
+						Valider cette formule
+					</button>
 	</form:form>
 
 

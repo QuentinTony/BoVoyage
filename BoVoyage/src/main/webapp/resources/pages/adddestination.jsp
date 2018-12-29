@@ -100,12 +100,12 @@
 				</form:select> <br />
 				<div style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
 					<label id="labellat" for="lat" style="display: none">Latitude
-						: </label> <form:input type="number" path="latitude" id="lat" name="latitude" placeholder=""
-						style="display: none;width: 30%;" disabled="true"/> 
+						: </label> <form:input type="text" path="latitude" id="lat" name="latitude" 
+						style="display: none;" /> 
 						<br /> <br />
 					<label id="labellong" for="long" style="display: none">Longitude
-						: </label> <form:input type="number" path="longitude" id="long" name="longitude" placeholder=""
-						style="display: none" disabled="true"/>
+						: </label> <form:input type="text" path="longitude" id="long" name="longitude"  
+						style="display: none" />
 				</div>
 				<br /> <br /> <form:label id="labelimage" style="display: none" path="photo" enctype="multipart/form-data">Insérer
 					une image :</form:label>
@@ -212,8 +212,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '59.9138688';
-				document.getElementById('long').placeholder = '10.752245';
+				document.getElementById('lat').value = '59.9138688';
+				document.getElementById('long').value = '10.752245';
 				break;
 			case 'Bergen':
 				document.getElementById('labellat').style.display = 'block';
@@ -222,8 +222,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '60.391262';
-				document.getElementById('long').placeholder = '5.32205440';
+				document.getElementById('lat').value = '60.391262';
+				document.getElementById('long').value = '5.32205440';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -246,8 +246,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '60.16985';
-				document.getElementById('long').placeholder = '24.93837';
+				document.getElementById('lat').value = '60.16985';
+				document.getElementById('long').value = '24.93837';
 				break;
 			case 'village':
 				document.getElementById('labellat').style.display = 'block';
@@ -256,8 +256,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '66.5436144';
-				document.getElementById('long').placeholder = '25.8471973';
+				document.getElementById('lat').value = '66.5436144';
+				document.getElementById('long').value = '25.8471973';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -276,8 +276,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '59.3293234';
-				document.getElementById('long').placeholder = '18.06858080';
+				document.getElementById('lat').value = '59.3293234';
+				document.getElementById('long').value = '18.06858080';
 				break;
 			case 'Uppsala':
 				document.getElementById('labellat').style.display = 'block';
@@ -286,8 +286,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '59.85856';
-				document.getElementById('long').placeholder = '17.6389266';
+				document.getElementById('lat').value = '59.85856';
+				document.getElementById('long').value = '17.6389266';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -308,8 +308,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '54.98848';
-				document.getElementById('long').placeholder = '73.324236';
+				document.getElementById('lat').value = '54.98848';
+				document.getElementById('long').value = '73.324236';
 				break;
 			case 'Irkoutsk':
 				document.getElementById('labellat').style.display = 'block';
@@ -319,8 +319,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '52.28697';
-				document.getElementById('long').placeholder = '104.3050';
+				document.getElementById('lat').value = '52.28697';
+				document.getElementById('long').value = '104.3050';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -341,8 +341,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '29.8237369';
-				document.getElementById('long').placeholder = '91.488037';
+				document.getElementById('lat').value = '29.8237369';
+				document.getElementById('long').value = '91.488037';
 				break;
 
 			default:
@@ -364,8 +364,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '52.939915';
-				document.getElementById('long').placeholder = '-73.5491361';
+				document.getElementById('lat').value = '52.939915';
+				document.getElementById('long').value = '-73.5491361';
 				break;
 			case 'Montreal':
 				document.getElementById('labellat').style.display = 'block';
@@ -375,8 +375,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '45.5016889';
-				document.getElementById('long').placeholder = '-73.5672559';
+				document.getElementById('lat').value = '45.5016889';
+				document.getElementById('long').value = '-73.5672559';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -396,8 +396,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '59.642500';
-				document.getElementById('long').placeholder = '-151.5483';
+				document.getElementById('lat').value = '59.642500';
+				document.getElementById('long').value = '-151.5483';
 				break;
 			case 'Sitka':
 				document.getElementById('labellat').style.display = 'block';
@@ -407,8 +407,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '57.0530556';
-				document.getElementById('long').placeholder = '-135.33000';
+				document.getElementById('lat').value = '57.0530556';
+				document.getElementById('long').value = '-135.33000';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';

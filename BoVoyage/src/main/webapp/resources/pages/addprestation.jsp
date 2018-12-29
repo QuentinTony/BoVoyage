@@ -53,6 +53,14 @@
 				<br />
 				<form:textarea path="description" rows="5" cols="50"></form:textarea>
 				<br />
+					<br />
+				<form:select class="form-control" id="dest" path="destination.id">
+					<c:forEach items="${listdest}" var="list">
+						<form:option value="${list.id}"
+							label="${list.pays} - ${list.villeArrive}" />
+					</c:forEach>
+				</form:select>
+				<br />
 				<br />
 				<div
 					style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">

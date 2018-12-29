@@ -88,3 +88,57 @@ canvas {
     display: block;
 }
 
+
+
+.component__weather-box {
+  margin: 30px auto;
+  width: 420px;
+  border: 1px solid #de6042;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 2px 5px 20px 1px #444;
+}
+
+.component__weather-content {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: #E06B4F;
+  height: 120px;
+}
+
+.component__weather-content:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.3;
+  background-image: url("https://nunnz.files.wordpress.com/2013/11/4.jpg");
+  background-repeat: no-repeat;
+  background-position: 0 63%;
+  background-size: cover;
+}
+
+.weather-content__overview {
+  width: 50%;
+  text-align: center;
+  display: inline-block;
+  float: left;
+  z-index: 2;
+  position: relative;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 0.75em;
+}
+
+

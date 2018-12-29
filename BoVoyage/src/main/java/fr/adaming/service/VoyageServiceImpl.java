@@ -127,24 +127,11 @@ public class VoyageServiceImpl implements IVoyageService {
 		return liste;
 	}
 
-	@Override
-	public int setHotel(Hotel ho, Voyage vo) {
-		vo.setHotel(ho);
-		return voDao.update(vo);
-		
-	}
 
-	@Override
-	public int setVehicule(Vehicule ve, Voyage vo) {
-		vo.setVehicule(ve);
-		return voDao.update(vo);
-	}
 
-	@Override
-	public int setAssurance(Assurance as, Voyage vo) {
-		vo.setAssurance(as);
-		return voDao.update(vo);
-	}
+
+
+
 
 	@Override
 	public int setPassager(List<Passager> pa, Voyage vo) {

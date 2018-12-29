@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="personnes")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="rôle")
+@DiscriminatorColumn(name="role")
 @DiscriminatorValue(value="null")
 public class Personne implements Serializable{
 

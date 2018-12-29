@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%response.sendRedirect("bovoyage/listvoyage");%>
+<%response.sendRedirect("login");%>
 </body>
 </html>

@@ -2,6 +2,7 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -35,10 +37,16 @@ public class Hotel implements Serializable{
 	@JoinColumn(name="id_de", referencedColumnName="id")
 	private Destination destination;
 	
-	@OneToOne
-	@JoinColumn(name="id_vo", referencedColumnName="id")
-	private Voyage voyage;
+
+	@OneToMany(mappedBy="hotel")
+	private List<Formule> listFormule;
 	
+	public List<Formule> getListFormule() {
+		return listFormule;
+	}
+	public void setListFormule(List<Formule> listFormule) {
+		this.listFormule = listFormule;
+	}
 	// constructeurs
 	public Hotel() {
 		super();
@@ -122,12 +130,6 @@ public class Hotel implements Serializable{
 	}
 	public void setDestination(Destination destination) {
 		this.destination = destination;
-	}
-	public Voyage getVoyage() {
-		return voyage;
-	}
-	public void setVoyage(Voyage voyage) {
-		this.voyage = voyage;
 	}
 	
 	@Override

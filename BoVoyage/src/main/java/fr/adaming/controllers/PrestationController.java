@@ -13,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Destination;
 import fr.adaming.model.Prestation;
+import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IPrestationService;
 
 
@@ -23,6 +25,9 @@ public class PrestationController {
 	
 	@Autowired
 	private IPrestationService prService;
+	
+	@Autowired
+	private IDestinationService deService;
 
 	public void setPrService(IPrestationService prService) {
 		this.prService = prService;
@@ -46,7 +51,8 @@ public class PrestationController {
 		
 			@RequestMapping(value="/addprestation", method=RequestMethod.GET)
 			public String getAdd(Model modele) {
-				
+				List<Destination> listDest = deService.getAllDestination();
+				modele.addAttribute("listdest", listDest);
 				modele.addAttribute("prestation", new Prestation());
 				return "addprestation";
 			}

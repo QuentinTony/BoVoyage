@@ -68,6 +68,11 @@ public class ClientServiceImpl implements IClientService{
 		return clDao.update(client);
 	}
 
+	@Override
+	public Client isExist(Client clIn) {
+		return clDao.isExist(clIn);
+	}
+	
 
 
 	// METHODE VIREMENT, paiement du voyage par le client (fonctionnalité cliente du WS Banque)

@@ -38,17 +38,25 @@ public class Voyage implements Serializable {
 	// transformation de l'association UML en JAVA
 	@OneToOne
 	private Destination destination;
-	@OneToOne
-	private Hotel hotel;
+	
+	
+
 	@ManyToMany
 	@JoinTable(name = "pas_voy", joinColumns = @JoinColumn(name = "pa_id"), inverseJoinColumns = @JoinColumn(name = "vo_id"))
 	private List<Passager> listPassager;
-	@OneToOne
-	private Vehicule vehicule;
-	@OneToMany(mappedBy = "voyage")
-	private List<Prestation> listPrestation;
-	@OneToOne
-	private Assurance assurance;
+	
+
+	
+	@OneToMany(mappedBy="voyage")
+	private List<Formule> listFormule;
+
+	public List<Formule> getListFormule() {
+		return listFormule;
+	}
+
+	public void setListFormule(List<Formule> listFormule) {
+		this.listFormule = listFormule;
+	}
 
 	// declaration des constructeurs
 	public Voyage() {
@@ -162,37 +170,10 @@ public class Voyage implements Serializable {
 		this.destination = destination;
 	}
 
-	public Hotel getHotel() {
-		return hotel;
-	}
 
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
-	}
 
-	public Vehicule getVehicule() {
-		return vehicule;
-	}
 
-	public void setVehicule(Vehicule vehicule) {
-		this.vehicule = vehicule;
-	}
 
-	public List<Prestation> getListPrestation() {
-		return listPrestation;
-	}
-
-	public void setListPrestation(List<Prestation> listPrestation) {
-		this.listPrestation = listPrestation;
-	}
-
-	public Assurance getAssurance() {
-		return assurance;
-	}
-
-	public void setAssurance(Assurance assurance) {
-		this.assurance = assurance;
-	}
 
 	@Override
 	public String toString() {

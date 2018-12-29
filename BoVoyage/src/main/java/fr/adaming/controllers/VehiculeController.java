@@ -18,8 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import fr.adaming.model.Destination;
 import fr.adaming.model.Vehicule;
+import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IVehiculeService;
 
 @Controller
@@ -28,6 +29,9 @@ public class VehiculeController {
 
 	@Autowired
 	private IVehiculeService veService;
+	
+	@Autowired
+	private IDestinationService deService;
 
 	public void setVeService(IVehiculeService veService) {
 		this.veService = veService;
@@ -51,7 +55,8 @@ public class VehiculeController {
 		
 			@RequestMapping(value="/addvehicule", method=RequestMethod.GET)
 			public String getAdd(Model modele) {
-				
+				List<Destination> listDest = deService.getAllDestination();
+				modele.addAttribute("listdest", listDest);
 				modele.addAttribute("vehicule", new Vehicule());
 				return "addvehicule";
 			}

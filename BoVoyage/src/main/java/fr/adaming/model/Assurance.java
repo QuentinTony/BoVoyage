@@ -1,12 +1,14 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -22,10 +24,16 @@ public class Assurance implements Serializable{
 	private double prix;
 	
 	//transformation de l'association UML en JAVA
-	@OneToOne
-	@JoinColumn(name="id_vo", referencedColumnName="id")
-	private Voyage voyage;
+
+	@OneToMany(mappedBy="assurance")
+	private List<Formule> listFormule;
 	
+	public List<Formule> getListFormule() {
+		return listFormule;
+	}
+	public void setListFormule(List<Formule> listFormule) {
+		this.listFormule = listFormule;
+	}
 	//constructeurs
 	public Assurance() {
 		super();
@@ -71,12 +79,7 @@ public class Assurance implements Serializable{
 	}
 	
 	
-	public Voyage getVoyage() {
-		return voyage;
-	}
-	public void setVoyage(Voyage voyage) {
-		this.voyage = voyage;
-	}
+
 	@Override
 	public String toString() {
 		return "Assurance [id=" + id + ", type=" + type + ", selection=" + selection + ", prix=" + prix + "]";

@@ -23,9 +23,19 @@ public class Client extends Personne implements Serializable{
 	@Transient
 	private boolean active;
 	
+	public List<Formule> getListFormule() {
+		return listFormule;
+	}
+	public void setListFormule(List<Formule> listFormule) {
+		this.listFormule = listFormule;
+	}
 	//transformation de UML en JAVA
 	@OneToMany(mappedBy="client")
 	private List<Passager> listPassager;
+
+	@OneToMany(mappedBy="client")
+	private List<Formule> listFormule;
+
 	
 	//constructeurs
 	public Client() {

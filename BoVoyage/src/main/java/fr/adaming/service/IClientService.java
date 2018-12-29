@@ -18,5 +18,8 @@ public interface IClientService {
 	
 	public int virement(Client client, double prix);
 	
+	public Client isExist(Client clIn);
+
+	
 
 }

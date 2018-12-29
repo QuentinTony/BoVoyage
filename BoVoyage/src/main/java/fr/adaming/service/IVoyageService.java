@@ -35,12 +35,6 @@ public interface IVoyageService {
 
 	public List<Voyage> getVoyageByMonth(int m);
 	
-	public int setHotel(Hotel ho, Voyage vo);
-	
-	public int setVehicule(Vehicule ve, Voyage vo);
-	
-	public int setAssurance(Assurance as, Voyage vo);
-	
 	public int setPassager(List<Passager> pa, Voyage vo);
 
 }

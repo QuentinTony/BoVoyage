@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.IGenericDao;
 import fr.adaming.dao.IVehiculeDao;
 import fr.adaming.model.Destination;
+import fr.adaming.model.Hotel;
 import fr.adaming.model.Vehicule;
 
 @Service("veService")
@@ -54,5 +55,13 @@ public class VehiculeServiceImpl implements IVehiculeService{
 		
 		return veDao.update(vehicule);
 	}
+	
+	@Override
+	public List<Vehicule> getAllByDestination(long id) {
+		System.out.println("Service");
+
+		return veDao.getAllByDestination(id);
+	}
+	
 
 }

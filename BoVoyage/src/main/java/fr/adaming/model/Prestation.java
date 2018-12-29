@@ -2,12 +2,14 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,8 +29,25 @@ public class Prestation implements Serializable{
 	
 	//transformation de l'association UML en JAVA
 	@ManyToOne
-	@JoinColumn(name="id_vo", referencedColumnName="id")
-	private Voyage voyage;
+	@JoinColumn(name="id_de", referencedColumnName="id")
+	private Destination destination;
+		
+	@ManyToMany(mappedBy="listPrestation")
+	private List<Formule> listFormule;
+
+	public Destination getDestination() {
+		return destination;
+	}
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+	public List<Formule> getListFormule() {
+		return listFormule;
+	}
+	public void setListFormule(List<Formule> listFormule) {
+		this.listFormule = listFormule;
+	}
+	
 	
 	//constructeurs
 	public Prestation() {
@@ -91,12 +110,7 @@ public class Prestation implements Serializable{
 	}
 	
 	
-	public Voyage getVoyage() {
-		return voyage;
-	}
-	public void setVoyage(Voyage voyage) {
-		this.voyage = voyage;
-	}
+
 	@Override
 	public String toString() {
 		return "Prestation [id=" + id + ", type=" + type + ", selection=" + selection + ", description=" + description

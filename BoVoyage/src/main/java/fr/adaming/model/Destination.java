@@ -40,6 +40,12 @@ public class Destination implements Serializable{
 	@OneToMany(mappedBy="destination")
 	private List<Hotel> hotel;
 	
+	@OneToMany(mappedBy="destination")
+	private List<Prestation> prestation;
+	
+	@OneToMany(mappedBy="destination")
+	private List<Vehicule> vehicule;
+	
 	//constructeurs
 	public Destination() {
 		super();

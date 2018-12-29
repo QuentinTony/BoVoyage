@@ -30,15 +30,15 @@
 	<br />
 	<br />
 
-	<form:form method="POST" action="isexistclientp"
-		commandName="isExistClient" cssClass="form-horizontal">
+	<form:form method="POST" action="loginp"
+		commandName="client" cssClass="form-horizontal" modelAttribute="client">
 		<div class="panel panel-info" style="width:30%; position:relative;left:35%; text-align: center;color:darkblue">
 			<div class="panel-heading" style=" background-color: lightblue;color:darkblue"><b>Accès à votre espace Client de BoVoyage</b></div>
 			<div class="panel-body">
-				<label for="email">Adresse Electronique</label> <br /> <form:input path="email"
+				<label for="email">Adresse Electronique</label> <br /> <form:input path="mail"
 					type="email" class="form-control " id="email" style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre adresse électronique"/> <br /> <label
-					for="mdp">Mot de passe</label> <br /> <form:input path="mdp" type="password"
+					for="mdp">Mot de passe</label> <br /> <form:input path="nom" type="password"
 					class="form-control" id="mdp" style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre mot de passe"/> <br />
 				<button type="submit" class="btn btn-default " >Entrez dans
