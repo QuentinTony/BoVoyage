@@ -70,7 +70,7 @@ public class ClientController {
 				if(cOut.getId()!=0) {
 					
 					
-					return "redirect:listclient";
+					return "index";
 				}else {
 					ra.addAttribute("msg", "L'ajout n'est pas fait");
 					return "redirect:addclient";

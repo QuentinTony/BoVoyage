@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <!-- AJouter la tagLib core de jstl -->
+	pageEncoding="ISO-8859-1"%>
+
+<!-- AJouter la tagLib core de jstl -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- ajout de la taglIb form de spring MVC -->
@@ -24,35 +24,96 @@
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 </head>
 <body>
-
-<%@include file='template/header.html'%>
-
+<div style="z-index: 3;position: absolute;left:10%;">
+	<canvas id="canvas" style="position: absolute;"></canvas>
+	<div
+		style="text-decoration: underlined; color: lightblue;text-align:center; font-family: Calibri; text-shadow: 10px 8px darkblue; font-size: 500%">BoVoyage
+		- Voyages Nordiques<br /> le spécialiste
+		au-dela du cercle polaire</div>
 	<br />
 	<br />
 
-	<form:form method="POST" action="loginp"
-		commandName="client" cssClass="form-horizontal" modelAttribute="client">
-		<div class="panel panel-info" style="width:30%; position:relative;left:35%; text-align: center;color:darkblue">
-			<div class="panel-heading" style=" background-color: lightblue;color:darkblue"><b>Accès à votre espace Client de BoVoyage</b></div>
+	<form:form method="POST" action="loginp" commandName="client"
+		cssClass="form-horizontal" modelAttribute="client">
+		<div class="panel panel-info"
+			style="width: 40%; position: relative;top: 50%; left: 30%; text-align: center;  color: darkblue">
+			<div class="panel-heading"
+				style="background-color: lightblue; color: darkblue">
+				<h3><b>Déjà membre de BoVoyage ?</b></h3> 
+			</div>
 			<div class="panel-body">
-				<label for="email">Adresse Electronique</label> <br /> <form:input path="mail"
-					type="email" class="form-control " id="email" style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre adresse électronique"/> <br /> <label
-					for="mdp">Mot de passe</label> <br /> <form:input path="nom" type="password"
-					class="form-control" id="mdp" style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre mot de passe"/> <br />
-				<button type="submit" class="btn btn-default " >Entrez dans
+				<label for="email">Adresse Electronique</label> <br />
+				<form:input path="mail" type="email" class="form-control "
+					id="email" style="width: 80%; position:relative; left:10%"
+					placeholder="Entrez votre adresse électronique" />
+				<br /> <label for="mdp">Mot de passe</label> <br />
+				<form:input path="mdp" type="password" class="form-control" id="mdp"
+					style="width: 80%; position:relative; left:10%"
+					placeholder="Entrez votre mot de passe" />
+				<br />
+				<button type="submit" class="btn btn-default ">Entrez dans
 					votre espace Client</button>
+				
+			</div>
+		</div><div class="panel panel-info"
+			style="width: 40%; position: relative;top: 50%; left: 30%; text-align: center;  color: darkblue">
+			<div class="panel-heading"
+				style="background-color: lightblue; color: darkblue">
+				<h3><b>Devenir membre de BoVoyage ?</b></h3> 
+			</div>
+			<div class="panel-body">
+				Vous voulez avoir accès à nos offres BoVoyage -
+				Voyages Nordiques, vous pouvez créer un compte client :
+				<button>
+					<a href="${pageContext.request.contextPath}/client/addclient">Créer
+						un compte Client</a>
+				</button>
 			</div>
 		</div>
 	</form:form>
+	
 	<br />
 	<br />
-	<div   style="width:30%; position:relative;left:35%; text-align: center;">
-	<a href="accueil.jsp" class="btn btn-default btn-lg active"
-		role="button">Revenir à la page d'accueil</a></div>
+	
 	<br />
 	<br />
+
+</div>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel"
+		style="z-index: 1; height: 10%">
+
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<img
+					src="${pageContext.request.contextPath}/resources/image/log1.jpg"
+					alt="Finlande" style="width: 100%;">
+				<div class="carousel-caption"></div>
+			</div>
+			<div class="item">
+				<img
+					src="${pageContext.request.contextPath}/resources/image/log2.jpg"
+					alt="Norvege" style="width: 100%;">
+				<div class="carousel-caption"></div>
+			</div>
+			<div class="item">
+				<img
+					src="${pageContext.request.contextPath}/resources/image/log3.jpg"
+					alt="Suede" style="width: 100%;">
+				<div class="carousel-caption"></div>
+			</div>
+
+		</div>
+	</div>
+
+
+
 
 	<%@include file="template/footer.html"%>
 </body>

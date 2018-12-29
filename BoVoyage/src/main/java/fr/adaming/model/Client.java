@@ -8,12 +8,19 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@DiscriminatorValue(value="client")
-public class Client extends Personne implements Serializable{
+@DiscriminatorValue(value = "client")
+public class Client extends Personne implements Serializable {
 
-	//attributs
+	// attributs
+
+	@Min(value = 8)
+	protected String mdp;
 	@Transient
 	private long numeroCarte;
 	@Transient
@@ -22,77 +29,91 @@ public class Client extends Personne implements Serializable{
 	private int cleSecurite;
 	@Transient
 	private boolean active;
-	
+
 	public List<Formule> getListFormule() {
 		return listFormule;
 	}
+
 	public void setListFormule(List<Formule> listFormule) {
 		this.listFormule = listFormule;
 	}
-	//transformation de UML en JAVA
-	@OneToMany(mappedBy="client")
+
+	// transformation de UML en JAVA
+	@OneToMany(mappedBy = "client")
 	private List<Passager> listPassager;
 
-	@OneToMany(mappedBy="client")
+	@OneToMany(mappedBy = "client")
 	private List<Formule> listFormule;
 
-	
-	//constructeurs
+	// constructeurs
 	public Client() {
 		super();
 	}
+
 	public Client(String nom, String prenom, Date dn, String mail, String telephone) {
 		super(nom, prenom, dn, mail, telephone);
-		
+
 	}
+
 	public Client(long id, String nom, String prenom, Date dn, String mail, String telephone) {
 		super(id, nom, prenom, dn, mail, telephone);
 
 	}
-	
-	//getters et setters
+
+	// getters et setters
 	public long getNumeroCarte() {
 		return numeroCarte;
 	}
+
 	public void setNumeroCarte(long numeroCarte) {
 		this.numeroCarte = numeroCarte;
 	}
+
 	public Date getDateExpiration() {
 		return dateExpiration;
 	}
+
 	public void setDateExpiration(Date dateExpiration) {
 		this.dateExpiration = dateExpiration;
 	}
+
 	public int getCleSecurite() {
 		return cleSecurite;
 	}
+
 	public void setCleSecurite(int cleSecurite) {
 		this.cleSecurite = cleSecurite;
 	}
+
 	public boolean isActive() {
 		return active;
 	}
+
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
-	
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
 	public List<Passager> getListPassager() {
 		return listPassager;
 	}
+
 	public void setListPassager(List<Passager> listPassager) {
 		this.listPassager = listPassager;
 	}
-	//toString
+
+	// toString
 	@Override
 	public String toString() {
 		return "Client [numeroCarte=" + numeroCarte + ", dateExpiration=" + dateExpiration + ", cleSecurite="
 				+ cleSecurite + ", active=" + active + "]";
 	}
-	
 
-
-	
-	
 }

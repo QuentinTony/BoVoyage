@@ -14,30 +14,44 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="personnes")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="role")
-@DiscriminatorValue(value="null")
-public class Personne implements Serializable{
+@Table(name = "personnes")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role")
+@DiscriminatorValue(value = "null")
+public class Personne implements Serializable {
 
-	//attributs
+	// attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected long id;
+	@NotEmpty
 	protected String nom;
+	@NotEmpty
 	protected String prenom;
 	@Temporal(TemporalType.DATE)
+	@Past
+	@NotNull
 	protected Date dn;
+	@NotEmpty
+	@Email
 	protected String mail;
+	@Min(value = 10)
 	protected String telephone;
-	
-	//constructeurs
+
+	// constructeurs
 	public Personne() {
 		super();
 	}
-	
+
 	public Personne(String nom, String prenom, Date dn, String mail, String telephone) {
 		super();
 		this.nom = nom;
@@ -56,50 +70,62 @@ public class Personne implements Serializable{
 		this.mail = mail;
 		this.telephone = telephone;
 	}
-	
-	//getters et setters
+
+	// getters et setters
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getNom() {
 		return nom;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	public String getPrenom() {
 		return prenom;
 	}
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
 	public Date getDn() {
 		return dn;
 	}
+
 	public void setDn(Date dn) {
 		this.dn = dn;
 	}
+
 	public String getMail() {
 		return mail;
 	}
+
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+
 	public String getTelephone() {
 		return telephone;
 	}
+
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
 		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dn=" + dn + ", mail=" + mail
 				+ ", telephone=" + telephone + "]";
 	}
-	
-	
+
 }
