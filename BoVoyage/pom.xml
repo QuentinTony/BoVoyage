@@ -211,7 +211,32 @@
     <version>2.4</version>
 </dependency>
 
+	<!-- Lib pour mail pdf -->
 	
+	<!--simple-java-mail -->
+<dependency>
+    <groupId>org.simplejavamail</groupId>
+    <artifactId>simple-java-mail</artifactId>
+    <version>4.4.5</version>
+</dependency>
+	
+	<!--/commons-email -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-email</artifactId>
+    <version>1.4</version>
+</dependency>
+	
+	<dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>itextpdf</artifactId>
+    <version>5.5.10</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.pdfbox</groupId>
+    <artifactId>pdfbox</artifactId>
+    <version>2.0.4</version>
+</dependency>
 	</dependencies>
 	<build>
 		<plugins>
