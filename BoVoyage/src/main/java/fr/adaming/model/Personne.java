@@ -33,18 +33,18 @@ public class Personne implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected long id;
-	@NotEmpty
+	@NotEmpty(message="le champ ne doit pas être vide")
 	protected String nom;
-	@NotEmpty
+	@NotEmpty(message="le champ ne doit pas être vide")
 	protected String prenom;
 	@Temporal(TemporalType.DATE)
 	@Past
 	@NotNull
 	protected Date dn;
-	@NotEmpty
-	@Email
+	@NotEmpty(message="le champ ne doit pas être nul")
+	@Email(message="le champ doit contenir un @")
 	protected String mail;
-	@Min(value = 10)
+	@Min(value = 10, message="le champ doit contenir 10 chiffres")
 	protected String telephone;
 
 	// constructeurs

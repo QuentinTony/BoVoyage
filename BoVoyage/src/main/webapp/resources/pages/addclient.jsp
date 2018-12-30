@@ -69,7 +69,7 @@
 		style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
 		<div class="panel-heading"
 			style="background-color: lightblue; color: darkblue">
-			<b>Ajouter une destination</b>
+			<b>Formulaire d'ajout d'un client</b>
 		</div>
 		<div class="panel-body">
 			<form:form method="POST" action="addclientp" commandName="client"
@@ -78,24 +78,40 @@
 				<br />
 				<form:input type="text" class="form-control" id="nom" path="nom"
 					placeholder="Entrer un nom" />
+					<form:errors path="nom" cssStyle="color: red;"/>
+				<br />
+				<label for="prenom">Prenom :</label>
 				<br />
 				<form:input type="text" class="form-control" id="prenom"
 					path="prenom" placeholder="Entrer un prenom" />
+					<form:errors path="prenom" cssStyle="color: red;"/>
+				<br />
+				<label for="email">Email :</label>
 				<br />
 				<form:input type="email" class="form-control" id="email"
 					path="mail" placeholder="Entrer un email valide" />
+					<form:errors path="mail" cssStyle="color: red;"/>
+				<br />
+				<label for="mdp">Mot de passe :</label>
 				<br />
 				<form:input type="password" class="form-control" id="mdp"
 					path="mdp" placeholder="Entrer un mot de passe" />
+					<form:errors path="mdp" cssStyle="color: red;"/>
+				<br />
+				<label for="dn">Date de naissance :</label>
 				<br />
 				<form:input type="date" class="form-control" id="dn" path="dn"
 					placeholder="Entrer une date de naissance" />
+					<form:errors path="dn" cssStyle="color: red;"/>
+				<br />
+				<label for="telephone">Telephone :</label>
 				<br />
 				<form:input type="text" class="form-control" id="telephone"
 					path="telephone" placeholder="Entrer un numéro de téléphone" />
+					<form:errors path="telephone" cssStyle="color: red;"/>
 				<br />
 				<br />
-				<button type="submit" class="btn btn-default ">Ajouter</button>
+				<button type="submit" class="btn btn-default ">S'incrire</button>
 
 			</form:form>
 		</div>

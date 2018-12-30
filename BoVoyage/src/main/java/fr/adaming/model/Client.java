@@ -19,7 +19,7 @@ public class Client extends Personne implements Serializable {
 
 	// attributs
 
-	@Min(value = 8)
+	@Min(value = 8,message="le mot de passe doit contenir 8 caractères")
 	protected String mdp;
 	@Transient
 	private long numeroCarte;

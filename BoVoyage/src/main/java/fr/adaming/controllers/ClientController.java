@@ -5,10 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,20 +65,24 @@ public class ClientController {
 			}
 			
 			@RequestMapping(value="/addclientp", method=RequestMethod.POST)
-			public String submitAdd(@ModelAttribute("client") Client cl ,RedirectAttributes ra) {
+			public String submitAdd(@Valid @ModelAttribute("client") Client cl ,RedirectAttributes ra, BindingResult br) {
 		
-		
-				Client cOut= clService.addClient(cl);
-			
-				
-				if(cOut.getId()!=0) {
-					
-					
-					return "index";
+				if (br.hasErrors()) {
+					return "redirect:addclientp";
 				}else {
-					ra.addAttribute("msg", "L'ajout n'est pas fait");
-					return "redirect:addclient";
+					Client cOut= clService.addClient(cl);
+					
+					
+					if(cOut.getId()!=0) {
+						
+						
+						return "loginclient";
+					}else {
+						ra.addAttribute("msg", "L'ajout a échoué");
+						return "redirect:addclient";
+					}
 				}
+				
 			}	
 			
 			//3*************************************************UPDATE***************************************************************
