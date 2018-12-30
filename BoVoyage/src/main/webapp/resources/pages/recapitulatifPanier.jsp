@@ -38,11 +38,11 @@ Vous avez choisi l'hôtel ${formule.hotel.type} ayant ${formule.hotel.categorie} 
 <br/>
 Vous avez choisi la location d'une ${formule.vehicule.type}.
 <br/>
-Le prix final est de  : ${formule.voyage.prix + formule.hotel.prix + formule.vehicule.prix} ¤.
+Le prix final est de  : ${formule.voyage.prix + formule.hotel.prix + formule.vehicule.prix} ¤. La remise est de ${formule.voyage.remise}.
 
 <form:form method="POST" action="validformulep" commandName="formule"
 		cssClass="form-horizontal" modelAttribute="formule">
-		<form:input path="prixFinal" value="${formule.voyage.prix + formule.hotel.prix + formule.vehicule.prix}" /><br/>
+		<form:input path="prixFinal" value="${(formule.voyage.prix + formule.hotel.prix + formule.vehicule.prix)*(1-formule.voyage.remise)}" /><br/>
 		<div style="visibility: hidden;">
 		<form:input path="id" value="${formule.id}" /><br/>
 		<form:input path="nombrePersonne" value="${formule.nombrePersonne}" /><br/>

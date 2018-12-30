@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,6 +93,14 @@ public class VoyageController {
 		return new ModelAndView("accueil", "listVoyage", listvoyage);
 
 	}
+	
+	@RequestMapping(value = "/agence/recherche/{id}", method = RequestMethod.GET)
+	public String rechercheVoyage(Model model , @PathVariable(value = "id") long id){
+		Voyage vOut = voService.getVoyage(id);
+		model.addAttribute("voyage", vOut);
+		return "rechercheVoyage";
+
+	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -102,7 +111,7 @@ public class VoyageController {
 
 	// 2****************************************ADD*******************************************************
 
-	@RequestMapping(value = "/addvoyage", method = RequestMethod.GET)
+	@RequestMapping(value = "/agence/addvoyage", method = RequestMethod.GET)
 	public String getAdd(Model modele) {
 		List<Destination> listDestination = deService.getAllDestination();
 		modele.addAttribute("listdestination", listDestination);
@@ -110,7 +119,7 @@ public class VoyageController {
 		return "addvoyage";
 	}
 
-	@RequestMapping(value = "/addvoyagep", method = RequestMethod.POST)
+	@RequestMapping(value = "/agence/addvoyagep", method = RequestMethod.POST)
 	public String submitAdd(@ModelAttribute("voyage") Voyage vo, RedirectAttributes ra) {
 
 		Voyage vOut = voService.addVoyage(vo);
@@ -148,7 +157,7 @@ public class VoyageController {
 
 	// 4*************************************************DELETE***************************************************************
 
-	@RequestMapping(value = "/deletevoyage", method = RequestMethod.GET)
+	@RequestMapping(value = "/agence/deletevoyage", method = RequestMethod.GET)
 	public String deleteVoyage(Model model) {
 		List<Voyage> list = voService.getAllVoyage();
 		model.addAttribute("listVoyage", list);
@@ -156,7 +165,7 @@ public class VoyageController {
 		return "deletevoyage";
 	}
 
-	@RequestMapping(value = "/deletevoyagep", method = RequestMethod.POST)
+	@RequestMapping(value = "/agence/deletevoyagep", method = RequestMethod.POST)
 	public String submitdelete(@ModelAttribute("voyage") Voyage vo, RedirectAttributes ra) {
 
 		int verif = voService.deleteVoyage(vo);

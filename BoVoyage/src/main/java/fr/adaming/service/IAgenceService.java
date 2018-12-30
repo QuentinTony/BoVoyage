@@ -16,5 +16,12 @@ public interface IAgenceService {
 	public int deleteAgence(Agence agence);
 
 	public int updateAgence(Agence agence);
+	
+	public Agence isExistMark(Agence agIn);
+	
+	public Agence isExistGest(Agence agIn);
+
+	public Agence isExistDir(Agence agIn);
+
 
 }

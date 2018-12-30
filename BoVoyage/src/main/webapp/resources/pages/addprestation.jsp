@@ -34,8 +34,9 @@
 			<b>Ajouter une prestation</b>
 		</div>
 		<div class="panel-body">
-			<form:form method="POST" action="addprestationp" commandName="prestation"
-				cssClass="form-horizontal" enctype="multipart/form-data">
+			<form:form method="POST" action="addprestationp"
+				commandName="prestation" cssClass="form-horizontal"
+				enctype="multipart/form-data">
 				<label for="type">Type de prestation:</label>
 				<br />
 				<form:input type="text" placeholder="Entrez un type de prestation"
@@ -53,7 +54,7 @@
 				<br />
 				<form:textarea path="description" rows="5" cols="50"></form:textarea>
 				<br />
-					<br />
+				<br />
 				<form:select class="form-control" id="dest" path="destination.id">
 					<c:forEach items="${listdest}" var="list">
 						<form:option value="${list.id}"

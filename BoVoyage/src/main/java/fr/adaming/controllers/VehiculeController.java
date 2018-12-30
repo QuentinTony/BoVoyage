@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,11 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Destination;
 import fr.adaming.model.Vehicule;
+import fr.adaming.model.Voyage;
 import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IVehiculeService;
 
 @Controller
-@RequestMapping("/vehicule")
+@RequestMapping("/vehicule/agence")
 public class VehiculeController {
 
 	@Autowired
@@ -49,6 +51,13 @@ public class VehiculeController {
 			
 		}
 		
+		@RequestMapping(value = "/recherche/{id}", method = RequestMethod.GET)
+		public String rechercheVehicule(Model model , @PathVariable(value = "id") long id){
+			Vehicule vOut = veService.getVehicule(id);
+			model.addAttribute("vehicule", vOut);
+			return "rechercheVehicule";
+
+		}
 		
 		
 		//2****************************************ADD*******************************************************
@@ -78,7 +87,7 @@ public class VehiculeController {
 				if(vOut.getId()!=0) {
 					
 					
-					return "accueilAgence";
+					return "redirect:/agence/recherche";
 				}else {
 					ra.addAttribute("msg", "L'ajout n'est pas fait");
 					return "redirect:addvehicule";

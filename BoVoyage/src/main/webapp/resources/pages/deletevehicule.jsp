@@ -36,7 +36,7 @@
 				<label for="voiture">Vehicule :</label> <br /> <form:select
 					class="form-control" id="voiture" path="id">
 					<c:forEach items="${listevoitures}" var="list" >
-						<option>Sélectionnez un véhicule</option>
+						
 						<form:option value="${list.id}" label="${list.id} - ${list.type}"/></option>
 						
 					</c:forEach>

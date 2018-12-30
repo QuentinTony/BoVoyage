@@ -14,7 +14,7 @@ import fr.adaming.service.IClientService;
 
 
 @Controller
-public class LoginClient {
+public class LoginClientController {
 	
 	@Autowired
 	private IClientService clService;
@@ -41,6 +41,8 @@ public class LoginClient {
 		}
 		
 	}
+	
+	
 	
 	
 }

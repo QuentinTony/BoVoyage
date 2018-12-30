@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Destination;
+import fr.adaming.model.Vehicule;
 import fr.adaming.service.IDestinationService;
 
 @Controller
@@ -46,6 +48,14 @@ public class DestinationController {
 		return new ModelAndView("accueil","listDestination",listDestination);
 		
 	}
+
+	@RequestMapping(value = "/agence/recherche/{id}", method = RequestMethod.GET)
+	public String rechercheVehicule(Model model , @PathVariable(value = "id") long id){
+		Destination vOut = dOutService.getDestination(id);
+		model.addAttribute("destination", vOut);
+		return "rechercheDestination";
+
+	}
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -56,14 +66,14 @@ public class DestinationController {
 	
 	//2****************************************ADD*******************************************************
 	
-		@RequestMapping(value="/adddestination", method=RequestMethod.GET)
+		@RequestMapping(value="/agence/adddestination", method=RequestMethod.GET)
 		public String getAdd(Model modele) {
 			
 			modele.addAttribute("destination", new Destination());
 			return "adddestination";
 		}
 		
-		@RequestMapping(value="/adddestinationp", method=RequestMethod.POST)
+		@RequestMapping(value="/agence/adddestinationp", method=RequestMethod.POST)
 		public String submitAdd(@ModelAttribute("destination") Destination dOut ,MultipartFile file, RedirectAttributes ra) {
 			
 			try {
@@ -80,7 +90,7 @@ public class DestinationController {
 			if(vOut.getId()!=0) {
 				
 				
-				return "accueilAgence";
+				return "redirect:/agence/recherche";
 			}else {
 				ra.addAttribute("msg", "L'ajout n'est pas fait");
 				return "redirect:adddestination";
@@ -89,13 +99,13 @@ public class DestinationController {
 		
 		//3*************************************************UPDATE***************************************************************
 		
-		@RequestMapping(value="/updatedestination", method=RequestMethod.GET)
+		@RequestMapping(value="/agence/updatedestination", method=RequestMethod.GET)
 		public String updateDestination(Model model) {
 			model.addAttribute("destination", new Destination());
 			return "updatedestination";
 		}
 		
-		@RequestMapping(value="/updatedestinationp", method=RequestMethod.POST)
+		@RequestMapping(value="/agence/updatedestinationp", method=RequestMethod.POST)
 		public String submitUpdate(@ModelAttribute("destination") Destination dOut, RedirectAttributes ra) {
 			
 		int verif= dOutService.updateDestination(dOut);
@@ -113,7 +123,7 @@ public class DestinationController {
 		//4*************************************************DELETE***************************************************************
 		
 
-		@RequestMapping(value="/deletedestination", method=RequestMethod.GET)
+		@RequestMapping(value="/agence/deletedestination", method=RequestMethod.GET)
 		public String deleteDestination(Model model) {
 			List<Destination> listDestination= dOutService.getAllDestination();
 			model.addAttribute("listdestination", listDestination);
@@ -121,7 +131,7 @@ public class DestinationController {
 			return "deletedestination";
 		}
 		
-		@RequestMapping(value="/deletedestinationp", method=RequestMethod.POST)
+		@RequestMapping(value="/agence/deletedestinationp", method=RequestMethod.POST)
 		public String submitdelete(@ModelAttribute("destination") Destination dOut, RedirectAttributes ra) {
 			Destination dIn= dOutService.getDestination(dOut.getId());
 		int verif= dOutService.deleteDestination(dIn);
@@ -137,13 +147,13 @@ public class DestinationController {
 		
 		//5*************************************************GET***************************************************************
 		
-		@RequestMapping(value="/getdestination", method=RequestMethod.GET)
+		@RequestMapping(value="/agence/getdestination", method=RequestMethod.GET)
 		public String getDestination(Model model) {
 			model.addAttribute("destination", new Destination());
 			return "getdestination";
 		}
 		
-		@RequestMapping(value="/getdestinationp", method=RequestMethod.POST)
+		@RequestMapping(value="/agence/getdestinationp", method=RequestMethod.POST)
 		public String submitgetdestination(@ModelAttribute("destination") Destination dOut, RedirectAttributes ra) {
 			
 		Destination dIn= dOutService.getDestination(dOut.getId());

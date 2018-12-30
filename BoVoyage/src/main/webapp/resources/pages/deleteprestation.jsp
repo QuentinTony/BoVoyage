@@ -31,15 +31,15 @@
 			<b>Supprimer une destination</b>
 		</div>
 		<div class="panel-body">
-			<form:form method="POST" action="deletedestinationp"
-				commandName="destination" cssClass="form-horizontal">
+			<form:form method="POST" action="deleteprestationp"
+				commandName="prestation" cssClass="form-horizontal">
 
-				<label for="dest">Destination :</label>
+				<label for="prest">Prestation :</label>
 				<br />
-				<form:select class="form-control" id="dest" path="id">
-					<c:forEach items="${listdestination}" var="list">
+				<form:select class="form-control" id="prest" path="id">
+					<c:forEach items="${listprestation}" var="list">
 						<form:option value="${list.id}"
-							label="${list.pays} - ${list.villeArrive}" />
+							label="${list.destination.villeArrive} - ${list.type}" />
 					</c:forEach>
 				</form:select>
 				<br />

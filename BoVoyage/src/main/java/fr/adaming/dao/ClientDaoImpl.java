@@ -16,8 +16,6 @@ public class ClientDaoImpl extends GenericDaoImpl<Client> implements IClientDao{
 		.setParameter("pMail", clIn.getMail())
 		.setParameter("pMdp", clIn.getMdp()).getSingleResult();
 		
-	
-		
 	}
 
 }

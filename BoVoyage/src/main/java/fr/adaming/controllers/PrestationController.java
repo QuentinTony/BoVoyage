@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,12 +16,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Destination;
 import fr.adaming.model.Prestation;
+import fr.adaming.model.Vehicule;
 import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IPrestationService;
 
 
 @Controller
-@RequestMapping("/prestation")
+@RequestMapping("/prestation/agence")
 public class PrestationController {
 	
 	@Autowired
@@ -45,6 +47,13 @@ public class PrestationController {
 			
 		}
 		
+		@RequestMapping(value = "/recherche/{id}", method = RequestMethod.GET)
+		public String rechercheVehicule(Model model , @PathVariable(value = "id") long id){
+			Prestation vOut = prService.getPrestation(id);
+			model.addAttribute("prestation", vOut);
+			return "recherchePrestation";
+
+		}
 		
 		
 		//2****************************************ADD*******************************************************
@@ -73,7 +82,7 @@ public class PrestationController {
 				if(vOut.getId()!=0) {
 					
 					
-					return "accueilAgence";
+					return "redirect:/agence/recherche";
 				}else {
 					ra.addAttribute("msg", "L'ajout n'est pas fait");
 					return "redirect:addprestation";
@@ -109,7 +118,7 @@ public class PrestationController {
 			@RequestMapping(value="/deleteprestation", method=RequestMethod.GET)
 			public String deleteDestination(Model model) {
 				List<Prestation> listPrestation= prService.getAllPrestation();
-				model.addAttribute("listevoitures", listPrestation);
+				model.addAttribute("listprestation", listPrestation);
 				model.addAttribute("prestation", new Prestation());
 				return "deleteprestation";
 			}
@@ -117,8 +126,8 @@ public class PrestationController {
 			@RequestMapping(value="/deleteprestationp", method=RequestMethod.POST)
 			public String submitdelete(@ModelAttribute("prestation") Prestation ve, RedirectAttributes ra) {
 				Prestation vOut= prService.getPrestation(ve.getId());
-			int verif= prService.deletePrestation(vOut);
-		if(verif!=0) {
+				int verif= prService.deletePrestation(vOut);
+		       if(verif!=0) {
 					
 					//rediriger ver la methode /liste
 					return "accueilAgence";

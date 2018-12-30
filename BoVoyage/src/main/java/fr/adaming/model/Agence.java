@@ -16,6 +16,8 @@ public class Agence implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	private String nom ;
+	private String prenom;
 	private String mail;
 	private String mdp;
 	private String statut;
@@ -24,20 +26,56 @@ public class Agence implements Serializable{
 	public Agence() {
 		super();
 	}
-	public Agence(String mail, String mdp, String statut) {
-		super();
-		this.mail = mail;
-		this.mdp = mdp;
-		this.statut = statut;
+
+	
+	
+	public String getNom() {
+		return nom;
 	}
-	public Agence(long id, String mail, String mdp, String statut) {
+
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+
+
+	public Agence(long id, String nom, String prenom, String mail, String mdp, String statut) {
 		super();
 		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
 		this.mail = mail;
 		this.mdp = mdp;
 		this.statut = statut;
 	}
-	
+
+
+
+	public Agence(String nom, String prenom, String mail, String mdp, String statut) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.statut = statut;
+	}
+
+
+
 	//getters et setters
 	public long getId() {
 		return id;

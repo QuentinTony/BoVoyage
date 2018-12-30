@@ -24,8 +24,9 @@
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 </head>
 <body>
+<canvas id="canvas" style="z-index: 3;position: absolute;"></canvas>
 <div style="z-index: 3;position: absolute;left:10%;">
-	<canvas id="canvas" style="position: absolute;"></canvas>
+	
 	<div
 		style="text-decoration: underlined; color: lightblue;text-align:center; font-family: Calibri; text-shadow: 10px 8px darkblue; font-size: 500%">BoVoyage
 		- Voyages Nordiques<br /> le spécialiste
@@ -63,8 +64,9 @@
 			</div>
 			<div class="panel-body">
 				Vous voulez avoir accès à nos offres BoVoyage -
-				Voyages Nordiques, vous pouvez créer un compte client :
-				<button>
+				Voyages Nordiques, vous pouvez créer un compte client : <br/>
+				<br/>
+				<button type="button" class="btn btn-default ">
 					<a href="${pageContext.request.contextPath}/client/addclient">Créer
 						un compte Client</a>
 				</button>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,7 @@ import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IHotelService;
 
 @Controller
-@RequestMapping("/hotel")
+@RequestMapping("/hotel/agence")
 public class HotelController {
 
 	@Autowired
@@ -46,6 +47,14 @@ public class HotelController {
 		List<Hotel> listHotel= hoService.getAllHotel();
 		return new ModelAndView("accueilAgence","listhotel",listHotel);
 		
+	}
+	
+	@RequestMapping(value = "/recherche/{id}", method = RequestMethod.GET)
+	public String rechercheVehicule(Model model , @PathVariable(value = "id") long id){
+		Hotel vOut = hoService.getHotel(id);
+		model.addAttribute("hotel", vOut);
+		return "rechercheHotel";
+
 	}
 	
 
@@ -78,7 +87,7 @@ public class HotelController {
 			if(hOut.getId()!=0) {
 				
 				
-				return "accueilAgence";
+				return "redirect:/agence/recherche";
 			}else {
 				ra.addAttribute("msg", "L'ajout n'est pas fait");
 				return "redirect:addhotel";
