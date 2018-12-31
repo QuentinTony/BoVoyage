@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +54,7 @@ public class BanqueController {
 	
 	
 	@RequestMapping(value="/submitVirement", method=RequestMethod.POST)
-	public String submitVirement(@ModelAttribute ("compte") Banque b,@RequestParam Double somme, RedirectAttributes ra) {
+	public String submitVirement(RedirectAttributes ra,@ModelAttribute ("compte") Banque b,@RequestParam("dSomme") Double somme) {
 		
 		Banque bBoVoyage=baService.virement(b, somme);
 		if (bBoVoyage.getId()!=0) {

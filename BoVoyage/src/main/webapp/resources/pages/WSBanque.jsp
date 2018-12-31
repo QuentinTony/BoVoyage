@@ -46,15 +46,20 @@
 				<label for="numCarte">Numero de carte :</label> <br /> <input
 					type="number" class="form-control " id="numCarte"
 					style="width: 80%; position: relative; left: 10%"
-					placeholder="Entrez votre numero de carte" /> <br /> <label
+					placeholder="Entrez votre numero de carte" required="required"/> <br /> <label
 					for="DateExp">Date expiration</label> <br /> <input type="date"
 					class="form-control" id="DateExp"
 					style="width: 80%; position: relative; left: 10%"
-					placeholder="Entrez votre date d'expiration" /> <br /> <label
+					placeholder="Entrez votre date d'expiration" required="required"/> <br /> <label
 					for="CleSecurite">cryptogramme (au dos de la carte)</label> <br /> <input type="number"
 					class="form-control" id="CleSecurite"
 					style="width: 80%; position: relative; left: 10%"
-					placeholder="Entrez votre cle de securité" />
+					placeholder="Entrez votre cle de securité" required="required"/>
+					<br /> <label
+					for="Somme">Somme</label> <br /> <input type="number"
+					class="form-control" id="Somme"
+					style="width: 80%; position: relative; left: 10%"
+					placeholder="Entrez la somme" required="required" name="dSomme"/>
 				
 				<button  type="submit" class="btn btn-default " >payer</button>
 			</div>

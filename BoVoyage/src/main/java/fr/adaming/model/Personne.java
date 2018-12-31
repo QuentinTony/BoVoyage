@@ -17,8 +17,10 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -39,12 +41,11 @@ public class Personne implements Serializable {
 	protected String prenom;
 	@Temporal(TemporalType.DATE)
 	@Past
-	@NotNull
 	protected Date dn;
-	@NotEmpty(message="le champ ne doit pas être nul")
+	@NotEmpty
 	@Email(message="le champ doit contenir un @")
 	protected String mail;
-	@Min(value = 10, message="le champ doit contenir 10 chiffres")
+	@Length(min=10, max=10, message="le champ doit contenir 10 chiffres")
 	protected String telephone;
 
 	// constructeurs

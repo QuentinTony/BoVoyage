@@ -46,37 +46,37 @@
 					<label for="nom">Nom :</label>
 					<br />
 					<form:input type="text" class="form-control" id="nom" path="nom"
-						placeholder="Entrer un nom" />
+						placeholder="Entrer un nom" required="required"/>
 					<form:errors path="nom" cssStyle="color: red;" />
 					<br />
 					<label for="prenom">Prenom :</label>
 					<br />
 					<form:input type="text" class="form-control" id="prenom"
-						path="prenom" placeholder="Entrer un prenom" />
+						path="prenom" placeholder="Entrer un prenom" required="required"/>
 					<form:errors path="prenom" cssStyle="color: red;" />
 					<br />
 					<label for="email">Email :</label>
 					<br />
 					<form:input type="email" class="form-control" id="email"
-						path="mail" placeholder="Entrer un email valide" />
+						path="mail" placeholder="Entrer un email valide" required="required"/>
 					<form:errors path="mail" cssStyle="color: red;" />
 					<br />
 					<label for="mdp">Mot de passe :</label>
 					<br />
 					<form:input type="password" class="form-control" id="mdp"
-						path="mdp" placeholder="Entrer un mot de passe" />
+						path="mdp" placeholder="Entrer un mot de passe" required="required"/>
 					<form:errors path="mdp" cssStyle="color: red;" />
 					<br />
 					<label for="dn">Date de naissance :</label>
 					<br />
 					<form:input type="date" class="form-control" id="dn" path="dn"
-						placeholder="Entrer une date de naissance" />
+						placeholder="Entrer une date de naissance" required="required"/>
 					<form:errors path="dn" cssStyle="color: red;" />
 					<br />
 					<label for="telephone">Telephone :</label>
 					<br />
 					<form:input type="text" class="form-control" id="telephone"
-						path="telephone" placeholder="Entrer un numéro de téléphone" />
+						path="telephone" placeholder="Entrer un numéro de téléphone" required="required"/>
 					<form:errors path="telephone" cssStyle="color: red;" />
 					<br />
 					<br />

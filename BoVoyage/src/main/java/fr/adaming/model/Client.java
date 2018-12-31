@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -19,7 +21,7 @@ public class Client extends Personne implements Serializable {
 
 	// attributs
 
-	@Min(value = 8,message="le mot de passe doit contenir 8 caractères")
+	@Length(min = 8, max= 20,message="le mot de passe doit contenir 8 caractères")
 	protected String mdp;
 	@Transient
 	private long numeroCarte;

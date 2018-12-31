@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -35,125 +34,123 @@ public class ClientController {
 	public void setClService(IClientService clService) {
 		this.clService = clService;
 	}
-	
-	//1********************************************LIST*********************************************************************
-	
-		@RequestMapping(value="/listclient", method=RequestMethod.GET)
-		public ModelAndView afficheListe() {
-			//Récuperer la liste de la BD
-			
-			List<Client> listClient= clService.getAllClient();
-			return new ModelAndView("accueilAgence","listclient",listClient);
-			
-		}
-		
-		@InitBinder
-		public void initBinder(WebDataBinder binder) {
-			DateFormat formatDate= new SimpleDateFormat("yyyy-MM-dd");
-			formatDate.setLenient(false);
-			binder.registerCustomEditor(Date.class, new CustomDateEditor(formatDate, false));
-		}
-		
-		//2****************************************ADD*******************************************************
-		
-			@RequestMapping(value="/addclient", method=RequestMethod.GET)
-			public String getAdd(Model modele) {
-				List<Client> listClient = clService.getAllClient();
-				modele.addAttribute("listclient", listClient);
-				modele.addAttribute("client", new Client());
-				return "addclient";
-			}
-			
-			@RequestMapping(value="/addclientp", method=RequestMethod.POST)
-			public String submitAdd(@Valid @ModelAttribute("client") Client cl ,RedirectAttributes ra, BindingResult br) {
-		
-				if (br.hasErrors()) {
-					return "redirect:addclientp";
-				}else {
-					Client cOut= clService.addClient(cl);
-					
-					
-					if(cOut.getId()!=0) {
-						
-						
-						return "loginclient";
-					}else {
-						ra.addAttribute("msg", "L'ajout a échoué");
-						return "redirect:addclient";
-					}
-				}
-				
-			}	
-			
-			//3*************************************************UPDATE***************************************************************
-			
-			@RequestMapping(value="/updateclient", method=RequestMethod.GET)
-			public String updateClient(Model model) {
-				model.addAttribute("client", new Client());
-				return "updateclient";
-			}
-			
-			@RequestMapping(value="/updateclientp", method=RequestMethod.POST)
-			public String submitUpdate(@ModelAttribute("client") Client cl, RedirectAttributes ra) {
-				
-			int verif= clService.updateClient(cl);
-		if(verif!=0) {
-					
-					//rediriger ver la methode /liste
-					return "redirect:listclient";
-				}else {
-					ra.addAttribute("msg", "La modification n'est pas faite");
-					return "redirect:updateclient";
-				}
-			}
-		
-			
-			//4*************************************************DELETE***************************************************************
-			
 
-			@RequestMapping(value="/deleteclient", method=RequestMethod.GET)
-			public String deleteClient(Model model) {
-				List<Client> list = clService.getAllClient();
-				model.addAttribute("listClient", list);
-				model.addAttribute("client", new Client());
-				return "deleteclient";
-			}
-			
-			@RequestMapping(value="/deleteclientp", method=RequestMethod.POST)
-			public String submitdelete(@ModelAttribute("client") Client cl, RedirectAttributes ra) {
-			
-				
-			int verif= clService.deleteClient(cl);
-		if(verif!=0) {
-					
-					//rediriger ver la methode /liste
-					return "redirect:listclient";
-				}else {
-					ra.addAttribute("msg", "Le client n'est pas effacé");
-					return "redirect:deleteclient";
-				}
-			}
-			
-			//5*************************************************GET***************************************************************
-			
-			@RequestMapping(value="/getclient", method=RequestMethod.GET)
-			public String getClient(Model model, @RequestParam(value = "id") long id) {
-				Client cOut = clService.getClient(id);
-				model.addAttribute("client",cOut);
-				return "getclient";
-			}
-			
-			@RequestMapping(value="/getclientp", method=RequestMethod.POST)
-			public String submitgetvoyage(@ModelAttribute("client") Client cl, RedirectAttributes ra) {
-				Client cOut= clService.getClient(cl.getId());
-		if(cOut.getId()!=0) {
-					
-					//rediriger ver la methode /liste
-					return "redirect:listclient";
-				}else {
-					ra.addAttribute("msg", "Le client n'existe pas");
-					return "redirect:getclient";
-				}
-			}
-	
+	// 1********************************************LIST*********************************************************************
+
+	@RequestMapping(value = "/listclient", method = RequestMethod.GET)
+	public ModelAndView afficheListe() {
+		// Récuperer la liste de la BD
+
+		List<Client> listClient = clService.getAllClient();
+		return new ModelAndView("accueilAgence", "listclient", listClient);
+
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+		formatDate.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(formatDate, false));
+	}
+
+	// 2****************************************ADD*******************************************************
+
+	@RequestMapping(value = "/addclient", method = RequestMethod.GET)
+	public String getAdd(Model modele) {
+		List<Client> listClient = clService.getAllClient();
+		modele.addAttribute("listclient", listClient);
+		modele.addAttribute("client", new Client());
+		return "addclient";
+	}
+
+	@RequestMapping(value = "/addclientp", method = RequestMethod.POST)
+	public String submitAdd(RedirectAttributes ra, @Valid @ModelAttribute("client") Client cl, BindingResult br) {
+
+		if (br.hasErrors()) {
+
+			return "addclient";
+		}
+		Client cOut = clService.addClient(cl);
+
+		if (cOut.getId() != 0) {
+
+			return "loginclient";
+		} else {
+			ra.addAttribute("msg", "L'ajout a échoué");
+			return "redirect:addclient";
+		}
+
+	}
+
+	// 3*************************************************UPDATE***************************************************************
+
+	@RequestMapping(value = "/updateclient", method = RequestMethod.GET)
+	public String updateClient(Model model) {
+		model.addAttribute("client", new Client());
+		return "updateclient";
+	}
+
+	@RequestMapping(value = "/updateclientp", method = RequestMethod.POST)
+	public String submitUpdate(RedirectAttributes ra, @Valid @ModelAttribute("client") Client cl, BindingResult br) {
+		if (br.hasErrors()) {
+
+			return "updateclient";
+		}
+		int verif = clService.updateClient(cl);
+		if (verif != 0) {
+
+			// rediriger ver la methode /liste
+			return "redirect:listclient";
+		} else {
+			ra.addAttribute("msg", "La modification n'est pas faite");
+			return "redirect:updateclient";
+		}
+	}
+
+	// 4*************************************************DELETE***************************************************************
+
+	@RequestMapping(value = "/deleteclient", method = RequestMethod.GET)
+	public String deleteClient(Model model) {
+		List<Client> list = clService.getAllClient();
+		model.addAttribute("listClient", list);
+		model.addAttribute("client", new Client());
+		return "deleteclient";
+	}
+
+	@RequestMapping(value = "/deleteclientp", method = RequestMethod.POST)
+	public String submitdelete(@ModelAttribute("client") Client cl, RedirectAttributes ra) {
+
+		int verif = clService.deleteClient(cl);
+		if (verif != 0) {
+
+			// rediriger ver la methode /liste
+			return "redirect:listclient";
+		} else {
+			ra.addAttribute("msg", "Le client n'est pas effacé");
+			return "redirect:deleteclient";
+		}
+	}
+
+	// 5*************************************************GET***************************************************************
+
+	@RequestMapping(value = "/getclient", method = RequestMethod.GET)
+	public String getClient(Model model, @RequestParam(value = "id") long id) {
+		Client cOut = clService.getClient(id);
+		model.addAttribute("client", cOut);
+		return "getclient";
+	}
+
+	@RequestMapping(value = "/getclientp", method = RequestMethod.POST)
+	public String submitgetvoyage(@ModelAttribute("client") Client cl, RedirectAttributes ra) {
+		Client cOut = clService.getClient(cl.getId());
+		if (cOut.getId() != 0) {
+
+			// rediriger ver la methode /liste
+			return "redirect:listclient";
+		} else {
+			ra.addAttribute("msg", "Le client n'existe pas");
+			return "redirect:getclient";
+		}
+	}
+
 }
