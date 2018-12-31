@@ -40,8 +40,30 @@
 						
 					</c:forEach>
 				</form:select> <br /> <br />
-				<button type="submit" class="btn btn-default ">Supprimer</button>
+				<a href="#modal-dialog" class="btn btn-default-modal-toggle"
+					data-toggle="modal" data-modal-type="confirm"
+					data-modal-title="Delete Property"
+					data-modal-text="Are you sure you want to delete">Supprimer</a>
 
+				<div id="modal-dialog" class="modal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<a href="#" data-dismiss="modal" aria-hidden="true"
+									class="close">×</a>
+								<h3>êtes vous sur ???</h3>
+							</div>
+							<div class="modal-body">
+								<p>êtes vous sur de vouloir supprimer cet hotel?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" id="btnYes" class="btn confirm">Yes</button>
+								<button type="button" data-dismiss="modal" aria-hidden="true"
+									class="btn secondary">No</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</form:form>
 		</div>
 	</div>
