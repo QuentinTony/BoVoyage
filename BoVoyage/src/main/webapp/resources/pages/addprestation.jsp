@@ -66,14 +66,13 @@
 				<div
 					style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
 					<br /> <br />
-					<form:label id="labelimage" style="display: block" path="photo"
-						enctype="multipart/form-data">Insérer
-					une image :</form:label>
-					<div class="input-group" id="img" style="display: block">
-						<span class="input-group-btn"><br /> <span
-							class="btn btn-default btn-file"> Charger une photo <input
-								type="file" id="imgInp" name="file" />
-						</span> </span> <img id='img-upload' style="width: 30%" />
+			<label id="labelimage" >Insérer
+					une image :</label>
+				<div class="input-group" id="img" >
+					<span class="input-group-btn"><br /> <span
+						class="btn btn-default btn-file"> Charger une photo <input
+							type="file" id="imgInp" name="file"/>
+					</span> </span> <img id='img-upload' style="width: 30%" />
 					</div>
 				</div>
 				<br />

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -86,11 +87,13 @@ public class VoyageController {
 	// 1********************************************LIST*********************************************************************
 
 	@RequestMapping(value = "/listvoyage", method = RequestMethod.GET)
-	public ModelAndView afficheListe() {
+	public String afficheListe(Model modele) {
 		// Récuperer la liste de la BD
-
+		Voyage voyage =  new Voyage();
+		modele.addAttribute("voyage", voyage);
 		List<Voyage> listvoyage = voService.getAllVoyage();
-		return new ModelAndView("accueil", "listVoyage", listvoyage);
+		modele.addAttribute("listVoyage", listvoyage);
+		return "accueil";
 
 	}
 	
@@ -126,7 +129,7 @@ public class VoyageController {
 
 		if (vOut.getId() != 0) {
 
-			return "redirect:listvoyage";
+			return "redirect:/agence/recherche";
 		} else {
 			ra.addAttribute("msg", "L'ajout n'est pas fait");
 			return "redirect:addvoyage";
@@ -200,6 +203,89 @@ public class VoyageController {
 			return "redirect:getvoyage";
 		}
 	}
+	
+	
+	@RequestMapping(value = "/voyage/rechercheavanceep", method = RequestMethod.POST)
+	public String getVoyageByAvancee(Model model,@RequestParam long prix, @RequestParam String continent) {
+		List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+		List<Voyage> listVoyageContinent = voService.getVoyageByContinent(continent);
+		for (Voyage vo : listVoyageContinent) {
+			if(listVoyagePrix.contains(vo)) {
+				listVoyageContinent.remove(vo);
+			}
+		}
+		model.addAttribute("listVoyage", listVoyageContinent);
+		
+		return "rechercheAvancee";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/voyage/rechercheparprixp", method = RequestMethod.POST)
+	public String getVoyageByPrixP(Model model,@RequestParam long prix) {
+		List<Voyage> listVoyage = voService.getVoyageByPrix(prix);
+		model.addAttribute("listVoyage", listVoyage);
+		return "rechercheAvancee";
+	}
+	
+	
+	@RequestMapping(value = "/voyage/rechercheparprix", method = RequestMethod.GET)
+	public String getVoyageByPrix(Model model,@RequestParam long prix) {
+		List<Voyage> listVoyage = voService.getVoyageByPrix(prix);
+		model.addAttribute("listVoyage", listVoyage);
+		return "rechercheAvancee";
+	}
 
+	@RequestMapping(value = "/voyage/rechercheparcontinent", method = RequestMethod.GET)
+	public String getVoyageByCont(Model model,@RequestParam String continent) {
+		List<Voyage> listVoyage = voService.getVoyageByContinent(continent);
+		model.addAttribute("listVoyage", listVoyage);
+		return "rechercheAvancee";
+	}
+	
+	@RequestMapping(value = "/voyage/rechercheparpays", method = RequestMethod.GET)
+	public String getVoyageByPays(Model model,@RequestParam String pays) {
+		List<Voyage> listVoyage = voService.getVoyageByPays(pays);
+		model.addAttribute("listVoyage", listVoyage);
+		return "rechercheAvancee";
+	}
+	
+	@RequestMapping(value = "/voyage/recherchepardd", method = RequestMethod.GET)
+	public String getVoyageByDD(Model model,@RequestParam Date dd) {
+		List<Voyage> listVoyage = voService.getVoyageByDateDepart(dd);
+		model.addAttribute("listVoyage", listVoyage);
+		return "rechercheAvancee";
+	}
+	
+	@RequestMapping(value = "/voyage/recherchepardr", method = RequestMethod.GET)
+	public String getVoyageByPrix(Model model,@RequestParam Date dr) {
+		List<Voyage> listVoyage = voService.getVoyageByDateRetour(dr);
+		model.addAttribute("listVoyage", listVoyage);
+		return "rechercheAvancee";
+	}
+	
+	@RequestMapping(value = "/voyage/recherchepardddr", method = RequestMethod.GET)
+	public String getVoyageByPrix(Model model,@RequestParam Date dd,@RequestParam Date dr) {
+		List<Voyage> listVoyage = voService.getVoyageByDateDepRet(dd, dr);
+		model.addAttribute("listVoyage", listVoyage);
+		return "rechercheAvancee";
+	}
+	
+	@RequestMapping(value = "/voyage/rechercheparmois", method = RequestMethod.GET)
+	public String getVoyageByPrix(Model model,@RequestParam int mois) {
+		List<Voyage> listVoyage = voService.getVoyageByMonth(mois);
+		model.addAttribute("listVoyage", listVoyage);
+		return "rechercheAvancee";
+	}
 
 }

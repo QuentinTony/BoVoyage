@@ -33,7 +33,7 @@
 	<div class="panel-group">
 		<div class="panel panel-default">
 			<div class="panel-heading"
-				style="font-size: 150%;background-image: ${prestation.destination.photo}">
+				style="font-size: 150%;background-image:url('${pageContext.request.contextPath}/prestation/agence/photoD/${prestation.id}')">
 				<div style="color: darkblue; font-size: 150%; position: absolute;">
 					<b>${prestation.destination.pays}</b> -
 					${prestation.destination.villeArrive}
@@ -55,7 +55,10 @@
 						<td>${prestation.prix}</td>
 						<td>${prestation.type}</td>
 						<td>${prestation.description}</td>
-						<td>${prestation.photo}</td>
+							<td><img
+							src="${pageContext.request.contextPath}/prestation/agence/photoD/${prestation.id}"
+							style="max-width: 100%; height: 40%; border-radius: 5px"
+							class="img-fluid" /></td>
 
 
 					</tr>

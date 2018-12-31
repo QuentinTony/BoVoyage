@@ -33,7 +33,7 @@
 	<div class="panel-group">
 		<div class="panel panel-default">
 		<div class="panel-heading"
-				style="font-size: 150%;background-image: ${destination.photo}">
+				style="font-size: 150%;background-image:url('http://localhost:8080/BoVoyage/destination/photoD/${destination.id}')">
 				<div style="color: darkblue; font-size: 150%; position: absolute;">
 					<b>${destination.pays}</b> -
 					${destination.villeArrive}
@@ -60,13 +60,16 @@
 						<td>${destination.villeArrive}</td>
 						<td>${destination.longitude}</td>
 						<td>${destination.latitude}</td>
-						<td><img src="${destination.photo}"></td>
+							<td> <img
+							src="${pageContext.request.contextPath}/destination/photoD/${destination.id}"
+														style="max-width: 100%; height: 40%; border-radius: 5px"
+											class="img-fluid" /></td>
 
 					</tr>
 
 				</table>
 				<br />
-				<div id="map" style="width: 1000px; height: 400px;"></div>
+				<div id="map" style="width: 1000px; height: 400px; border-radius: 5px"></div>
 				<br />
 
 			</div>

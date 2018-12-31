@@ -33,7 +33,7 @@
 	<div class="panel-group">
 		<div class="panel panel-default">
 			<div class="panel-heading"
-				style="font-size: 150%;background-image: ${vehicule.photo}">
+				style="font-size: 150%;background-image:url('${pageContext.request.contextPath}/vehicule/agence/photoD/${vehicule.id}')">
 				<div style="color: darkblue; font-size: 150%; position: absolute;">
 					<b>${vehicule.destination.pays}</b> -
 					${vehicule.destination.villeArrive}
@@ -53,7 +53,10 @@
 					<tr>
 						<td>${vehicule.prix}</td>
 						<td>${vehicule.type}</td>
-						<td><img src="${vehicule.destination.photo}"></td>
+							<td><img
+							src="${pageContext.request.contextPath}/vehicule/agence/photoD/${vehicule.id}"
+							style="max-width: 100%; height: 40%; border-radius: 5px"
+							class="img-fluid" /></td>
 
 					</tr>
 

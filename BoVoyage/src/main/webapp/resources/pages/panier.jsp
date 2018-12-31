@@ -36,7 +36,7 @@
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading"
-					style="font-size: 150%;background-image: ${voyage.destination.photo}">
+					style="font-size: 150%;background-image:url('http://localhost:8080/BoVoyage/destination/photoD/${voyage.destination.id}')">
 					<div style="color: darkblue; font-size: 150%; position: absolute;">
 						<b>${voyage.destination.pays}</b> -
 						${voyage.destination.villeArrive}

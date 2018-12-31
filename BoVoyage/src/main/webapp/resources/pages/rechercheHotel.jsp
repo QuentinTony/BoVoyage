@@ -33,12 +33,11 @@
 	<div class="panel-group">
 		<div class="panel panel-default">
 			<div class="panel-heading"
-				style="font-size: 150%;background-image: ${hotel.destination.photo}">
+				style="font-size: 150%;background-image:url('${pageContext.request.contextPath}/hotel/agence/photoD/${hotel.id}')">
 				<div style="color: darkblue; font-size: 150%; position: absolute;">
 					<b>${hotel.destination.pays}</b> - ${hotel.destination.villeArrive}
 				</div>
-				<div
-					style="color: darkblue; font-size: 100%; text-align: right">${hotel.prix}¤</div>
+				<div style="color: darkblue; font-size: 100%; text-align: right">${hotel.prix}¤</div>
 			</div>
 			<div class="panel-body">
 				<table class="table table-bordered">
@@ -58,8 +57,10 @@
 						<td>${hotel.categorie}</td>
 						<td>${hotel.hebergement }</td>
 						<td>${hotel.description }</td>
-
-						<td><img src="${voyage.destination.photo}"></td>
+						<td><img
+							src="${pageContext.request.contextPath}/hotel/agence/photoD/${hotel.id}"
+							style="max-width: 100%; height: 40%; border-radius: 5px"
+							class="img-fluid" /></td>
 
 					</tr>
 
@@ -72,6 +73,8 @@
 	</div>
 
 	<%@include file='template/footer.html'%>
+	
+	
 	<script
 		src="http://www.mapquestapi.com/sdk/js/v7.2.s/mqa.toolkit.js?key=KhXhyTLNG9H9fw4AZFoIzxnakIy4XEUj"></script>
 	<script type="text/javascript"></script>

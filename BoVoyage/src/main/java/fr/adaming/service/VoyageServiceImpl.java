@@ -127,12 +127,6 @@ public class VoyageServiceImpl implements IVoyageService {
 		return liste;
 	}
 
-
-
-
-
-
-
 	@Override
 	public int setPassager(List<Passager> pa, Voyage vo) {
 		vo.setListPassager(pa);

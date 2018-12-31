@@ -46,7 +46,7 @@
 					<form:option value="amerique" label="Amérique"/>
 
 				</form:select> <br /> <label id="label" for="paysE;paysAs;paysAm"
-					style="display: none">Pays : </label> <form:select class="form-control"
+					style="display: none;">Pays : </label> <form:select class="form-control"
 					id="paysE" style="display: none" path="pays" onclick="liste2()">
 					<form:option value="" label="Sélectionnez un pays"/>
 					<form:option value="Norvège" label="Norvège"/>
@@ -107,8 +107,8 @@
 						: </label> <form:input type="text" path="longitude" id="long" name="longitude"  
 						style="display: none" />
 				</div>
-				<br /> <br /> <form:label id="labelimage" style="display: none" path="photo" enctype="multipart/form-data">Insérer
-					une image :</form:label>
+				<br /> <br /> <label id="labelimage" style="display: none">Insérer
+					une image :</label>
 				<div class="input-group" id="img" style="display: none">
 					<span class="input-group-btn"><br /> <span
 						class="btn btn-default btn-file"> Charger une photo <input

@@ -27,16 +27,15 @@
 
 
 </head>
-<header><%@include file='template/header.html'%></header>
 <body>
-
+	<%@include file='template/header.html'%>
 
 
 	<c:forEach var="v" items="${listVoyage}">
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading"
-					style="font-size: 150%; background-image:url('http://localhost:8080/BoVoyage/destination/photoD/${v.destination.id}')">
+					style="font-size: 150%; background-image:${v.destination.photo}">
 					
 					
 					<div style="color: darkblue; font-size: 150%; position: absolute;">
@@ -69,11 +68,7 @@
 							<td>${v.destination.villeArrive }</td>
 							<td>${v.dateDepart}</td>
 							<td>${v.dateRetour}</td>
-							<td>${v.destination.id}<img
-							src="${pageContext.request.contextPath}/photo/destination?id=${v.destination.id}"
-							style="max-width: 100%; height: 260px; border-radius: 5px"
-							class="img-fluid" />
-</td>
+							<td>${v.destination.photo}</td>
 						</tr>
 
 					</table>
@@ -88,9 +83,7 @@
 			</div>
 		</div>
 	</c:forEach>
-</body>
-	<footer>
-	<%@include file='template/footer.html'%>
-	</footer>
 
+</script>
+</body>
 </html>

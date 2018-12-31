@@ -64,7 +64,10 @@
 						<td>${voyage.destination.villeArrive }</td>
 						<td>${voyage.dateDepart}</td>
 						<td>${voyage.dateRetour}</td>
-						<td><img src="${voyage.destination.photo}"></td>
+						<td>${voyage.destination.id} <img
+							src="${pageContext.request.contextPath}/photo/photoD/${voyage.destination.id}"
+							style="max-width: 100%; height: 260px; border-radius: 5px"
+							class="img-fluid" /></td>
 
 					</tr>
 
