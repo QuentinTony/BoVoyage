@@ -76,12 +76,14 @@ public class DestinationController {
 	}
 
 	@RequestMapping(value = "/agence/adddestinationp", method = RequestMethod.POST)
-	public String submitAdd(@ModelAttribute("destination") Destination dOut, @RequestParam MultipartFile file,
-			RedirectAttributes ra) {
+	public String submitAdd(RedirectAttributes ra, @ModelAttribute("destination") Destination dOut,
+			@RequestParam MultipartFile file) {
 
 		try {
 			byte[] photo = file.getBytes();
-			dOut.setPhoto(photo);
+			if (photo.length!=0) {
+				dOut.setPhoto(photo);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -97,12 +99,10 @@ public class DestinationController {
 		}
 	}
 
-	
-	
 	@RequestMapping(value = "/photoD/{idD}", method = RequestMethod.GET)
 	public @ResponseBody void imageDestination(@PathVariable("idD") int id, HttpServletResponse response) {
-		
-		byte[] image =(dOutService.getDestination(id)).getPhoto();
+
+		byte[] image = (dOutService.getDestination(id)).getPhoto();
 
 		ServletOutputStream outputStream;
 		try {
@@ -125,8 +125,15 @@ public class DestinationController {
 	}
 
 	@RequestMapping(value = "/agence/updatedestinationp", method = RequestMethod.POST)
-	public String submitUpdate(@ModelAttribute("destination") Destination dOut, RedirectAttributes ra) {
+	public String submitUpdate( RedirectAttributes ra, @ModelAttribute("destination") Destination dOut,@RequestParam MultipartFile file) {
 
+		try {
+			byte[] photo = file.getBytes();
+			dOut.setPhoto(photo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		int verif = dOutService.updateDestination(dOut);
 		if (verif != 0) {
 
@@ -173,6 +180,7 @@ public class DestinationController {
 	@RequestMapping(value = "/agence/getdestinationp", method = RequestMethod.POST)
 	public String submitgetdestination(@ModelAttribute("destination") Destination dOut, RedirectAttributes ra) {
 
+		
 		Destination dIn = dOutService.getDestination(dOut.getId());
 		if (dIn.getId() != 0) {
 

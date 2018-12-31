@@ -85,7 +85,7 @@
 				<form:errors path="telephone" cssStyle="color: red;" />
 				<br />
 				<br />
-				<button type="submit" class="btn btn-default ">S'incrire</button>
+				<button type="submit" class="btn btn-default ">Modifier</button>
 
 			</form:form>
 		</div>

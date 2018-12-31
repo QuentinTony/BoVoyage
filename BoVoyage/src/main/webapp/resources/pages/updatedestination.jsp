@@ -26,118 +26,131 @@
 <body>
 	<%@include file='template/headerAgence.html'%>
 
-	<form:form method="POST" action="updatedestinationp"
-		commandName="updateDestination" cssClass="form-horizontal">
-		<div class="form-group">
-			<label for="idID" class="col-sm-2 control-label">ID</label>
-			<div class="col-sm-10">
-				<form:input type="text" cssClass="form-control" id="idID"
-					placeholder="ID" path="id" />
-			</div>
+	<div class="panel panel-info"
+		style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
+		<div class="panel-heading"
+			style="background-color: lightblue; color: darkblue">
+			<b>Modifier une destination</b>
 		</div>
-		<label for="continent">Continent :</label>
-		<br />
-		<select class="form-control" id="continent" onclick="liste()">
-			<option>Sélectionnez un continent</option>
-			<option value="europe">Europe</option>
-			<option value="asie">Asie</option>
-			<option value="amerique">Amérique</option>
+		<div class="panel-body">
+			<form:form method="POST" action="updatedestinationp"
+				commandName="destination" cssClass="form-horizontal"
+				modelAttribute="destination" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="idID" class="col-sm-2 control-label">ID</label>
+					<div class="col-sm-10">
+						<form:input type="text" cssClass="form-control" id="idID"
+							placeholder="ID" path="id" />
+					</div>
+				</div>
+				<label for="continent">Continent :</label>
+				<br />
+				<form:select class="form-control" id="continent" path="continent"
+					onclick="liste()">
+					<form:option value="" label="Sélectionnez un continent" />
+					<form:option value="europe" label="Europe" />
+					<form:option value="asie" label="Asie" />
+					<form:option value="amerique" label="Amérique" />
 
-		</select>
-		<br />
-		<label id="label" for="paysE;paysAs;paysAm" style="display: none">Pays
-			: </label>
-		<select class="form-control" id="paysE" style="display: none"
-			onclick="liste2()">
-			<option>Sélectionnez un pays</option>
-			<option value="Norvège">Norvège</option>
-			<option value="Finlande">Finlande</option>
-			<option value="Suède">Suède</option>
-		</select>
-		<select class="form-control" id="paysAs" style="display: none;"
-			onclick="liste3()">
-			<option>Sélectionnez un pays</option>
-			<option value="Sibérie">Sibérie</option>
-			<option value="Chine">Chine</option>
-		</select>
-		<select class="form-control" id="paysAm" style="display: none;"
-			onclick="liste4()">
-			<option>Sélectionnez un pays</option>
-			<option value="Canada">Canada</option>
-			<option value="Alaska">Alaska</option>
-		</select>
-		<br />
-		<label id="labelville" for="ville" style="display: none">Ville
-			: </label>
-		<select class="form-control" id="villeNorvege" style="display: none;"
-			onclick="liste5()">
-			<option>Sélectionnez une ville</option>
-			<option value="Oslo">Olso</option>
-			<option value="Bergen">Bergen</option>
-		</select>
-		<select class="form-control" id="villeFinlande" style="display: none;"
-			onclick="liste6()">
-			<option>Sélectionnez une ville</option>
-			<option value="Helsinki">Helsinki</option>
-			<option value="village">Village du Père Noël</option>
-		</select>
-		<select class="form-control" id="villeSuede" style="display: none;"
-			onclick="liste7()">
-			<option>Sélectionnez une ville</option>
-			<option value=Stockholm>Stockholm</option>
-			<option value="Uppsala">Uppsala</option>
-		</select>
-		<select class="form-control" id="villeSibérie" style="display: none;"
-			onclick="liste8()">
-			<option>Sélectionnez une ville</option>
-			<option value="Omsk">Omsk</option>
-			<option value="Irkoutsk">Irkoutsk</option>
-		</select>
-		<select class="form-control" id="villeChine" style="display: none;"
-			onclick="liste9()">
-			<option>Sélectionnez une ville</option>
-			<option value="Xuexiang">Xuexiang</option>
-		</select>
-		<select class="form-control" id="villeCanada" style="display: none;"
-			onclick="liste10()">
-			<option>Sélectionnez une ville</option>
-			<option value="Quebec">Québec</option>
-			<option value="Montreal">Montréal</option>
-		</select>
-		<select class="form-control" id="villeAlaska" style="display: none;"
-			onclick="liste11()">
-			<option>Sélectionnez une ville</option>
-			<option value="Homer">Homer</option>
-			<option value="Sitka">Sitka</option>
-		</select>
-		<br />
-		<div
-			style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
-			<label id="labellat" for="lat" style="display: none">Latitude
-				: </label> <input type="number" id="lat" name="latitude" placeholder="0"
-				style="display: none" style="width: 30%;"> <br /> <br /> <label
-				id="labellong" for="long" style="display: none">Longitude :
-			</label> <input type="number" id="long" name="longitude" placeholder="0"
-				style="display: none">
+				</form:select>
+				<br />
+				<label id="label" for="paysE;paysAs;paysAm" style="display: none;">Pays
+					: </label>
+				<form:select class="form-control" id="paysE" style="display: none"
+					path="pays" onclick="liste2()">
+					<form:option value="" label="Sélectionnez un pays" />
+					<form:option value="Norvège" label="Norvège" />
+					<form:option value="Finlande" label="Finlande" />
+					<form:option value="Suède" label="Suède" />
+				</form:select>
+				<form:select class="form-control" path="pays" id="paysAs"
+					style="display: none;" onclick="liste3()">
+					<form:option value="" label="Sélectionnez un pays" />
+					<form:option value="Sibérie" label="Sibérie" />
+					<form:option value="Chine" label="Chine" />
+				</form:select>
+				<form:select class="form-control" path="pays" id="paysAm"
+					style="display: none;" onclick="liste4()">
+					<form:option value="" label="Sélectionnez un pays" />
+					<form:option value="Canada" label="Canada" />
+					<form:option value="Alaska" label="Alaska" />
+				</form:select>
+				<br />
+				<label id="labelville" for="ville" style="display: none">Ville
+					: </label>
+				<form:select class="form-control" path="villeArrive"
+					id="villeNorvege" style="display: none;" onclick="liste5()">
+					<form:option value="" label="Sélectionnez une ville" />
+					<form:option value="Oslo" label="Olso" />
+					<form:option value="Bergen" label="Bergen" />
+				</form:select>
+				<form:select class="form-control" path="villeArrive"
+					id="villeFinlande" style="display: none;" onclick="liste6()">
+					<form:option value="" label="Sélectionnez une ville" />
+					<form:option value="Helsinki" label="Helsinki" />
+					<form:option value="village" label="Village du Père Noël" />
+				</form:select>
+				<form:select class="form-control" path="villeArrive" id="villeSuede"
+					style="display: none;" onclick="liste7()">
+					<form:option value="" label="Sélectionnez une ville" />
+					<form:option value="Stockholm" label="Stockholm" />
+					<form:option value="Uppsala" label="Uppsala" />
+				</form:select>
+				<form:select class="form-control" path="villeArrive"
+					id="villeSibérie" style="display: none;" onclick="liste8()">
+					<form:option value="" label="Sélectionnez une ville" />
+					<form:option value="Omsk" label="Omsk" />
+					<form:option value="Irkoutsk" label="Irkoutsk" />
+				</form:select>
+				<form:select class="form-control" path="villeArrive" id="villeChine"
+					style="display: none;" onclick="liste9()">
+					<form:option value="" label="Sélectionnez une ville" />
+					<form:option value="Xuexiang" label="Xuexiang" />
+				</form:select>
+				<form:select class="form-control" path="villeArrive"
+					id="villeCanada" style="display: none;" onclick="liste10()">
+					<form:option value="" label="Sélectionnez une ville" />
+					<form:option value="Quebec" label="Québec" />
+					<form:option value="Montreal" label="Montréal" />
+				</form:select>
+				<form:select class="form-control" path="villeArrive"
+					id="villeAlaska" style="display: none;" onclick="liste11()">
+					<form:option value="" label="Sélectionnez une ville" />
+					<form:option value="Homer" label="Homer" />
+					<form:option value="Sitka" label="Sitka" />
+				</form:select>
+				<br />
+				<div
+					style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
+					<label id="labellat" for="lat" style="display: none">Latitude
+						: </label>
+					<form:input type="text" path="latitude" id="lat" name="latitude"
+						style="display: none;" />
+					<br /> <br /> <label id="labellong" for="long"
+						style="display: none">Longitude : </label>
+					<form:input type="text" path="longitude" id="long" name="longitude"
+						style="display: none" />
+				</div>
+				<br />
+				<br />
+				<label id="labelimage" style="display: none">Insérer une
+					image :</label>
+				<div class="input-group" id="img" style="display: none">
+					<span class="input-group-btn"><br /> <span
+						class="btn btn-default btn-file"> Charger une photo <input
+							type="file" id="imgInp" name="file" />
+					</span> </span> <img id='img-upload' style="width: 30%" />
+				</div>
+
+
+				<br />
+				<br />
+				<button type="submit" class="btn btn-default ">Modifier</button>
+
+			</form:form>
 		</div>
-		<br />
-		<br />
-		<label id="labelimage" style="display: none">Insérer une image
-			:</label>
-		<div class="input-group" id="img" style="display: none">
-			<span class="input-group-btn"><br /> <span
-				class="btn btn-default btn-file"> Charger une photo <input
-					type="file" id="imgInp">
-			</span> </span> <img id='img-upload' style="width: 30%" />
-		</div>
-
-
-		<br />
-		<br />
-		<button type="submit" class="btn btn-default ">Ajouter</button>
-
-	</form:form>
-
+	</div>
+	<%@include file="template/footer.html"%>
 
 	<script>
 		function liste() {
@@ -222,8 +235,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '59.9138688';
-				document.getElementById('long').placeholder = '10.752245';
+				document.getElementById('lat').value = '59.9138688';
+				document.getElementById('long').value = '10.752245';
 				break;
 			case 'Bergen':
 				document.getElementById('labellat').style.display = 'block';
@@ -232,8 +245,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '60.391262';
-				document.getElementById('long').placeholder = '5.32205440';
+				document.getElementById('lat').value = '60.391262';
+				document.getElementById('long').value = '5.32205440';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -256,8 +269,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '60.16985';
-				document.getElementById('long').placeholder = '24.93837';
+				document.getElementById('lat').value = '60.16985';
+				document.getElementById('long').value = '24.93837';
 				break;
 			case 'village':
 				document.getElementById('labellat').style.display = 'block';
@@ -266,8 +279,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '66.5436144';
-				document.getElementById('long').placeholder = '25.8471973';
+				document.getElementById('lat').value = '66.5436144';
+				document.getElementById('long').value = '25.8471973';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -286,8 +299,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '59.3293234';
-				document.getElementById('long').placeholder = '18.06858080';
+				document.getElementById('lat').value = '59.3293234';
+				document.getElementById('long').value = '18.06858080';
 				break;
 			case 'Uppsala':
 				document.getElementById('labellat').style.display = 'block';
@@ -296,8 +309,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '59.85856';
-				document.getElementById('long').placeholder = '17.6389266';
+				document.getElementById('lat').value = '59.85856';
+				document.getElementById('long').value = '17.6389266';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -318,8 +331,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '54.98848';
-				document.getElementById('long').placeholder = '73.324236';
+				document.getElementById('lat').value = '54.98848';
+				document.getElementById('long').value = '73.324236';
 				break;
 			case 'Irkoutsk':
 				document.getElementById('labellat').style.display = 'block';
@@ -329,8 +342,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '52.28697';
-				document.getElementById('long').placeholder = '104.3050';
+				document.getElementById('lat').value = '52.28697';
+				document.getElementById('long').value = '104.3050';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -351,8 +364,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '29.8237369';
-				document.getElementById('long').placeholder = '91.488037';
+				document.getElementById('lat').value = '29.8237369';
+				document.getElementById('long').value = '91.488037';
 				break;
 
 			default:
@@ -374,8 +387,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '52.939915';
-				document.getElementById('long').placeholder = '-73.5491361';
+				document.getElementById('lat').value = '52.939915';
+				document.getElementById('long').value = '-73.5491361';
 				break;
 			case 'Montreal':
 				document.getElementById('labellat').style.display = 'block';
@@ -385,8 +398,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '45.5016889';
-				document.getElementById('long').placeholder = '-73.5672559';
+				document.getElementById('lat').value = '45.5016889';
+				document.getElementById('long').value = '-73.5672559';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -406,8 +419,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '59.642500';
-				document.getElementById('long').placeholder = '-151.5483';
+				document.getElementById('lat').value = '59.642500';
+				document.getElementById('long').value = '-151.5483';
 				break;
 			case 'Sitka':
 				document.getElementById('labellat').style.display = 'block';
@@ -417,8 +430,8 @@
 				document.getElementById('long').style.display = 'block';
 				document.getElementById('img').style.display = 'block';
 				document.getElementById('labelimage').style.display = 'block';
-				document.getElementById('lat').placeholder = '57.0530556';
-				document.getElementById('long').placeholder = '-135.33000';
+				document.getElementById('lat').value = '57.0530556';
+				document.getElementById('long').value = '-135.33000';
 				break;
 			default:
 				document.getElementById('labellat').style.display = 'none';
@@ -473,7 +486,6 @@
 					});
 				});
 	</script>
-
 
 </body>
 </html>

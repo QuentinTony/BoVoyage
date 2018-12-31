@@ -35,18 +35,18 @@
 		</div>
 		<div class="panel-body">
 			<form:form method="POST" action="addvehiculep" commandName="vehicule"
-				cssClass="form-horizontal" enctype="multipart/form-data">
+				cssClass="form-horizontal" enctype="multipart/form-data" modelAttribute="vehicule">
 				<label for="type">Type de véhicule:</label>
 				<br />
 				<form:input type="text" placeholder="Entrez un type de véhicule"
-					id="type" path="type" />
+					id="type" path="type" required="required" />
 				<br />
 				<br />
 				<br />
 				<label for="prix">Prix /Jour /personne:</label>
 				<br />
 				<form:input type="number" path="prix" placeholder="Entrez un prix"
-					id="prix" />
+					id="prix" required="required"/>
 				<br />
 				<br />
 				<div
@@ -76,5 +76,6 @@
 			</form:form>
 		</div>
 	</div>
+	<%@include file="template/footer.html"%>
 </body>
 </html>

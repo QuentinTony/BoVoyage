@@ -3,6 +3,7 @@ package fr.adaming.service;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
