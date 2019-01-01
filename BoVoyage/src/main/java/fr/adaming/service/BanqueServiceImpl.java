@@ -34,10 +34,10 @@ public class BanqueServiceImpl implements IBanqueService {
 		WebResource service = clientWS.resource(uri);
 
 		// envoyer la requete et récuperer le resultat
-		ClientResponse reponse = service.path("virement").path(Double.toString(somme))
+		ClientResponse reponse = service.path("virement").queryParam("dSomme", Double.toString(somme))
 				.accept(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML).type(MediaType.APPLICATION_JSON)
 				.put(ClientResponse.class, b);
-
+		System.out.println("j'ai lancé la méthode");
 		Banque banque = reponse.getEntity(Banque.class);
 		return banque;
 	}
@@ -57,7 +57,7 @@ public class BanqueServiceImpl implements IBanqueService {
 		WebResource service = clientWS.resource(uri);
 
 		// envoyer la requete et récuperer le resultat
-		ClientResponse reponse = service.path("get").path(Long.toString(id))
+		ClientResponse reponse = service.path("get").queryParam("idB", Long.toString(id))
 				.accept(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML).type(MediaType.APPLICATION_JSON)
 				.get(ClientResponse.class);
 

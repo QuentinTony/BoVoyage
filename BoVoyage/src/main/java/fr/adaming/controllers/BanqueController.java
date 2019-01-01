@@ -37,7 +37,7 @@ public class BanqueController {
 	@InitBinder // dans chaque controller
 	public void initBinder(WebDataBinder binder) {
 
-		DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat formatDate = new SimpleDateFormat("yyyy-MM");
 		formatDate.setLenient(false);
 
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(formatDate, false));
@@ -55,7 +55,7 @@ public class BanqueController {
 	
 	@RequestMapping(value="/submitVirement", method=RequestMethod.POST)
 	public String submitVirement(RedirectAttributes ra,@ModelAttribute ("compte") Banque b,@RequestParam("dSomme") Double somme) {
-		
+		System.out.println("je lance la méthode viremente du controleur client");
 		Banque bBoVoyage=baService.virement(b, somme);
 		if (bBoVoyage.getId()!=0) {
 			return "panier";
