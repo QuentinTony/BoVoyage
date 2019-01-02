@@ -30,20 +30,28 @@
 <header><%@include file='template/header.html'%></header>
 <body>
 
- Vous avez choisi la formule ${formule.voyage.villeDepart} - ${formule.voyage.destination.villeArrive} pour ${formule.nombrePersonne} personnes. 
- <br/>
- Vous partirez de ${formule.voyage.villeDepart} le ${formule.voyage.dateDepart} et reviendrez de ${formule.voyage.destination.villeArrive} le ${formule.voyage.dateRetour}. 
-<br/>
-Vous avez choisi l'hôtel ${formule.hotel.type} ayant ${formule.hotel.categorie} étoiles se situant à ${formule.voyage.destination.villeArrive}.
-<br/>
+	Vous avez choisi la formule ${formule.voyage.villeDepart} -
+	${formule.voyage.destination.villeArrive} pour
+	${formule.nombrePersonne} personnes. Le nombre de jours et de nuits
+	sont de ${formule.nombreJour} jours / ${formule.nombreNuit} nuits.
+	<br /> Vous partirez de ${formule.voyage.villeDepart} le
+	${formule.voyage.dateDepart} et reviendrez de
+	${formule.voyage.destination.villeArrive} le
+	${formule.voyage.dateRetour}.
+	<br /> Vous avez choisi l'hôtel ${formule.hotel.type} ayant
+	${formule.hotel.categorie} étoiles se situant à
+	${formule.voyage.destination.villeArrive}.
+	<br/>
 Vous avez choisi la location d'une ${formule.vehicule.type}.
 <br/>
-Le prix final est de  : ${formule.voyage.prix + formule.hotel.prix + formule.vehicule.prix} ¤. La remise est de ${formule.voyage.remise}.
+Le prix final avant remise est de  : ${formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour} ¤ par personne. La remise est de ${formule.voyage.remise}.
+
+La somme à régler est de ${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)}.
 
 <form:form method="POST" action="validformulep" commandName="formule"
 		cssClass="form-horizontal" modelAttribute="formule">
-		<form:input path="prixFinal" value="${(formule.voyage.prix + formule.hotel.prix + formule.vehicule.prix)*(1-formule.voyage.remise)}" /><br/>
 		<div style="visibility: hidden;">
+		<form:input path="prixFinal" value="${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)}" /><br/>
 		<form:input path="id" value="${formule.id}" /><br/>
 		<form:input path="nombrePersonne" value="${formule.nombrePersonne}" /><br/>
 		<form:input path="hotel.id" value="${formule.hotel.id}" /><br/>

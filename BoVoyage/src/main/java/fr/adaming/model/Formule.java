@@ -26,6 +26,8 @@ public class Formule implements Serializable {
 	private double prixFinal;
 	// nombre de personnes qui partiront dans cette formule pour un client
 	private int nombrePersonne;
+	private int nombreNuit;
+	private int nombreJour;
 	// pls prest par formule et pls formule pvt avoir les memes prest
 	@ManyToMany
 	@JoinTable(name = "form_presta", joinColumns = @JoinColumn(name = "pr_id"), inverseJoinColumns = @JoinColumn(name = "fo_id"))
@@ -54,6 +56,39 @@ public class Formule implements Serializable {
 
 	public Client getClient() {
 		return client;
+	}
+
+	public Formule(long id, double prixFinal, int nombrePersonne, int nombreNuit, int nombreJour,
+			List<Prestation> listPrestation, Client client, Voyage voyage, Hotel hotel, Vehicule vehicule,
+			Assurance assurance) {
+		super();
+		this.id = id;
+		this.prixFinal = prixFinal;
+		this.nombrePersonne = nombrePersonne;
+		this.nombreNuit = nombreNuit;
+		this.nombreJour = nombreJour;
+		this.listPrestation = listPrestation;
+		this.client = client;
+		this.voyage = voyage;
+		this.hotel = hotel;
+		this.vehicule = vehicule;
+		this.assurance = assurance;
+	}
+
+	public int getNombreNuit() {
+		return nombreNuit;
+	}
+
+	public void setNombreNuit(int nombreNuit) {
+		this.nombreNuit = nombreNuit;
+	}
+
+	public int getNombreJour() {
+		return nombreJour;
+	}
+
+	public void setNombreJour(int nombreJour) {
+		this.nombreJour = nombreJour;
 	}
 
 	public void setClient(Client client) {
@@ -97,19 +132,7 @@ public class Formule implements Serializable {
 		super();
 	}
 
-	public Formule(double prixFinal, int nombrePersonne) {
-		super();
-		this.prixFinal = prixFinal;
-		this.nombrePersonne = nombrePersonne;
-	}
-
-	public Formule(long id, double prixFinal, int nombrePersonne) {
-		super();
-		this.id = id;
-		this.prixFinal = prixFinal;
-		this.nombrePersonne = nombrePersonne;
-	}
-
+	
 	// ******************getter setter
 	public long getId() {
 		return id;
@@ -141,6 +164,22 @@ public class Formule implements Serializable {
 
 	public void setListPrestation(List<Prestation> listPrestation) {
 		this.listPrestation = listPrestation;
+	}
+
+	public Formule(double prixFinal, int nombrePersonne, int nombreNuit, int nombreJour,
+			List<Prestation> listPrestation, Client client, Voyage voyage, Hotel hotel, Vehicule vehicule,
+			Assurance assurance) {
+		super();
+		this.prixFinal = prixFinal;
+		this.nombrePersonne = nombrePersonne;
+		this.nombreNuit = nombreNuit;
+		this.nombreJour = nombreJour;
+		this.listPrestation = listPrestation;
+		this.client = client;
+		this.voyage = voyage;
+		this.hotel = hotel;
+		this.vehicule = vehicule;
+		this.assurance = assurance;
 	}
 
 	// ******************to string
