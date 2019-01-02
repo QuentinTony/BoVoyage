@@ -15,6 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,16 +90,157 @@ public class VoyageController {
 	@RequestMapping(value = "/listvoyage", method = RequestMethod.GET)
 	public String afficheListe(Model modele) {
 		// Récuperer la liste de la BD
-		Voyage voyage =  new Voyage();
-		modele.addAttribute("voyage", voyage);
 		List<Voyage> listvoyage = voService.getAllVoyage();
 		modele.addAttribute("listVoyage", listvoyage);
 		return "accueil";
 
 	}
-	
+
+	@RequestMapping(value = "/rechercheavanceep", method = RequestMethod.GET)
+	public String getVoyageByAvancee(@RequestParam(defaultValue="100000") long prix,
+			@RequestParam String continent, @RequestParam( defaultValue="2018-01-01") Date dd,
+			@RequestParam(defaultValue="2050-01-01") Date dr, Model modele) {
+
+		System.out.println(prix);
+
+		List<Voyage> listVoyageContinent = voService.getVoyageByContinent(continent);
+		List<Voyage> listVoyage = new ArrayList<Voyage>();
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == true && voService.getVoyageByDateDepart(dd).isEmpty() == true
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == true) {
+			for (Voyage vo : listVoyageContinent) {
+				listVoyage.add(vo);
+			}
+		}
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == false && voService.getVoyageByDateDepart(dd).isEmpty() == true
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == true) {
+			List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listVoyagePrix) {
+
+					if (vo.getId() == vi.getId()) {
+
+						listVoyage.add(vo);
+					}
+				}
+			}
+		}
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == true && voService.getVoyageByDateDepart(dd).isEmpty() == true
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == false) {
+			List<Voyage> listeVoyageDateRetour = voService.getVoyageByDateRetour(dr);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listeVoyageDateRetour) {
+					if (vo.getId() == vi.getId()) {
+						listVoyage.add(vo);
+					}
+				}
+			}
+		}
+		if (voService.getVoyageByPrix(prix).isEmpty() == true && voService.getVoyageByDateDepart(dd).isEmpty() == false
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == true) {
+			List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listeVoyageDateDepart) {
+					if (vo.getId() == vi.getId()) {
+						listVoyage.add(vo);
+					}
+				}
+			}
+		}
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == false && voService.getVoyageByDateDepart(dd).isEmpty() == true
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == false) {
+			List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+			List<Voyage> listeVoyageDateRetour = voService.getVoyageByDateRetour(dr);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listVoyagePrix) {
+					for (Voyage vp : listeVoyageDateRetour) {
+
+						if (vo.getId() == vi.getId()) {
+							if (vp.getId() == vo.getId()) {
+
+								listVoyage.add(vo);
+
+							}
+						}
+					}
+				}
+			}
+		}
+		if (voService.getVoyageByPrix(prix).isEmpty() == false && voService.getVoyageByDateDepart(dd).isEmpty() == false
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == true) {
+			List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+			List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listVoyagePrix) {
+					for (Voyage vp : listeVoyageDateDepart) {
+
+						if (vo.getId() == vi.getId()) {
+							if (vp.getId() == vo.getId()) {
+
+								listVoyage.add(vo);
+
+							}
+						}
+					}
+				}
+			}
+		}
+
+			if (voService.getVoyageByPrix(prix).isEmpty() == true && voService.getVoyageByDateDepart(dd).isEmpty() == false
+		&& voService.getVoyageByDateRetour(dr).isEmpty() == false)  {
+			List<Voyage> listeVoyageDateRetour = voService.getVoyageByDateRetour(dr);
+			List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listeVoyageDateRetour) {
+					for (Voyage vp : listeVoyageDateDepart) {
+
+						if (vo.getId() == vi.getId()) {
+							if (vp.getId() == vo.getId()) {
+
+								listVoyage.add(vo);
+
+							}
+						}
+					}
+				}
+			}
+		}
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == false && voService.getVoyageByDateDepart(dd).isEmpty() == false
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == false) {
+			List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+			List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
+			List<Voyage> listeVoyageDateRetour = voService.getVoyageByDateRetour(dr);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listVoyagePrix) {
+					for (Voyage vp : listeVoyageDateDepart) {
+						for (Voyage vm : listeVoyageDateRetour) {
+
+							if (vo.getId() == vi.getId()) {
+								if (vp.getId() == vo.getId()) {
+									if (vm.getId() == vo.getId()) {
+
+										listVoyage.add(vo);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		System.out.println("rech" + listVoyage);
+
+		modele.addAttribute("listVoyage", listVoyage);
+
+		return "rechercheAvancee";
+	}
+
 	@RequestMapping(value = "/agence/recherche/{id}", method = RequestMethod.GET)
-	public String rechercheVoyage(Model model , @PathVariable(value = "id") long id){
+	public String rechercheVoyage(Model model, @PathVariable(value = "id") long id) {
 		Voyage vOut = voService.getVoyage(id);
 		model.addAttribute("voyage", vOut);
 		return "rechercheVoyage";
@@ -203,86 +345,58 @@ public class VoyageController {
 			return "redirect:getvoyage";
 		}
 	}
-	
-	
-	@RequestMapping(value = "/voyage/rechercheavanceep", method = RequestMethod.POST)
-	public String getVoyageByAvancee(Model model,@RequestParam long prix, @RequestParam String continent) {
-		List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
-		List<Voyage> listVoyageContinent = voService.getVoyageByContinent(continent);
-		for (Voyage vo : listVoyageContinent) {
-			if(listVoyagePrix.contains(vo)) {
-				listVoyageContinent.remove(vo);
-			}
-		}
-		model.addAttribute("listVoyage", listVoyageContinent);
-		
-		return "rechercheAvancee";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@RequestMapping(value = "/voyage/rechercheparprixp", method = RequestMethod.POST)
-	public String getVoyageByPrixP(Model model,@RequestParam long prix) {
+	public String getVoyageByPrixP(Model model, @RequestParam long prix) {
 		List<Voyage> listVoyage = voService.getVoyageByPrix(prix);
 		model.addAttribute("listVoyage", listVoyage);
 		return "rechercheAvancee";
 	}
-	
-	
+
 	@RequestMapping(value = "/voyage/rechercheparprix", method = RequestMethod.GET)
-	public String getVoyageByPrix(Model model,@RequestParam long prix) {
+	public String getVoyageByPrix(Model model, @RequestParam long prix) {
 		List<Voyage> listVoyage = voService.getVoyageByPrix(prix);
 		model.addAttribute("listVoyage", listVoyage);
 		return "rechercheAvancee";
 	}
 
 	@RequestMapping(value = "/voyage/rechercheparcontinent", method = RequestMethod.GET)
-	public String getVoyageByCont(Model model,@RequestParam String continent) {
+	public String getVoyageByCont(Model model, @RequestParam String continent) {
 		List<Voyage> listVoyage = voService.getVoyageByContinent(continent);
 		model.addAttribute("listVoyage", listVoyage);
 		return "rechercheAvancee";
 	}
-	
+
 	@RequestMapping(value = "/voyage/rechercheparpays", method = RequestMethod.GET)
-	public String getVoyageByPays(Model model,@RequestParam String pays) {
+	public String getVoyageByPays(Model model, @RequestParam String pays) {
 		List<Voyage> listVoyage = voService.getVoyageByPays(pays);
 		model.addAttribute("listVoyage", listVoyage);
 		return "rechercheAvancee";
 	}
-	
+
 	@RequestMapping(value = "/voyage/recherchepardd", method = RequestMethod.GET)
-	public String getVoyageByDD(Model model,@RequestParam Date dd) {
+	public String getVoyageByDD(Model model, @RequestParam Date dd) {
 		List<Voyage> listVoyage = voService.getVoyageByDateDepart(dd);
 		model.addAttribute("listVoyage", listVoyage);
 		return "rechercheAvancee";
 	}
-	
+
 	@RequestMapping(value = "/voyage/recherchepardr", method = RequestMethod.GET)
-	public String getVoyageByPrix(Model model,@RequestParam Date dr) {
+	public String getVoyageByPrix(Model model, @RequestParam Date dr) {
 		List<Voyage> listVoyage = voService.getVoyageByDateRetour(dr);
 		model.addAttribute("listVoyage", listVoyage);
 		return "rechercheAvancee";
 	}
-	
+
 	@RequestMapping(value = "/voyage/recherchepardddr", method = RequestMethod.GET)
-	public String getVoyageByPrix(Model model,@RequestParam Date dd,@RequestParam Date dr) {
+	public String getVoyageByPrix(Model model, @RequestParam Date dd, @RequestParam Date dr) {
 		List<Voyage> listVoyage = voService.getVoyageByDateDepRet(dd, dr);
 		model.addAttribute("listVoyage", listVoyage);
 		return "rechercheAvancee";
 	}
-	
+
 	@RequestMapping(value = "/voyage/rechercheparmois", method = RequestMethod.GET)
-	public String getVoyageByPrix(Model model,@RequestParam int mois) {
+	public String getVoyageByPrix(Model model, @RequestParam int mois) {
 		List<Voyage> listVoyage = voService.getVoyageByMonth(mois);
 		model.addAttribute("listVoyage", listVoyage);
 		return "rechercheAvancee";

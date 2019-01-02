@@ -1,6 +1,6 @@
 package fr.adaming.controllers;
 
-
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,7 @@ import fr.adaming.service.IVoyageService;
 @Controller
 @RequestMapping("/formule")
 public class FormuleController {
-	
-	
+
 	@Autowired
 	private IVoyageService voService;
 	@Autowired
@@ -51,8 +50,6 @@ public class FormuleController {
 	private IClientService clService;
 	@Autowired
 	private IPrestationService prService;
-	
-	
 
 	public void setClService(IClientService clService) {
 		this.clService = clService;
@@ -81,42 +78,48 @@ public class FormuleController {
 	public void setVoService(IVoyageService voService) {
 		this.voService = voService;
 	}
-	
+
 	public void setPrService(IPrestationService prService) {
 		this.prService = prService;
 	}
-	
+
 	public void setFoService(IFormuleService foService) {
 		this.foService = foService;
 	}
+
 	@RequestMapping(value = "/selectformule", method = RequestMethod.GET)
-	public String selectvoyage(Model model,  @RequestParam(value = "id") long id) {
-		Formule fo=new Formule();
-		model.addAttribute("formule",fo);
-		
+	public String selectvoyage(Model model, @RequestParam(value = "id") long id) {
+		Formule fo = new Formule();
+		model.addAttribute("formule", fo);
+
 		Voyage vOut = voService.getVoyage(id);
 		model.addAttribute("voyage", vOut);
-		
+
 		List<Hotel> listHotel = hoService.getAllByDestination(vOut.getDestination().getId());
 		model.addAttribute("listehotel", listHotel);
-		
+
 		List<Vehicule> listVehicule = veService.getAllVehicule();
 		model.addAttribute("listVehicule", listVehicule);
-		
+
 		List<Prestation> listPrestation = prService.getAllPrestation();
 		model.addAttribute("listPrestation", listPrestation);
-		
+
 		return "panier";
 	}
 
-	
 	@RequestMapping(value = "/selectformulep", method = RequestMethod.POST)
 	public String selectandsetVoyage(@ModelAttribute("formule") Formule fo, RedirectAttributes ra) {
-	
+
 		Formule fOut = foService.addFormule(fo);
 		ra.addAttribute("id", fOut.getId());
-		
-
+		Formule fIn = foService.getFormule(fOut.getId());
+		Date da = fIn.getVoyage().getDateDepart();
+		Date dr = fIn.getVoyage().getDateRetour();
+		final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+		int delta = (int) ((dr.getTime() - da.getTime()) / MILLISECONDS_PER_DAY);
+		fIn.setNombreJour(delta);
+		fIn.setNombreNuit(delta - 1);
+		foService.updateFormule(fIn);
 		if (fOut.getId() != 0) {
 
 			return "redirect:validformule/{id}";
@@ -124,31 +127,26 @@ public class FormuleController {
 			ra.addAttribute("msg", "L'ajout n'est pas fait");
 			return "redirect:selectformule";
 		}
-		
+
 	}
-	
-	
+
 	@RequestMapping(value = "/validformule/{id}", method = RequestMethod.GET)
-	public String validvoyage(Model model,  @PathVariable("id") long id) {
+	public String validvoyage(Model model, @PathVariable("id") long id) {
 		Formule fIn = foService.getFormule(id);
-		model.addAttribute("formule",fIn);
 		
-				
+
+		model.addAttribute("formule", fIn);
+
 		return "recapitulatifPanier";
 	}
 
-	
 	@RequestMapping(value = "/validformule/validformulep", method = RequestMethod.POST)
 	public String validvoyagepost(@ModelAttribute("formule") Formule fo, RedirectAttributes ra) {
-	
-		foService.updateFormule(fo);
-		
 
-		
-			return "accueil";
-		
-		}
-		
+		foService.updateFormule(fo);
+
+		return "accueil";
+
 	}
 
-
+}

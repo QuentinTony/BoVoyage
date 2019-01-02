@@ -29,15 +29,15 @@
 </head>
 <body>
 	<%@include file='template/header.html'%>
-
+	Voici le résultat de vos recherches.
 
 	<c:forEach var="v" items="${listVoyage}">
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading"
 					style="font-size: 150%; background-image:${v.destination.photo}">
-					
-					
+
+
 					<div style="color: darkblue; font-size: 150%; position: absolute;">
 						${v.destination.pays} - ${v.destination.villeArrive}</div>
 					<div
@@ -75,7 +75,8 @@
 					<h3 style="text-align: center">Plus que ${v.stockPassager}
 						places disponibles</h3>
 					<button>
-						<a	href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${v.id}">Voir
+						<a
+							href="${pageContext.request.contextPath}/bovoyage/getvoyage?id=${v.id}">Voir
 							les détails</a>
 					</button>
 				</div>
@@ -84,6 +85,6 @@
 		</div>
 	</c:forEach>
 
-</script>
+	</script>
 </body>
 </html>
