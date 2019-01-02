@@ -21,6 +21,7 @@ public class Agence implements Serializable{
 	private String mail;
 	private String mdp;
 	private String statut;
+	private boolean active;
 	
 	// constructeurs
 	public Agence() {
@@ -29,6 +30,47 @@ public class Agence implements Serializable{
 
 	
 	
+	
+	
+	
+	
+	
+	public Agence(String nom, String prenom, String mail, String mdp, String statut, boolean active) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.statut = statut;
+		this.active = active;
+	}
+
+
+
+
+
+
+
+
+	public Agence(long id, String nom, String prenom, String mail, String mdp, String statut, boolean active) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.statut = statut;
+		this.active = active;
+	}
+
+
+
+
+
+
+
+
+	//getters et setters
 	public String getNom() {
 		return nom;
 	}
@@ -53,30 +95,10 @@ public class Agence implements Serializable{
 
 
 
-	public Agence(long id, String nom, String prenom, String mail, String mdp, String statut) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.mdp = mdp;
-		this.statut = statut;
-	}
 
 
 
-	public Agence(String nom, String prenom, String mail, String mdp, String statut) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.mdp = mdp;
-		this.statut = statut;
-	}
-
-
-
-	//getters et setters
+	
 	public long getId() {
 		return id;
 	}
@@ -101,6 +123,30 @@ public class Agence implements Serializable{
 	public void setStatut(String statut) {
 		this.statut = statut;
 	}
+	
+	
+	public boolean isActive() {
+		return active;
+	}
+
+
+
+
+
+
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "Agence [id=" + id + ", mail=" + mail + ", mdp=" + mdp + ", statut=" + statut + "]";

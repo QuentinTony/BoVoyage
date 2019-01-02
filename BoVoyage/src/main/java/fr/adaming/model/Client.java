@@ -29,7 +29,7 @@ public class Client extends Personne implements Serializable {
 	private Date dateExpiration;
 	@Transient
 	private int cleSecurite;
-	@Transient
+	
 	private boolean active;
 
 	public List<Formule> getListFormule() {
@@ -60,6 +60,23 @@ public class Client extends Personne implements Serializable {
 	public Client(long id, String nom, String prenom, Date dn, String mail, String telephone) {
 		super(id, nom, prenom, dn, mail, telephone);
 
+	}
+	
+	
+
+	public Client(String nom, String prenom, Date dn, String mail, String telephone, String mdp, boolean active) {
+		super(nom, prenom, dn, mail, telephone);
+		this.mdp = mdp;
+		this.active = active;
+	}
+	
+	
+
+	public Client(long id, String nom, String prenom, Date dn, String mail, String telephone, String mdp,
+			boolean active) {
+		super(id, nom, prenom, dn, mail, telephone);
+		this.mdp = mdp;
+		this.active = active;
 	}
 
 	// getters et setters
