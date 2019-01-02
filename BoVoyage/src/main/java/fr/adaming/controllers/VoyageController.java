@@ -97,24 +97,138 @@ public class VoyageController {
 	}
 
 	@RequestMapping(value = "/rechercheavanceep", method = RequestMethod.GET)
-	public String getVoyageByAvancee(@RequestParam long prix, @RequestParam String continent, @RequestParam Date dd,
-			Model modele) {
-		System.out.println("coucou");
-		List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
-		System.out.println("prix" + listVoyagePrix);
+	public String getVoyageByAvancee(@RequestParam(defaultValue="100000") long prix,
+			@RequestParam String continent, @RequestParam( defaultValue="2018-01-01") Date dd,
+			@RequestParam(defaultValue="2050-01-01") Date dr, Model modele) {
+
+		System.out.println(prix);
+
 		List<Voyage> listVoyageContinent = voService.getVoyageByContinent(continent);
-		System.out.println("continent" + listVoyageContinent);
 		List<Voyage> listVoyage = new ArrayList<Voyage>();
-		List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
-		for (Voyage vo : listVoyageContinent) {
-			for (Voyage vi : listVoyagePrix) {
-				for (Voyage vp : listeVoyageDateDepart) {
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == true && voService.getVoyageByDateDepart(dd).isEmpty() == true
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == true) {
+			for (Voyage vo : listVoyageContinent) {
+				listVoyage.add(vo);
+			}
+		}
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == false && voService.getVoyageByDateDepart(dd).isEmpty() == true
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == true) {
+			List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listVoyagePrix) {
+
 					if (vo.getId() == vi.getId()) {
-						if (vp.getId() == vo.getId()) {
-							listVoyage.add(vo);
+
+						listVoyage.add(vo);
+					}
+				}
+			}
+		}
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == true && voService.getVoyageByDateDepart(dd).isEmpty() == true
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == false) {
+			List<Voyage> listeVoyageDateRetour = voService.getVoyageByDateRetour(dr);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listeVoyageDateRetour) {
+					if (vo.getId() == vi.getId()) {
+						listVoyage.add(vo);
+					}
+				}
+			}
+		}
+		if (voService.getVoyageByPrix(prix).isEmpty() == true && voService.getVoyageByDateDepart(dd).isEmpty() == false
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == true) {
+			List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listeVoyageDateDepart) {
+					if (vo.getId() == vi.getId()) {
+						listVoyage.add(vo);
+					}
+				}
+			}
+		}
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == false && voService.getVoyageByDateDepart(dd).isEmpty() == true
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == false) {
+			List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+			List<Voyage> listeVoyageDateRetour = voService.getVoyageByDateRetour(dr);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listVoyagePrix) {
+					for (Voyage vp : listeVoyageDateRetour) {
+
+						if (vo.getId() == vi.getId()) {
+							if (vp.getId() == vo.getId()) {
+
+								listVoyage.add(vo);
+
+							}
 						}
 					}
+				}
+			}
+		}
+		if (voService.getVoyageByPrix(prix).isEmpty() == false && voService.getVoyageByDateDepart(dd).isEmpty() == false
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == true) {
+			List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+			List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listVoyagePrix) {
+					for (Voyage vp : listeVoyageDateDepart) {
 
+						if (vo.getId() == vi.getId()) {
+							if (vp.getId() == vo.getId()) {
+
+								listVoyage.add(vo);
+
+							}
+						}
+					}
+				}
+			}
+		}
+
+			if (voService.getVoyageByPrix(prix).isEmpty() == true && voService.getVoyageByDateDepart(dd).isEmpty() == false
+		&& voService.getVoyageByDateRetour(dr).isEmpty() == false)  {
+			List<Voyage> listeVoyageDateRetour = voService.getVoyageByDateRetour(dr);
+			List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listeVoyageDateRetour) {
+					for (Voyage vp : listeVoyageDateDepart) {
+
+						if (vo.getId() == vi.getId()) {
+							if (vp.getId() == vo.getId()) {
+
+								listVoyage.add(vo);
+
+							}
+						}
+					}
+				}
+			}
+		}
+
+		if (voService.getVoyageByPrix(prix).isEmpty() == false && voService.getVoyageByDateDepart(dd).isEmpty() == false
+				&& voService.getVoyageByDateRetour(dr).isEmpty() == false) {
+			List<Voyage> listVoyagePrix = voService.getVoyageByPrix(prix);
+			List<Voyage> listeVoyageDateDepart = voService.getVoyageByDateDepart(dd);
+			List<Voyage> listeVoyageDateRetour = voService.getVoyageByDateRetour(dr);
+			for (Voyage vo : listVoyageContinent) {
+				for (Voyage vi : listVoyagePrix) {
+					for (Voyage vp : listeVoyageDateDepart) {
+						for (Voyage vm : listeVoyageDateRetour) {
+
+							if (vo.getId() == vi.getId()) {
+								if (vp.getId() == vo.getId()) {
+									if (vm.getId() == vo.getId()) {
+
+										listVoyage.add(vo);
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}

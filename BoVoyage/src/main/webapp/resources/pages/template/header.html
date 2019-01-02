@@ -40,21 +40,27 @@
 <div class="row">
 
 	<nav class="navbar navbar-default">
-<a href="${pageContext.request.contextPath}/bovoyage/listvoyage" style="position: absolute;left:5%;font-size:200%">BoVoyage</a>
+		<a href="${pageContext.request.contextPath}/bovoyage/listvoyage"
+			style="position: absolute; left: 5%; font-size: 200%">BoVoyage</a>
 		<form action="rechercheavanceep">
-			<input type="number" class="form-control" id="prix" name="prix"
-				placeholder="Entrer un prix maximal" style="position: absolute;left:17%; width: 15%" />
-				 <select
-				class="form-control" id="continent" name="continent" style="position:absolute;left:34%;width:15%" >
+
+			<select class="form-control" id="continent" name="continent"
+				style="position: absolute; left: 17%; width: 15%"
+				required="required">
 				<option value="" label="Sélectionnez un continent" />
 				<option value="europe" label="Europe" />
 				<option value="asie" label="Asie" />
 				<option value="amerique" label="Amérique" />
-		
+				<input type="number" class="form-control" id="prix" name="prix"
+				placeholder="Entrer un prix maximal" value="100000000"
+				style="position: absolute; left: 34%; width: 15%" />
 
-			</select>
-			<input type="date" class="form-control" id="dd" name="dd" style="position:absolute;left:51%;width:15%">
-			<button type="submit" style="position:absolute;left:68%;width:15%">Rechercher</button>
+			</select> <input type="date" class="form-control" id="dd" name="dd"
+				style="position: absolute; left: 51%; width: 15%" value="2018-10-10"> <input
+				type="date" class="form-control" id="dr" name="dr"
+				style="position: absolute; left: 68%; width: 15%" value="2050-10-10">
+			<button type="submit"
+				style="position: absolute; left: 85%; width: 10%">Rechercher</button>
 		</form>
 	</nav>
 </div>
