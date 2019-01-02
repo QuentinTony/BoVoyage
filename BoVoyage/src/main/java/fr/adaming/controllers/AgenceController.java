@@ -101,12 +101,7 @@ public class AgenceController {
 	}
 
 	
-	@RequestMapping(value="/denied", method=RequestMethod.GET)
-	public String afficheDenied() {
 
-		
-		return "denied";
-	}
 	
 	@RequestMapping(value="/recherche", method=RequestMethod.GET)
 	public String recherche(Model model) {

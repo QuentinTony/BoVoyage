@@ -22,24 +22,46 @@
 	</bean>
 
 
+	
+	<security:http use-expressions="true" pattern="/login">
+			<security:intercept-url pattern="/bovoyage/listvoyage**" access="client"/>
+		<security:form-login login-page="/login"
+			authentication-failure-url="/loginfailure"/>
+	
+<security:logout logout-success-url="/logoutclient" />
 
+		<security:access-denied-handler
+			error-page="/deniedclient" />
+	</security:http>
 
+	<!-- PARTIE AUTHENTIFICATION : config de la partie authentification- -->
+
+	
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="dsBean1"
+				users-by-username-query="SELECT a.mail,a.mdp,a.active FROM personnes a WHERE a.mail=?"
+				authorities-by-username-query="SELECT a.mail,a.role FROM personnes a WHERE a.mail=?" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
 	<!-- PARTIE AUTORISATION : config de la partie autorisation : spécifier 
 		les URI à protéger et les droits d'accès -->
 	<security:http use-expressions="true">
-		<security:intercept-url pattern="/direction/listagent/**"
-			access="hasRole('direction')"/>
-		<security:intercept-url pattern="/marketing/listagence/**"
-			access="hasRole('marketing')"/>
+		<security:intercept-url
+			pattern="/direction/listagent/**" access="hasRole('direction')" />
+		<security:intercept-url
+			pattern="/marketing/listagence/**" access="hasRole('marketing')" />
 
-		<security:intercept-url pattern="/agence/recherche/**"
-			access="hasRole('gestion')"/>
-			
-			
+		<security:intercept-url
+			pattern="/agence/recherche/**" access="hasRole('gestion')" />
+
+
 		<!-- utilisation d'un formulaire perso -->
-		<security:form-login login-page="/login2" 
-			authentication-failure-url="/loginechec"
-			/> 
+		<security:form-login login-page="/login2"
+			authentication-failure-url="/loginechec" />
 		<security:logout logout-success-url="/logout" />
 
 		<security:access-denied-handler
@@ -47,8 +69,7 @@
 
 	</security:http>
 
-	<!-- PARTIE AUTHENTIFICATION : config de la partie authentification- -->
-
+	
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service
@@ -57,5 +78,7 @@
 				authorities-by-username-query="SELECT a.mail,a.statut FROM agences a WHERE a.mail=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+	
 
 </beans>

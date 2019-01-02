@@ -54,7 +54,7 @@
 					id="email" style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre adresse électronique" />
 				<br /> <label for="mdp">Mot de passe</label> <br />
-				<input name="j_password"  type="text" class="form-control" id="mdp"
+				<input name="j_password"  type="password" class="form-control" id="mdp"
 					style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre mot de passe" />
 				<br />
