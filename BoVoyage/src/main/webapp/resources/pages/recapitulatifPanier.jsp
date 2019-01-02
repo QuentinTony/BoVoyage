@@ -30,7 +30,7 @@
 <header><%@include file='template/header.html'%></header>
 <body>
 
- Vous avez choisi la formule ${formule.voyage.villeDepart} - ${formule.voyage.destination.villeArrive} pour ${formule.nombrePersonne} personnes. 
+  ${formule.voyage.villeDepart} - ${formule.voyage.destination.villeArrive} pour ${formule.nombrePersonne} personnes. 
  <br/>
  Vous partirez de ${formule.voyage.villeDepart} le ${formule.voyage.dateDepart} et reviendrez de ${formule.voyage.destination.villeArrive} le ${formule.voyage.dateRetour}. 
 <br/>

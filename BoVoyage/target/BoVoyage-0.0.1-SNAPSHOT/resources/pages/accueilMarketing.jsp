@@ -72,10 +72,7 @@
 	</c:forEach>
 	<br/>
 	<br/>
-	<div class="panel-body">
-			<form>
-			<a href="${pageContext.request.contextPath}/j_spring_security_logout">Se deconnecter</a>
-				</form></div>
+	
 </body>
 <footer>
 	<%@include file='template/footer.html'%>

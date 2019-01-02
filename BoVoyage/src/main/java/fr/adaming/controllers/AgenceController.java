@@ -3,6 +3,8 @@ package fr.adaming.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -93,60 +95,28 @@ public class AgenceController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String afficheLogin(Model model) {
-		Agence agIn =  new Agence();
-		model.addAttribute("agence", agIn);
+	public String afficheLogin() {
+	
 		return "loginagence";
 	}
-	
-	@RequestMapping(value = "/isexistmarkp", method = RequestMethod.POST)
-	public String selectandsetVoyage(@ModelAttribute("agence") Agence agIn, RedirectAttributes ra) {
-	
-		Agence agOut = agService.isExistMark(agIn);
-		
-		if (agOut!=null) {
-
-			return "redirect:/marketing/listagence";
-		} else {
-			ra.addAttribute("msg", "L'ajout n'est pas fait");
-			return "redirect:login";
-		}
-		
-	}
-	
-	@RequestMapping(value = "/isexistdirp", method = RequestMethod.POST)
-	public String selectandsetVoyage2(@ModelAttribute("agence") Agence agIn, RedirectAttributes ra) {
-	
-		Agence agOut = agService.isExistDir(agIn);
-		
-		if (agOut!=null) {
-
-			return "redirect:/direction/listagent";
-		} else {
-			ra.addAttribute("msg", "L'ajout n'est pas fait");
-			return "redirect:login";
-		}
-		
-	}
 
 	
-	@RequestMapping(value = "/isexistgestionp", method = RequestMethod.POST)
-	public String selectandsetVoyage3(@ModelAttribute("agence") Agence agIn, RedirectAttributes ra) {
-	
-		Agence agOut = agService.isExistGest(agIn);
-		
-		if (agOut!=null) {
+	@RequestMapping(value="/denied", method=RequestMethod.GET)
+	public String afficheDenied() {
 
-			return "redirect:recherche";
-		} else {
-			ra.addAttribute("msg", "L'ajout n'est pas fait");
-			return "redirect:login";
-		}
 		
+		return "denied";
 	}
 	
 	@RequestMapping(value="/recherche", method=RequestMethod.GET)
 	public String recherche(Model model) {
+		//Recuperer l'identifiant de l'admin a partir du context de spring security
+				Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+				//Recuperer l'identifiant
+				
+				String mail= auth.getName();
+				model.addAttribute("identifiant",mail);
+				model.addAttribute("msg", "Bonjour M. Client. Vous êtes dans votre PortailClient");
 		List<Voyage> listvoyage = voService.getAllVoyage();
 		model.addAttribute("listvoyage", listvoyage);
 		model.addAttribute("voyage", new Voyage());
@@ -162,6 +132,7 @@ public class AgenceController {
 		List<Prestation> listprestation = prService.getAllPrestation();
 		model.addAttribute("listprestation", listprestation);
 		model.addAttribute("prestation", new Prestation());
+		
 		return "accueilAgence";
 	}
 

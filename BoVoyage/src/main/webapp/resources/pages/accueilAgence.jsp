@@ -142,7 +142,10 @@
 		</div>
 	</div>
 	<br/>
-
+<div class="panel-body">
+			<form>
+			<a href="${pageContext.request.contextPath}/j_spring_security_logout">Se deconnecter</a>
+				</form></div>
 	<%@include file="template/footer.html"%>
 </body>
 </html>

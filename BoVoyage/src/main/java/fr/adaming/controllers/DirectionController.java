@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -41,6 +43,13 @@ public class DirectionController {
 
 		@RequestMapping(value = "/listagent", method = RequestMethod.GET)
 		public String afficheListe(Model model) {
+			//Recuperer l'identifiant de l'admin a partir du context de spring security
+			Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+			//Recuperer l'identifiant
+			
+			String mail= auth.getName();
+			model.addAttribute("identifiant",mail);
+			model.addAttribute("msg", "Bonjour M. Client. Vous êtes dans votre PortailClient");
 			// Récuperer la liste de la BD
 			List<Agence> listagent = agService.getAllAgence();
 			model.addAttribute("listAgence", listagent);

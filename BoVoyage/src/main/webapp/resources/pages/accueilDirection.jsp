@@ -117,6 +117,10 @@
 
 			</form:form>
 		</div>
+		<div class="panel-body">
+			<form>
+			<a href="${pageContext.request.contextPath}/j_spring_security_logout">Se deconnecter</a>
+				</form></div>
 	</div>
 </body>
 <footer>

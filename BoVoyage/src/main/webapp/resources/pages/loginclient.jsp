@@ -34,7 +34,7 @@
 	<br />
 	<br />
 
-	<form:form method="POST" action="loginp" commandName="client"
+	<form:form method="POST" action="loginp"
 		cssClass="form-horizontal" modelAttribute="client">
 		<div class="panel panel-info"
 			style="width: 40%; position: relative;top: 50%; left: 30%; text-align: center;  color: darkblue">
@@ -44,7 +44,7 @@
 			</div>
 			<div class="panel-body">
 				<label for="email">Adresse Electronique</label> <br />
-				<form:input path="mail" type="email" class="form-control "
+				<input  type="email" class="form-control "
 					id="email" style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre adresse électronique" />
 				<br /> <label for="mdp">Mot de passe</label> <br />
@@ -67,7 +67,7 @@
 				Voyages Nordiques, vous pouvez créer un compte client : <br/>
 				<br/>
 				<button type="button" class="btn btn-default ">
-					<a href="${pageContext.request.contextPath}/client/addclient">Créer
+				<a href="${pageContext.request.contextPath}/client/addclient">Créer
 						un compte Client</a>
 				</button>
 			</div>

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Vous entrez dans l'espace Client de BoVoyage</title>
+<title>Vous entrez dans l'espace Administration de BoVoyage</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <link rel="stylesheet"
@@ -41,80 +41,20 @@
 				style="background-color: lightblue; color: darkblue">
 				<b>Accès à votre espace Administrateur de BoVoyage</b>
 			</div>
-			<div class="radio">
-				<label><input id="radmark" type="radio" name="optradio">Service
-					Marketing</label>
+			<div >
+				<a href="${pageContext.request.contextPath}/marketing/listagence">Service
+					Marketing</a>
+			</div>
+			<div>
+				<a href="${pageContext.request.contextPath}/direction/listagent">Direction
+					Générale</a>
 			</div>
 			<div class="radio">
-				<label><input id="raddir" type="radio" name="optradio">Direction
-					Générale</label>
+				<a href="${pageContext.request.contextPath}/agence/recherche">Gestionnaire
+					Site</a>
 			</div>
-			<div class="radio">
-				<label><input id="radgest" type="radio" name="optradio">Gestionnaire
-					Site</label>
-			</div>
-			<div id="mark" style="display: none">
-				<form:form action="j_spring_security_check" method="POST" 
-					cssClass="form-horizontal">
-					<div class="panel-body">
-					
-						<label for="email">Adresse Electronique</label> <br />
-				<form:input name="j_username" type="email" path="mail" class="form-control "
-					id="email" style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre adresse électronique" />
-				<br /> <label for="mdp">Mot de passe</label> <br />
-				<form:input name="j_password"  type="password" path="mdp" class="form-control" id="mdp"
-					style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre mot de passe" />
-				<br />
-							<form:hidden path="statut"  class="form-control" id="statutIP"
-					style="width: 80%; position:relative; left:10%"/>
-						<button  type="submit" class="btn btn-default "
-							>Entrez dans votre espace Marketing</button>
-					</div>
-				</form:form>
-			</div>
-				<div id="dir" style="display: none">
-				<form:form method="POST" action="j_spring_security_check"
-					 cssClass="form-horizontal">
-					<div class="panel-body">
-					<label for="email">Adresse Electronique</label> <br />
-				<form:input  type="text" name="j_username" path="mail" class="form-control "
-					id="email" style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre adresse électronique" />
-				<br /> <label for="mdp">Mot de passe</label> <br />
-				<form:input  type="text" name="j_password" path="mdp" class="form-control" id="mdp"
-					style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre mot de passe" />
-				<br />
-							<form:hidden path="statut"  class="form-control" id="statutIP2"
-					style="width: 80%; position:relative; left:10%"/>
-						<button  type="submit" class="btn btn-default "
-							>Entrez dans votre espace Direction</button>
-						</div>
-				</form:form>
-			</div>
-				<div id="gest" style="display: none">
-				<form:form method="POST" action="j_spring_security_check"
-					commandName="agence" cssClass="form-horizontal" modelAttribute="agence">
-					<div class="panel-body">
-					<label for="email">Adresse Electronique</label> <br />
-				<form:input name="j_username" path="mail" type="email" class="form-control "
-					id="email" style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre adresse électronique" />
-				<br /> <label for="mdp">Mot de passe</label> <br />
-				<form:input name="j_password" path="mdp" type="password" class="form-control" id="mdp"
-					style="width: 80%; position:relative; left:10%"
-					placeholder="Entrez votre mot de passe" />
-				<br />
-							<form:hidden path="statut"  class="form-control" id="statutIP3"
-					style="width: 80%; position:relative; left:10%"/>
-						<button  type="submit" class="btn btn-default "
-							>Entrez dans votre espace
-							Gestionnaire</button>
-					</div>
-				</form:form>
-			</div>
+		
+
 		</div>
 
 		<br /> <br />
@@ -159,33 +99,7 @@
 		</div>
 	</div>
 
-	<script>
-		$('#radmark').click(function() {
-			if ($('#radmark').is(':checked')) {
-				document.getElementById('mark').style.display = 'block';
-				document.getElementById('dir').style.display = 'none';
-				document.getElementById('gest').style.display = 'none';
-			
-			}
-		});
 
-		$('#raddir').click(function() {
-			if ($('#raddir').is(':checked')) {
-				document.getElementById('dir').style.display = 'block';
-				document.getElementById('mark').style.display = 'none';
-				document.getElementById('gest').style.display = 'none';
-				
-			}
-		});
-		$('#radgest').click(function() {
-			if ($('#radgest').is(':checked')) {
-				document.getElementById('gest').style.display = 'block';
-				document.getElementById('mark').style.display = 'none';
-				document.getElementById('dir').style.display = 'none';
-				
-			}
-		});
-	</script>
 	<%@include file="template/footer.html"%>
 </body>
 </html>

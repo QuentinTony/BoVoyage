@@ -3,6 +3,8 @@ package fr.adaming.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +34,10 @@ public class MarketingController {
 	@RequestMapping(value="/listagence", method=RequestMethod.GET)
 	public ModelAndView afficheListe() {
 		//Récuperer la liste de la BD
+		//Recuperer l'identifiant de l'admin a partir du context de spring security
+		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		//Recuperer l'identifiant
+		
 		
 		List<Client> listAgence= clService.getAllClient();
 		return new ModelAndView("accueilMarketing","listclient",listAgence);
