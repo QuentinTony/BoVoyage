@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.MailActivation;
 import fr.adaming.service.IClientService;
 
 @Controller
@@ -32,6 +34,8 @@ public class ClientController {
 	@Autowired
 	private IClientService clService;
 
+	private HttpSession maSession;
+	
 	public void setClService(IClientService clService) {
 		this.clService = clService;
 	}
@@ -42,6 +46,13 @@ public class ClientController {
 		model.addAttribute("client", clIn);
 		
 		return "loginclient";
+	}
+	
+	@RequestMapping(value="/loginp", method=RequestMethod.POST)
+	public String submitLogin(Model model, @RequestParam Client cl) {
+		Client clOut=clService.isExist(cl);
+		maSession.setAttribute("client", clOut);
+		return null;
 	}
 	
 
@@ -83,7 +94,9 @@ public class ClientController {
 		Client cOut = clService.addClient(cl);
 
 		if (cOut.getId() != 0) {
-
+			MailActivation mail = new MailActivation();
+			
+			mail.sendMailToCl(cOut);
 			return "loginclient";
 		} else {
 			ra.addAttribute("msg", "L'ajout a échoué");
@@ -161,6 +174,15 @@ public class ClientController {
 			ra.addAttribute("msg", "Le client n'existe pas");
 			return "redirect:getclient";
 		}
+	}
+	
+	@RequestMapping(value = "/activeClient/{id}", method = RequestMethod.GET)
+	public String activeClient(@PathVariable int id) {
+		Client clOut = clService.getClient(id);
+		clOut.setActive(true);
+		clService.updateClient(clOut);
+		maSession.setAttribute("client", clOut);
+		return "/BoVoyage/bovoyage/listvoyage";
 	}
 
 }

@@ -34,7 +34,7 @@
 	<br />
 	<br />
 
-	<form method="POST" action="isExist"
+	<form method="POST" action="/loginp"
 		cssClass="form-horizontal">
 		<div class="panel panel-info"
 			style="width: 40%; position: relative;top: 50%; left: 30%; text-align: center;  color: darkblue">
