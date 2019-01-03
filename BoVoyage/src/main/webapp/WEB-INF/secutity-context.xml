@@ -23,8 +23,8 @@
 
 
 	
-	<security:http use-expressions="true" pattern="/login">
-			<security:intercept-url pattern="/bovoyage/listvoyage**" access="client"/>
+	<security:http use-expressions="true" pattern="/bovoyage">
+			<security:intercept-url pattern="/bovoyage/**" access="client"/>
 		<security:form-login login-page="/login"
 			authentication-failure-url="/loginfailure"/>
 	
