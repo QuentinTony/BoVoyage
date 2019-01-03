@@ -32,14 +32,6 @@ public class Client extends Personne implements Serializable {
 	
 	private boolean active;
 
-	public List<Formule> getListFormule() {
-		return listFormule;
-	}
-
-	public void setListFormule(List<Formule> listFormule) {
-		this.listFormule = listFormule;
-	}
-
 	// transformation de UML en JAVA
 	@OneToMany(mappedBy = "client")
 	private List<Passager> listPassager;
@@ -128,6 +120,14 @@ public class Client extends Personne implements Serializable {
 		this.listPassager = listPassager;
 	}
 
+	public List<Formule> getListFormule() {
+		return listFormule;
+	}
+
+	public void setListFormule(List<Formule> listFormule) {
+		this.listFormule = listFormule;
+	}
+	
 	// toString
 	@Override
 	public String toString() {

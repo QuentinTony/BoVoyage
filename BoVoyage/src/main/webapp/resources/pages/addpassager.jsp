@@ -41,7 +41,8 @@
 				<b>Formulaire d'Enregistrement d'un Passager</b>
 			</div>
 			<div class="panel-body">
-				<form:form method="POST" action="enregistrerpassagerp" commandName="passager"
+			
+				<form:form method="POST" action="/BoVoyage/formule/enregistrerpassagerp" commandName="passager"
 					cssClass="form-horizontal" modelAttribute="passager">
 					<label for="nom">Nom :</label>
 					<br />

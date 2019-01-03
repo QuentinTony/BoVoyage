@@ -12,7 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,8 +27,9 @@ public class Formule implements Serializable {
 	private int nombrePersonne;
 	private int nombreNuit;
 	private int nombreJour;
+	private int compteur;
 	// pls prest par formule et pls formule pvt avoir les memes prest
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "form_presta", joinColumns = @JoinColumn(name = "pr_id"), inverseJoinColumns = @JoinColumn(name = "fo_id"))
 	private List<Prestation> listPrestation;
 
@@ -74,6 +74,16 @@ public class Formule implements Serializable {
 		this.vehicule = vehicule;
 		this.assurance = assurance;
 	}
+
+	public int getCompteur() {
+		return compteur;
+	}
+
+
+	public void setCompteur(int compteur) {
+		this.compteur = compteur;
+	}
+
 
 	public int getNombreNuit() {
 		return nombreNuit;

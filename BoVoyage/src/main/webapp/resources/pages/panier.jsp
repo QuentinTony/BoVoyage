@@ -112,7 +112,7 @@
 
 					<br /> 
 					
-					<label for="passager">Nombre de passagers :</label>
+					<label for="passager">Nombre de passagers (total) :</label>
 				<br />
 				<form:input id="passager" type="number" path="nombrePersonne" />
 				<br />
