@@ -19,10 +19,9 @@ import javax.mail.internet.MimeMultipart;
 
 public class MailConfirmation {
 
-	public static void sendMailToCl(Voyage vo, Client cl) {
+	public void sendMailToCl(Formule fo, Client cl) {
 
-		Hotel ho = null;
-		Vehicule ve = null;
+		
 		final String username = "bovoyageconfirmation@gmail.com";
 		final String password = "zdigffsxabwwtpqj";
 
@@ -63,7 +62,7 @@ public class MailConfirmation {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
 			// Set Subject: header field
-			message.setSubject("BOVoyage : commande numéro " + vo.getId());
+			message.setSubject("BOVoyage : commande numéro " + fo.getId());
 
 			// Create the message part
 			BodyPart messageBodyPart = new MimeBodyPart();
@@ -72,26 +71,39 @@ public class MailConfirmation {
 			multipart.addBodyPart(messageBodyPart);
 
 			// Now set the actual message
-			String recap = "Vous avez choisi la formule " + vo.getVilleDepart() + "-"
-					+ vo.getDestination().getVilleArrive() + " pour " + vo.getNombrePersonne() + " personnes."
-					+ "\nVous partirez de " + vo.getVilleDepart() + " le " + vo.getDateDepart() + " et reviendrez de "
-					+ vo.getDestination().getVilleArrive() + " le " + vo.getDateRetour() + "."
-					+ "\nVous avez choisi l'hôtel " + ho.getType() + " avant " + ho.getCategorie()
-					+ " étoiles et se situant à " + vo.getDestination().getVilleArrive() + "."
-					+ "\nVous avez choisi la location d'une " + ve.getType();
+			String recap = "Vous avez choisi la formule " + fo.getVoyage().getVilleDepart() + "-"
+					+ fo.getVoyage().getDestination().getVilleArrive() + " pour " + fo.getNombrePersonne() + " personnes."
+					+ "\nVous partirez de " + fo.getVoyage().getVilleDepart() + " le " + fo.getVoyage().getDateDepart() + " et reviendrez de "
+					+ fo.getVoyage().getDestination().getVilleArrive() + " le " + fo.getVoyage().getDateRetour() + "."
+					+ "\nVous avez choisi l'hôtel " + fo.getHotel().getType() + " avant " + fo.getHotel().getCategorie()
+					+ " étoiles et se situant à " + fo.getVoyage().getDestination().getVilleArrive() + "."
+					+ "\nVous avez choisi la location d'une " + fo.getVehicule().getType();
 
 			messageBodyPart.setText("Mr/Mme " + cl.getNom()
-					+ ", \nBonjour,\nNous vous confirmons l'enregistrement de votre commande numéro " + vo.getId()
-					+ ".\nRécapitulatif de votre voyage:" + recap + "\n\nMontant total du voyage: " + vo.getPrix()
-					+ ho.getPrix() + ve.getPrix() + "€, avec une remise de " + vo.getRemise() + "."
+					+ ", \nBonjour,\nNous vous confirmons l'enregistrement de votre commande numéro " + fo.getId()
+					+ ".\nRécapitulatif de votre voyage:" + recap + "\n\nMontant total du voyage: " + fo.getVoyage().getPrix()
+					+ fo.getHotel().getPrix() + fo.getVehicule().getPrix() + "€, avec une remise de " + fo.getVoyage().getRemise()+" en faisant une montant total de "+fo.getPrixFinal()
+							+ "."
 					+ "\n\nVous trouverez le détail de votre facture en pièce jointe au format pdf.\n\n"
 					+ "En espérant vous revoir bientôt sur notre site, cordialement\n\nToute l'équipe de BoVoyage");
 
+			
+			//parte 2 anterior, insertar imagen
+			messageBodyPart= new MimeBodyPart();
+			 DataSource fds = new FileDataSource(
+					 "C:\\Users\\inti0490\\Desktop\\Cosas para proyectos\\logoBoVoyage.png");
+
+			         messageBodyPart.setDataHandler(new DataHandler(fds));
+			         messageBodyPart.setHeader("Content-ID", "image");
+
+			         // add image to the multipart
+			         multipart.addBodyPart(messageBodyPart);
+			
 			// Part two is attachment
 			messageBodyPart = new MimeBodyPart();
 			DataSource source = new FileDataSource("C:\\Users\\inti0490\\Desktop\\Formation\\Workspace\\GenerationPDF\\essaye1");
 			messageBodyPart.setDataHandler(new DataHandler(source));
-			messageBodyPart.setFileName("Récapitulatif commande n°" + vo.getId() + ".pdf");
+			messageBodyPart.setFileName("Récapitulatif commande n°" + fo.getId() + ".pdf");
 			multipart.addBodyPart(messageBodyPart);
 
 			// Put parts in message

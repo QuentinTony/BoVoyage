@@ -1,5 +1,6 @@
 package fr.adaming.controllers;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Client;
 import fr.adaming.model.Formule;
 import fr.adaming.model.Hotel;
+import fr.adaming.model.MailConfirmation;
+import fr.adaming.model.PdfFactureVoyage;
 import fr.adaming.model.Prestation;
 import fr.adaming.model.Vehicule;
 import fr.adaming.model.Voyage;
@@ -32,6 +36,7 @@ import fr.adaming.service.IVoyageService;
 @RequestMapping("/formule")
 public class FormuleController {
 
+	public static final String dest= "C:\\Users\\inti0490\\Desktop\\Formation\\Workspace\\GenerationPDF\\essaye1";
 	@Autowired
 	private IVoyageService voService;
 	@Autowired
@@ -142,7 +147,17 @@ public class FormuleController {
 
 	@RequestMapping(value = "/validformule/validformulep", method = RequestMethod.POST)
 	public String validvoyagepost(@ModelAttribute("formule") Formule fo, RedirectAttributes ra) {
-
+		
+MailConfirmation mail= new MailConfirmation();
+PdfFactureVoyage pdf= new PdfFactureVoyage();
+try {
+	pdf.generarPdf(dest);
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+Client cl= fo.getClient();
+mail.sendMailToCl(fo, cl);
 		foService.updateFormule(fo);
 
 		return "accueil";

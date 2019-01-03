@@ -18,7 +18,7 @@ import com.itextpdf.layout.element.Paragraph;
 public class PdfFactureVoyage {
 
 public static final String LOGO="C:\\Users\\inti0490\\Desktop\\Cosas para proyectos\\logoBoVoyage.png";
-public static final String DEST= "C:\\Users\\inti0490\\Desktop\\Formation\\Workspace\\GenerationPDF\\essaye1";
+public static final String dest= "C:\\Users\\inti0490\\Desktop\\Formation\\Workspace\\GenerationPDF\\essaye1";
 	
 	
 
