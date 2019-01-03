@@ -102,6 +102,7 @@ public class VoyageController {
 			System.out.println("long " + Double.toString(v.getDestination().getLongitude()));
 			Meteo met=meService.infosMeteo(Double.toString(v.getDestination().getLatitude()) ,Double.toString(v.getDestination().getLongitude()) );
 			System.out.println(met.toString());
+			
 			v.getDestination().setMeteo(met);
 		}
 		modele.addAttribute("listVoyage", listvoyage);

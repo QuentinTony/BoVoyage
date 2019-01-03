@@ -70,19 +70,23 @@
 
 				</table>
 				<br />
-				<div id="map" style="width: 1000px; height: 400px;"></div>
+				<div id="map" style="width: 1000px; height: 400px; margin: auto;"></div>
 				<br />
-
-				<div class="panel panel-primary" style="width: 50% !important; margin: auto !important;">
-					<div class="panel-body">Données météorologiques</div>
+				
+				<div class="panel panel-primary" style="width: 300px !important; margin: auto !important; background-image: url('${pageContext.request.contextPath}/resources/image/ciel.jpg'); border-radius: 50%; border: solid darkblue;">
+				<br/>
+					<div class="panel-body" style=" margin: auto; color: white; position:relative; left: 50px; "><b>Données météorologiques</b></div>
 					
+					<div style="width: 50%; margin: auto; opacity:1!important; color: white;">
+					<img src="https://openweathermap.org/img/w/${voyage.destination.meteo.weather.get(0).icon}.png" style="right: -20px; position: relative;">
+					<div ><b>Température : ${voyage.destination.meteo.main.temp -273}°C </b></div>
+					<br/>
+					<div > <b>Humidité : ${voyage.destination.meteo.main.humidity} %</b></div>
+					<br/>
+					<div > <b>Pression : ${voyage.destination.meteo.main.pressure} </b></div>
 					
-					<div class="panel-footer">Température : ${voyage.destination.meteo.main.temp -273.15}°C </div>
-					<br/>
-					<div class="panel-footer">Humidité : ${voyage.destination.meteo.main.humidity} %</div>
-					<br/>
-					<div class="panel-footer">Pression : ${voyage.destination.meteo.main.pressure} </div>
-
+<br/><br/>
+				</div>
 				</div>
 				<br />
 
@@ -161,50 +165,6 @@
     }); 
 
 </script>
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-		<script>
-		$(document).ready(function () {
-			  var lat, lon, api_url;
-			  
-			  if ("geolocation" in navigator) {
-			    
-			    $('#showTemp').on('load', function () {
-			       navigator.geolocation.getCurrentPosition(gotLocation);
 
-			      function gotLocation(position) {
-			        lat = ${voyage.destination.latitude};
-			        lon = ${voyage.destination.longitude};
-			        
-			        api_url = 'http://api.openweathermap.org/data/2.5/forecast?lat=' +
-			                  lat + '&lon=' + 
-			                  lon + '&units=metric&appid=8feb5c49c43a8842da6a278e8bedc5cd';
-			       // http://api.openweathermap.org/data/2.5/weather?q=London,uk&callback=test&appid=b1b15e88fa79722
-			        
-			        $.ajax({
-			          url : api_url,
-			          method : 'GET',
-			          success : function (data) {
-			            
-
-
-			            var tempr = data.main.temp;
-			            var location = data.name;
-			            var desc = data.weather.description;
-			            
-
-			            $('#result').text(tempr + '°' + location);
-
-			          }
-			        });
-			     }
-			    });
-			    
-			  } else {
-			    alert('Your browser doesnt support geolocation. Sorry.');
-			  }
-			  
-			});
-
-</script>
 </body>
 </html>

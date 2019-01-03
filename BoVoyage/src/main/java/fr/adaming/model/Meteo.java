@@ -1,6 +1,7 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -19,8 +20,10 @@ public class Meteo implements Serializable{
 	private Main main;
 	@JsonIgnore
 	private Object coord;
-	@JsonIgnore
-	private Weather weather;
+	
+	private String icon;
+	
+	private List<Weather> weather;
 	
 	private Wind wind;
 	
@@ -36,13 +39,39 @@ public class Meteo implements Serializable{
 	
 	private long visibility;
 	
-	
-	
 
-	
 
-	public Meteo(long id, String name, int cod, Main main, Object coord, Weather weather, Wind wind, Object clouds,
-			long dt, Object sys, Object rain, String base, long visibility) {
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+
+
+	public Meteo(long id, String name, int cod, Main main, Object coord, String icon, List<Weather> weather, Wind wind,
+			Object clouds, long dt, Object sys, Object rain, String base, long visibility) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cod = cod;
+		this.main = main;
+		this.coord = coord;
+		this.icon = icon;
+		this.weather = weather;
+		this.wind = wind;
+		this.clouds = clouds;
+		this.dt = dt;
+		this.sys = sys;
+		this.rain = rain;
+		this.base = base;
+		this.visibility = visibility;
+	}
+
+	public Meteo(long id, String name, int cod, Main main, Object coord, List<Weather> weather, Wind wind,
+			Object clouds, long dt, Object sys, Object rain, String base, long visibility) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,11 +88,11 @@ public class Meteo implements Serializable{
 		this.visibility = visibility;
 	}
 
-	public Weather getWeather() {
+	public List<Weather> getWeather() {
 		return weather;
 	}
 
-	public void setWeather(Weather weather) {
+	public void setWeather(List<Weather> weather) {
 		this.weather = weather;
 	}
 
