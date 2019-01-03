@@ -44,10 +44,10 @@
 			
 				<form:form method="POST" action="/BoVoyage/formule/enregistrerpassagerp" commandName="passager"
 					cssClass="form-horizontal" modelAttribute="passager">
-					<label for="nom">Nom :</label>
+					<div style="width:75%; margin-left: 12.5%;margin-right: 12.5%"><label for="nom">Nom :</label>
 					<br />
 					<form:input type="text" class="form-control" id="nom" path="nom"
-						placeholder="Entrer un nom" required="required"/>
+						placeholder="Entrer un nom" required="required" />
 					<form:errors path="nom" cssStyle="color: red;" />
 					<br />
 					<label for="prenom">Prenom :</label>
@@ -76,7 +76,7 @@
 					<br />
 					<br />
 					<button type="submit" class="btn btn-default ">Enregistrer le Passager</button>
-
+</div>
 				</form:form>
 			</div>
 

@@ -30,7 +30,8 @@
 <body>
 	<%@include file='template/header.html'%>
 
-	<div class="panel-group">
+	<div class="panel-group"
+		style="width: 80%; margin-left: 10%; margin-right: 10%;text-align: center;">
 		<div class="panel panel-default">
 			<div class="panel-heading"
 				style="font-size: 150%;background-image: url('http://localhost:8080/BoVoyage/destination/photoD/${voyage.destination.id}')">
@@ -44,55 +45,54 @@
 
 			</div>
 			<div class="panel-body">
-				<table class="table table-bordered">
+				<h4>
+					Vous êtes intéressés par le voyage en ${voyage.destination.pays}
+					dans la ville de ${voyage.destination.villeArrive} en partance de
+					${voyage.villeDepart }.<br /><br /> Le voyage sélectionné a lieu du
+					${voyage.dateDepart} au ${voyage.dateRetour}. <br /><br /> Le prix
+					initial est de ${voyage.prix} ¤. <br /><br /> Grâce à BoVoyage, nous
+					avons réussi à vous obtenir ${voyage.remise*100}% de remise.<br /><br />
+					Le prix de base pour ce magnifique voyage est de ${voyage.prix *(1- voyage.remise) }
+					¤.
+				</h4>
 
-					<tr>
-						<th>Prix</th>
-						<th>Remise</th>
-						<th>Prix Soldé</th>
-						<th>Ville de Départ</th>
-						<th>Ville de Retour</th>
-						<th>Date de Départ</th>
-						<th>Date de Retour</th>
-						<th>Photo</th>
-					</tr>
-					<tr>
-						<td>${voyage.prix}</td>
-						<td>${voyage.remise*100}%</td>
-						<td>${voyage.prix *(1- voyage.remise) }</td>
-						<td>${voyage.villeDepart }</td>
-						<td>${voyage.destination.villeArrive }</td>
-						<td>${voyage.dateDepart}</td>
-						<td>${voyage.dateRetour}</td>
-						<td><img src="${voyage.destination.photo}"></td>
-
-					</tr>
-
-				</table>
-				<br />
 				<div id="map" style="width: 1000px; height: 400px; margin: auto;"></div>
 				<br />
-				
-				<div class="panel panel-primary" style="width: 300px !important; margin: auto !important; background-image: url('${pageContext.request.contextPath}/resources/image/ciel.jpg'); border-radius: 50%; border: solid darkblue;">
-				<br/>
-					<div class="panel-body" style=" margin: auto; color: white; position:relative; left: 50px; "><b>Données météorologiques</b></div>
-					
-					<div style="width: 50%; margin: auto; opacity:1!important; color: white;">
-					<img src="https://openweathermap.org/img/w/${voyage.destination.meteo.weather.get(0).icon}.png" style="right: -20px; position: relative;">
-					<div ><b>Température : ${voyage.destination.meteo.main.temp -273}°C </b></div>
-					<br/>
-					<div > <b>Humidité : ${voyage.destination.meteo.main.humidity} %</b></div>
-					<br/>
-					<div > <b>Pression : ${voyage.destination.meteo.main.pressure} </b></div>
-					
-<br/><br/>
-				</div>
-				</div>
-				<br />
 
+				<div class="panel panel-primary"
+					style="width: 300px !important; margin: auto !important; background-image: url('${pageContext.request.contextPath}/resources/image/ciel.jpg'); border-radius: 50%; border: solid darkblue;">
+					<br />
+					<div class="panel-body"
+						style="margin: auto; color: white; position: relative; ">
+						<br/>
+					<h4><u>	<b>Données météorologiques</b></u></h4>
+					</div>
 
-				
-				<br />
+					<div
+						style="width: 50%; margin: auto; opacity: 1 !important; color: white;">
+						<img
+							src="https://openweathermap.org/img/w/${voyage.destination.meteo.weather.get(0).icon}.png"
+							style="right: -20px; position: relative;">
+						<div>
+							<b><u>Température</u> : <script> document.write(Math.round(${voyage.destination.meteo.main.temp -273})); </script>°C
+							</b>
+						</div>
+						<br />
+						<div>
+							<b><u>Humidité</u> :
+								${voyage.destination.meteo.main.humidity} %</b>
+						</div>
+						<br />
+						<div>
+							<b><u>Pression</u> :
+								${voyage.destination.meteo.main.pressure} </b>
+						</div>
+
+						<br />
+						<br />
+					</div>
+				</div>
+				<br /> <br />
 
 
 
@@ -165,6 +165,5 @@
     }); 
 
 </script>
-
 </body>
 </html>
