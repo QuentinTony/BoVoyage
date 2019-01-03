@@ -123,7 +123,7 @@
 			</div>
 		</div>
 		<button type="submit" class="btn btn-default ">
-						Valider cette formule
+						Valider cette Formule et Enregistrer les Passagers
 					</button>
 	</form:form>
 
