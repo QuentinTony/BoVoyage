@@ -240,7 +240,7 @@ public class FormuleController {
 	public String validvoyage(Model model, @PathVariable("id") long id) {
 
 		Formule fIn = foService.getFormule(id);
-
+		model.addAttribute("compte", new Banque());
 		model.addAttribute("formule", fIn);
 
 		return "recapitulatifPanier";
@@ -269,6 +269,7 @@ public class FormuleController {
 	public String submitVirement(RedirectAttributes ra, Model model, @ModelAttribute("compte") Banque b,
 			@RequestParam("dSomme") Double somme, @RequestParam("id") long id, HttpSession maSession) {
 		System.out.println("je lance la méthode viremente du controleur client");
+		try {
 		Banque bBoVoyage = baService.virement(b, somme);
 		if (bBoVoyage.getId() != 0) {
 			maSession.setAttribute("indice", "block");
@@ -281,6 +282,12 @@ public class FormuleController {
 			return "redirect:/formule/validformule/" + id;
 		}
 
+		}catch(Exception ex) {
+			ra.addAttribute("msg", "le virement a échoué");
+
+			return "redirect:/formule/validformule/" + id;
+
+		}
 	}
 
 }

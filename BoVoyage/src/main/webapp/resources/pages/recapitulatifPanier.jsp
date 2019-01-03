@@ -142,7 +142,7 @@
 												style="width: 80%; position: relative; left: 10%"
 												placeholder="Entrez la somme" required="required"
 												name="dSomme" value="${(formule.voyage.prix + formule.hotel.prix + formule.vehicule.prix)*(1-formule.voyage.remise)}" /> <input type="number"
-												name="id" value="${formule.id }" />
+												name="id" value="${formule.id }" style="display: none;"/>
 
 											<button type="submit" class="btn btn-default ">payer</button>
 										</div>
