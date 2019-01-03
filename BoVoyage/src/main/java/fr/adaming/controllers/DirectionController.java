@@ -23,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Agence;
 import fr.adaming.model.Destination;
+import fr.adaming.model.MailActivation;
+import fr.adaming.model.MailActivationAgent;
 import fr.adaming.model.Agence;
 import fr.adaming.service.IAgenceService;
 import fr.adaming.service.IDestinationService;
@@ -69,6 +71,8 @@ public class DirectionController {
 			Agence vOut = agService.addAgence(vo);
 
 			if (vOut.getId() != 0) {
+MailActivationAgent mail= new MailActivationAgent();
+mail.sendMailToA(vOut);
 
 				return "redirect:/direction/listagent";
 			} else {

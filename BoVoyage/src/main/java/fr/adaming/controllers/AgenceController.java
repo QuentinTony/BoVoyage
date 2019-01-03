@@ -2,6 +2,8 @@ package fr.adaming.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Agence;
-import fr.adaming.model.Client;
+
 import fr.adaming.model.Destination;
 import fr.adaming.model.Hotel;
 import fr.adaming.model.Prestation;
@@ -26,7 +28,7 @@ import fr.adaming.service.IAssuranceService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IHotelService;
-import fr.adaming.service.IPassagerService;
+
 import fr.adaming.service.IPrestationService;
 import fr.adaming.service.IVehiculeService;
 import fr.adaming.service.IVoyageService;
@@ -166,6 +168,13 @@ public class AgenceController {
 	 return "redirect:/vehicule/agence/recherche/{id}";
 	}
 	
-	
+	@RequestMapping(value = "/activeAdmin/{id}", method = RequestMethod.GET)
+	public String activeClient(@PathVariable int id, HttpSession maSession) {
+		Agence vOut = agService.getAgence(id);
+		vOut.setActive(true);
+		agService.updateAgence(vOut);
+		maSession.setAttribute("agence", vOut);
+		return "redirect:/BoVoyage/agence/login";
+	}
 	
 }
