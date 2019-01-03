@@ -253,6 +253,19 @@ public class FormuleController {
 		}
 		MailConfirmation mail = new MailConfirmation();
 		Client cl = (Client) serreq.getSession(false).getAttribute("client");
+		try {
+		Voyage vo=voService.getVoyage(fo.getVoyage().getId());
+		 Destination de=deService.getDestination(vo.getDestination().getId());
+		 Hotel ho= hoService.getHotel(fo.getHotel().getId());
+		 Vehicule ve= veService.getVehicule(fo.getVehicule().getId());
+		 fo.setVoyage(vo);
+		 fo.getVoyage().setDestination(de);
+		 fo.setHotel(ho);
+		 fo.setVehicule(ve);
+		}catch (Exception ex) {
+			
+		}
+		 System.out.println("client "+cl.toString());
 		mail.sendMailToCl(fo, cl);
 		foService.updateFormule(fo);
 

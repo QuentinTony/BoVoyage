@@ -21,6 +21,38 @@ public class Meteo implements Serializable{
 	@JsonIgnore
 	private Object coord;
 	
+	private Object message;
+	
+	
+	public Meteo(long id, String name, int cod, Main main, Object coord, Object message, String icon,
+			List<Weather> weather, Wind wind, Object clouds, long dt, Object sys, Object rain, String base,
+			long visibility) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cod = cod;
+		this.main = main;
+		this.coord = coord;
+		this.message = message;
+		this.icon = icon;
+		this.weather = weather;
+		this.wind = wind;
+		this.clouds = clouds;
+		this.dt = dt;
+		this.sys = sys;
+		this.rain = rain;
+		this.base = base;
+		this.visibility = visibility;
+	}
+
+	public Object getMessage() {
+		return message;
+	}
+
+	public void setMessage(Object message) {
+		this.message = message;
+	}
+
 	private String icon;
 	
 	private List<Weather> weather;
