@@ -153,33 +153,27 @@ public class FormuleController {
 	public String selectandsetVoyage(@ModelAttribute("formule") Formule fo, RedirectAttributes ra,
 			HttpServletRequest serreq) {
 
-		int a = fo.getVoyage().getStockPassager();
-		if (fo.getNombrePersonne() <= a) {
-			Formule fOut = foService.addFormule(fo);
-			ra.addAttribute("id", fOut.getId());
-			Formule fIn = foService.getFormule(fOut.getId());
-			Date da = fIn.getVoyage().getDateDepart();
-			Date dr = fIn.getVoyage().getDateRetour();
-			final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
-			int delta = (int) ((dr.getTime() - da.getTime()) / MILLISECONDS_PER_DAY);
-			fIn.setNombreJour(delta);
-			fIn.setClient((Client) serreq.getSession(false).getAttribute("client"));
-			fIn.setNombreNuit(delta - 1);
-			foService.updateFormule(fIn);
-			Formule fIn2 = foService.getFormule(fIn.getId());
-			serreq.getSession(false).setAttribute("formule", fIn2);
-			System.out.println(fIn2);
+		Formule fOut = foService.addFormule(fo);
+		ra.addAttribute("id", fOut.getId());
+		Formule fIn = foService.getFormule(fOut.getId());
+		Date da = fIn.getVoyage().getDateDepart();
+		Date dr = fIn.getVoyage().getDateRetour();
+		final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+		int delta = (int) ((dr.getTime() - da.getTime()) / MILLISECONDS_PER_DAY);
+		fIn.setNombreJour(delta);
+		fIn.setClient((Client) serreq.getSession(false).getAttribute("client"));
+		fIn.setNombreNuit(delta - 1);
+		foService.updateFormule(fIn);
+		Formule fIn2 = foService.getFormule(fIn.getId());
+		serreq.getSession(false).setAttribute("formule", fIn2);
+		System.out.println(fIn2);
 
-			if (fOut.getId() != 0) {
+		if (fOut.getId() != 0) {
 
-				return "redirect:enregistrerpassager";
-			} else {
-				ra.addAttribute("msg", "L'ajout n'est pas fait");
-				return "redirect:selectformule?id=" + fOut.getVoyage().getId();
-			}
+			return "redirect:enregistrerpassager";
 		} else {
-			ra.addAttribute("msg", "Le nombre de passager rensseigné est trop élevé");
-			return "redirect:selectformule?id=" + fo.getVoyage().getId();
+			ra.addAttribute("msg", "L'ajout n'est pas fait");
+			return "redirect:selectformule?id=" + fOut.getVoyage().getId();
 		}
 
 	}
@@ -247,9 +241,9 @@ public class FormuleController {
 	}
 
 	@RequestMapping(value = "/validformule/validformulep", method = RequestMethod.POST)
-	public String validvoyagepost(@ModelAttribute("formule") Formule fo, RedirectAttributes ra) {
+	public String validvoyagepost(@ModelAttribute("formule") Formule fo, RedirectAttributes ra,
+			HttpServletRequest serreq) {
 
-		MailConfirmation mail = new MailConfirmation();
 		PdfFactureVoyage pdf = new PdfFactureVoyage();
 		try {
 			pdf.generarPdf(dest);
@@ -257,7 +251,8 @@ public class FormuleController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Client cl = fo.getClient();
+		MailConfirmation mail = new MailConfirmation();
+		Client cl = (Client) serreq.getSession(false).getAttribute("client");
 		mail.sendMailToCl(fo, cl);
 		foService.updateFormule(fo);
 
@@ -270,19 +265,19 @@ public class FormuleController {
 			@RequestParam("dSomme") Double somme, @RequestParam("id") long id, HttpSession maSession) {
 		System.out.println("je lance la méthode viremente du controleur client");
 		try {
-		Banque bBoVoyage = baService.virement(b, somme);
-		if (bBoVoyage.getId() != 0) {
-			maSession.setAttribute("indice", "block");
-			maSession.setAttribute("indice1", "none");
-			return "redirect:/formule/validformule/" + id;
-		} else {
+			Banque bBoVoyage = baService.virement(b, somme);
+			if (bBoVoyage.getId() != 0) {
+				maSession.setAttribute("indice", "block");
+				maSession.setAttribute("indice1", "none");
+				return "redirect:/formule/validformule/" + id;
+			} else {
 
-			ra.addAttribute("msg", "le virement a échoué");
+				ra.addAttribute("msg", "le virement a échoué");
 
-			return "redirect:/formule/validformule/" + id;
-		}
+				return "redirect:/formule/validformule/" + id;
+			}
 
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			ra.addAttribute("msg", "le virement a échoué");
 
 			return "redirect:/formule/validformule/" + id;
