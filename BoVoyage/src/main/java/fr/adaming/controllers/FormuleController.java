@@ -103,8 +103,8 @@ public class FormuleController {
 		this.foService = foService;
 	}
 
-	@RequestMapping(value = "/selectformule/{id}", method = RequestMethod.GET)
-	public String selectvoyage(Model model, @PathVariable("id") long id) {
+	@RequestMapping(value = "/selectformule", method = RequestMethod.GET)
+	public String selectvoyage(Model model, @RequestParam("id") long id) {
 		Formule fo = new Formule();
 		model.addAttribute("formule", fo);
 
