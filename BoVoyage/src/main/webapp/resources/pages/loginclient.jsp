@@ -34,8 +34,8 @@
 	<br />
 	<br />
 
-	<form method="POST" action="/loginp"
-		cssClass="form-horizontal">
+	<form:form method="POST" action="loginp"
+		cssClass="form-horizontal" commandName="client" modelAttribute="client">
 		<div class="panel panel-info"
 			style="width: 40%; position: relative;top: 50%; left: 30%; text-align: center;  color: darkblue">
 			<div class="panel-heading"
@@ -44,11 +44,11 @@
 			</div>
 			<div class="panel-body">
 				<label for="email">Adresse Electronique</label> <br />
-				<input type="email" class="form-control "
+				<form:input type="email" class="form-control" path="mail"
 					id="email" style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre adresse électronique" />
 				<br /> <label for="mdp">Mot de passe</label> <br />
-				<input type="password" class="form-control" id="mdp"
+				<form:input type="password" class="form-control" id="mdp" path="mdp"
 					style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre mot de passe" />
 				<br />
@@ -72,7 +72,7 @@
 				</button>
 			</div>
 		</div>
-	</form>
+	</form:form>
 	
 	<br />
 	<br />

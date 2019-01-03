@@ -33,9 +33,12 @@ public class ClientController {
 
 	@Autowired
 	private IClientService clService;
-
-	private HttpSession maSession;
 	
+	
+	public ClientController() {
+		super();
+	}
+
 	public void setClService(IClientService clService) {
 		this.clService = clService;
 	}
@@ -49,10 +52,10 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value="/loginp", method=RequestMethod.POST)
-	public String submitLogin(Model model, @RequestParam Client cl) {
+	public String submitLogin(Model model, @ModelAttribute(value="client") Client cl, HttpSession maSession) {
 		Client clOut=clService.isExist(cl);
 		maSession.setAttribute("client", clOut);
-		return null;
+		return "redirect:/bovoyage/listvoyage";
 	}
 	
 
@@ -177,7 +180,7 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/activeClient/{id}", method = RequestMethod.GET)
-	public String activeClient(@PathVariable int id) {
+	public String activeClient(@PathVariable int id, HttpSession maSession) {
 		Client clOut = clService.getClient(id);
 		clOut.setActive(true);
 		clService.updateClient(clOut);
