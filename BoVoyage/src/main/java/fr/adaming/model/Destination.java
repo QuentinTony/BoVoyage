@@ -46,6 +46,8 @@ public class Destination implements Serializable{
 	@OneToMany(mappedBy="destination")
 	private List<Vehicule> vehicule;
 	
+	private Meteo meteo;
+	
 	//constructeurs
 	public Destination() {
 		super();
@@ -119,6 +121,25 @@ public class Destination implements Serializable{
 	
 	
 	
+	
+	public List<Prestation> getPrestation() {
+		return prestation;
+	}
+	public void setPrestation(List<Prestation> prestation) {
+		this.prestation = prestation;
+	}
+	public List<Vehicule> getVehicule() {
+		return vehicule;
+	}
+	public void setVehicule(List<Vehicule> vehicule) {
+		this.vehicule = vehicule;
+	}
+	public Meteo getMeteo() {
+		return meteo;
+	}
+	public void setMeteo(Meteo meteo) {
+		this.meteo = meteo;
+	}
 	public List<Hotel> getHotel() {
 		return hotel;
 	}

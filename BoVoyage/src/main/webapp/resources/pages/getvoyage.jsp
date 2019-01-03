@@ -73,20 +73,18 @@
 				<div id="map" style="width: 1000px; height: 400px;"></div>
 				<br />
 
-				<div class="wrapper">
-					<!-- A wrapper for CSS-design -->
-					<h2>Weather Application in jQuery</h2>
-					<p>
-						What temperature is it at your <span class='italic'>exact</span>
-						location?
-					</p>
-					<!-- Some fancy text -->
+				<div class="panel panel-primary" style="width: 50% !important; margin: auto !important;">
+					<div class="panel-body">Données météorologiques</div>
+					
+					
+					<div class="panel-footer">Température : ${voyage.destination.meteo.main.temp -273.15}°C </div>
+					<br/>
+					<div class="panel-footer">Humidité : ${voyage.destination.meteo.main.humidity} %</div>
+					<br/>
+					<div class="panel-footer">Pression : ${voyage.destination.meteo.main.pressure} </div>
 
-					<!-- Here we will show the final result -->
-					<p id="result">? °</p>
-
-				
 				</div>
+				<br />
 
 
 				

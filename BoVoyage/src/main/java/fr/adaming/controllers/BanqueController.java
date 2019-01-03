@@ -47,18 +47,17 @@ public class BanqueController {
 	// methode get information du compte
 	@RequestMapping(value="/getVirement", method=RequestMethod.GET)
 	public String getVirement(Model modele) {
-		
 		modele.addAttribute("compte", new Banque());
 		return "WSBanque";
 	}
 	
 	
 	@RequestMapping(value="/submitVirement", method=RequestMethod.POST)
-	public String submitVirement(RedirectAttributes ra,@ModelAttribute ("compte") Banque b,@RequestParam("dSomme") Double somme) {
+	public String submitVirement(RedirectAttributes ra,@ModelAttribute ("compte") Banque b,@RequestParam("dSomme") Double somme, @RequestParam("id") long id ) {
 		System.out.println("je lance la méthode viremente du controleur client");
 		Banque bBoVoyage=baService.virement(b, somme);
 		if (bBoVoyage.getId()!=0) {
-			return "panier";
+			return "redirect:/formule/validformule/"+id;
 		}else {
 			ra.addAttribute("msg","le virement a échoué");
 			return "redirect:getVirement";

@@ -25,9 +25,10 @@
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 <title>Paiement</title>
 </head>
+<header><%@include file='template/header.html'%></header>
 <body>
 
-<div style="display: block; position: relative; top: 300px; width: 400px;" > <img alt="paypal" src="${pageContext.request.contextPath}/resources/image/paypal-tunisie.png" style="width: 400px; height: 200px;"> <img alt="card" src="${pageContext.request.contextPath}/resources/image/mastercard.png" style="width: 400px; height: 200px;"></div>
+
 
 	<br />
 	<br />
@@ -58,7 +59,7 @@
 					cssStyle="width: 80%; position: relative; left: 10%"
 					placeholder="Entrez votre date d'expiration" path="dateExperiation"
 					required="required" />
-				<fmt:formatDate pattern="yyyy-MM" value="${dSomme }" />
+				
 				<br /> <label for="CleSecurite">cryptogramme (au dos de la
 					carte)</label> <br />
 				<form:input type="number" class="form-control" id="CleSecurite"
@@ -68,7 +69,8 @@
 				<br /> <label for="Somme">Somme</label> <br /> <input
 					type="number" class="form-control" id="Somme"
 					style="width: 80%; position: relative; left: 10%"
-					placeholder="Entrez la somme" required="required" name="dSomme" />
+					placeholder="Entrez la somme" required="required" name="dSomme" value="${somme }" />
+					<input type="number" name="id" value="${id }" />
 
 				<button type="submit" class="btn btn-default ">payer</button>
 			</div>

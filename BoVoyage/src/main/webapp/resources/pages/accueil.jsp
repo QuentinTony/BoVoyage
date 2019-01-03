@@ -137,9 +137,8 @@
 
 											</table>
 											<br/>
-											<button><a href="localhost:8080/BoVoyage/bovoyage/getvoyage?id=${v.id}" target="_new" >Afficher la carte</a></button>
-											<br />
-																
+											<button><a href="localhost:8080/BoVoyage/bovoyage/getvoyage?id=${v.id}" target="_new" >Afficher la carte et la météo</a></button>
+													
 											<h3 style="text-align: center">Plus que
 												${v.stockPassager} places disponibles</h3>
 

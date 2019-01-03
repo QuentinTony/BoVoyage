@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fr.adaming.model.Assurance;
 import fr.adaming.model.Destination;
 import fr.adaming.model.Hotel;
+import fr.adaming.model.Meteo;
 import fr.adaming.model.Passager;
 import fr.adaming.model.Vehicule;
 import fr.adaming.model.Voyage;
@@ -32,6 +33,7 @@ import fr.adaming.service.IAssuranceService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IHotelService;
+import fr.adaming.service.IMeteoService;
 import fr.adaming.service.IPassagerService;
 import fr.adaming.service.IVehiculeService;
 import fr.adaming.service.IVoyageService;
@@ -56,7 +58,11 @@ public class VoyageController {
 	private IPassagerService paService;
 	@Autowired
 	private IClientService clService;
-
+	@Autowired
+	private IMeteoService meService;
+	public void setMeService(IMeteoService meService) {
+		this.meService = meService;
+	}
 	public void setClService(IClientService clService) {
 		this.clService = clService;
 	}
@@ -91,6 +97,13 @@ public class VoyageController {
 	public String afficheListe(Model modele) {
 		// Récuperer la liste de la BD
 		List<Voyage> listvoyage = voService.getAllVoyage();
+		for (Voyage v:listvoyage) {
+			System.out.println("lat " + Double.toString(v.getDestination().getLatitude()));
+			System.out.println("long " + Double.toString(v.getDestination().getLongitude()));
+			Meteo met=meService.infosMeteo(Double.toString(v.getDestination().getLatitude()) ,Double.toString(v.getDestination().getLongitude()) );
+			System.out.println(met.toString());
+			v.getDestination().setMeteo(met);
+		}
 		modele.addAttribute("listVoyage", listvoyage);
 		return "accueil";
 
@@ -280,13 +293,13 @@ public class VoyageController {
 
 	// 3*************************************************UPDATE***************************************************************
 
-	@RequestMapping(value = "/updatevoyage", method = RequestMethod.GET)
+	@RequestMapping(value = "/agence/updatevoyage", method = RequestMethod.GET)
 	public String updateVoyage(Model model) {
 		model.addAttribute("voyage", new Voyage());
 		return "updatevoyage";
 	}
 
-	@RequestMapping(value = "/updatevoyagep", method = RequestMethod.POST)
+	@RequestMapping(value = "/agence/updatevoyagep", method = RequestMethod.POST)
 	public String submitUpdate(@ModelAttribute("voyage") Voyage vo, RedirectAttributes ra) {
 
 		int verif = voService.updateVoyage(vo);
@@ -329,6 +342,8 @@ public class VoyageController {
 	@RequestMapping(value = "/getvoyage", method = RequestMethod.GET)
 	public String getVoyage(Model model, @RequestParam(value = "id") long id) {
 		Voyage vOut = voService.getVoyage(id);
+		Meteo met=meService.infosMeteo(Double.toString(vOut.getDestination().getLatitude()), Double.toString(vOut.getDestination().getLongitude()));
+		vOut.getDestination().setMeteo(met);
 		model.addAttribute("voyage", vOut);
 		return "getvoyage";
 	}
