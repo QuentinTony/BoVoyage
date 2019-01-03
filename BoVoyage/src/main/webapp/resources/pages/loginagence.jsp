@@ -24,7 +24,7 @@
 	src="${pageContext.request.contextPath}/resources/js/monJS.js"></script>
 </head>
 <body>
-<canvas id="canvas" style="z-index: 3;position: absolute;"></canvas>
+	<canvas id="canvas" style="z-index: 3; position: absolute;"></canvas>
 
 	<div style="z-index: 3; position: absolute; left: 10%;">
 		<div
@@ -41,19 +41,34 @@
 				style="background-color: lightblue; color: darkblue">
 				<b>Accès à votre espace Administrateur de BoVoyage</b>
 			</div>
-			<div >
-				<a href="${pageContext.request.contextPath}/marketing/listagence">Service
-					Marketing</a>
-			</div>
+			<br />
 			<div>
-				<a href="${pageContext.request.contextPath}/direction/listagent">Direction
-					Générale</a>
+				<button>
+					<h4>
+						<a href="${pageContext.request.contextPath}/marketing/listagence">Service
+							Marketing</a>
+					</h4>
+				</button>
 			</div>
-			<div class="radio">
-				<a href="${pageContext.request.contextPath}/agence/recherche">Gestionnaire
-					Site</a>
+			<br />
+			<div>
+				<button>
+					<h4>
+						<a href="${pageContext.request.contextPath}/direction/listagent">Direction
+							Générale</a>
+					</h4>
+				</button>
 			</div>
-		
+			<br />
+			<div>
+				<button>
+					<h4>
+						<a href="${pageContext.request.contextPath}/agence/recherche">Gestionnaire
+							Site</a>
+					</h4>
+				</button>
+			</div>
+			<br />
 
 		</div>
 

@@ -33,9 +33,9 @@
 
 
 	<c:forEach var="v" items="${listAgence}">
-		<div class="panel-group">
-			<div class="panel panel-default">
-				<div class="panel-heading" style="font-size: 150%;">
+		<div class="panel-group" >
+			<div class="panel panel-default" style="border-style: solid;border-color: darkblue; border-width: 3px">
+				<div class="panel-heading" style="font-size: 150%;background-color: lightblue;">
 
 
 					<div style="color: darkblue; font-size: 150%; position: absolute;">
@@ -78,7 +78,7 @@
 	<br/>
 	<br/>
 		<div class="panel panel-info"
-		style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue">
+		style="width: 30%; position: relative; left: 35%; text-align: center; color: darkblue;border-style: solid;border-color: darkblue; border-width: 3px"">
 		<div class="panel-heading"
 			style="background-color: lightblue; color: darkblue">
 			<b>Ajouter un Agent</b>
@@ -113,15 +113,18 @@
 				<form:option value="marketing" >Marketing</form:option>
 				<form:option value="gestion" >Gestion</form:option>
 				</form:select>
+				<br/><br/>
 				<button type="submit" class="btn btn-default ">Ajouter</button>
 
 			</form:form>
 		</div>
-		<div class="panel-body">
+		</div>
+		<br/>
+		<div >
 			<form>
-			<a href="${pageContext.request.contextPath}/j_spring_security_logout">Se deconnecter</a>
-				</form></div>
-	</div>
+			<button><a href="${pageContext.request.contextPath}/j_spring_security_logout">Se deconnecter</a>
+				</form></button></div>
+	
 </body>
 <footer>
 	<%@include file='template/footer.html'%>
