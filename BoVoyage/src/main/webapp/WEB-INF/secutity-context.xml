@@ -23,30 +23,6 @@
 
 
 	
-	<security:http use-expressions="true" pattern="/bovoyage">
-			<security:intercept-url pattern="/bovoyage/**" access="client"/>
-		<security:form-login login-page="/login"
-			authentication-failure-url="/loginfailure"/>
-	
-<security:logout logout-success-url="/logoutclient" />
-
-		<security:access-denied-handler
-			error-page="/deniedclient" />
-	</security:http>
-
-	<!-- PARTIE AUTHENTIFICATION : config de la partie authentification- -->
-
-	
-
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:jdbc-user-service
-				data-source-ref="dsBean1"
-				users-by-username-query="SELECT a.mail,a.mdp,a.active FROM personnes a WHERE a.mail=?"
-				authorities-by-username-query="SELECT a.mail,a.role FROM personnes a WHERE a.mail=?" />
-		</security:authentication-provider>
-	</security:authentication-manager>
-	
 	<!-- PARTIE AUTORISATION : config de la partie autorisation : spécifier 
 		les URI à protéger et les droits d'accès -->
 	<security:http use-expressions="true">

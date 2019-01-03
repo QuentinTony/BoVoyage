@@ -34,7 +34,7 @@
 	<br />
 	<br />
 
-	<form method="POST" action="j_spring_security_check"
+	<form method="POST" action="isExist"
 		cssClass="form-horizontal">
 		<div class="panel panel-info"
 			style="width: 40%; position: relative;top: 50%; left: 30%; text-align: center;  color: darkblue">
@@ -44,11 +44,11 @@
 			</div>
 			<div class="panel-body">
 				<label for="email">Adresse Electronique</label> <br />
-				<input  name="j_username" type="email" class="form-control "
+				<input type="email" class="form-control "
 					id="email" style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre adresse électronique" />
 				<br /> <label for="mdp">Mot de passe</label> <br />
-				<input  name="j_password" type="password" class="form-control" id="mdp"
+				<input type="password" class="form-control" id="mdp"
 					style="width: 80%; position:relative; left:10%"
 					placeholder="Entrez votre mot de passe" />
 				<br />

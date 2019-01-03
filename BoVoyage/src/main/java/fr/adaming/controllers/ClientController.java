@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,15 @@ public class ClientController {
 	public void setClService(IClientService clService) {
 		this.clService = clService;
 	}
+
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String afficheLogin(Model model) {
+		Client clIn =  new Client();
+		model.addAttribute("client", clIn);
+		
+		return "loginclient";
+	}
+	
 
 	// 1********************************************LIST*********************************************************************
 
