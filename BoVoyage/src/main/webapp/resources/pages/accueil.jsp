@@ -28,11 +28,11 @@
 
 </head>
 <header><%@include file='template/header.html'%></header>
-<body>
+<body onload="map">
 
 
 
-	<c:forEach var="v" items="${listVoyage}">
+	<c:forEach var="v" items="${listVoyage}" varStatus="vs" >
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading"
@@ -47,6 +47,7 @@
 
 				</div>
 				<div class="panel-body">
+
 					<table class="table table-bordered">
 
 						<tr>
@@ -80,14 +81,14 @@
 					<h3 style="text-align: center">Plus que ${v.stockPassager}
 						places disponibles</h3>
 					<button>
-						<a href="#modal-dialog" class="btn btn-default-modal-toggle"
-							data-toggle="modal" data-modal-type="confirm"
-							data-modal-title="Details Property" data-modal-text="see details">Voir
-							les détails</a>
+						<a href="#modal-dialog${vs.index}"
+							class="btn btn-default-modal-toggle" data-toggle="modal"
+							data-modal-type="confirm" data-modal-title="Details Property"
+							data-modal-text="see details">Voir les détails</a>
 					</button>
 				</div>
-				<div id="modal-dialog" class="modal">
-					<div class="modal-dialog">
+				<div id="modal-dialog${vs.index}" class="modal">
+					<div class="modal-dialog" id="mapB" onloadstart="map()">
 						<div class="modal-content">
 							<div class="modal-header">
 								<a href="#" data-dismiss="modal" aria-hidden="true"
@@ -98,17 +99,18 @@
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading"
-											style="font-size: 150%;background-image: url('http://localhost:8080/BoVoyage/destination/photoD/${voyage.destination.id}')">
+											style="font-size: 150%;background-image: url('http://localhost:8080/BoVoyage/destination/photoD/${v.destination.id}')">
 											<div
 												style="color: darkblue; font-size: 150%; position: absolute;">
-												<b>${v.destination.pays}</b> - ${v.destination.villeArrive}
+												<b>${v.destination.pays}</b> -
+												${v.destination.villeArrive}
 											</div>
 											<div
-												style="color: darkblue; font-size: 100%; text-decoration: line-through; text-align: right">${voyage.prix}¤</div>
-											<div style="color: red; font-size: 150%; text-align: right">${voyage.prix *(1- voyage.remise) }¤</div>
+												style="color: darkblue; font-size: 100%; text-decoration: line-through; text-align: right">${v.prix}¤</div>
+											<div style="color: red; font-size: 150%; text-align: right">${v.prix *(1- v.remise) }¤</div>
 
 										</div>
-										<div class="panel-body">
+										<div class="panel-body" >
 											<table class="table table-bordered">
 
 												<tr>
@@ -119,46 +121,25 @@
 													<th>Ville de Retour</th>
 													<th>Date de Départ</th>
 													<th>Date de Retour</th>
-													<th>Photo</th>
+												
 												</tr>
 												<tr>
 													<td>${v.prix}</td>
 													<td>${v.remise*100}%</td>
-													<td>${v.prix *(1- voyage.remise) }</td>
+													<td>${v.prix *(1- v.remise) }</td>
 													<td>${v.villeDepart }</td>
 													<td>${v.destination.villeArrive }</td>
 													<td>${v.dateDepart}</td>
 													<td>${v.dateRetour}</td>
-													<td><img src="${v.destination.photo}"></td>
+												
 
 												</tr>
 
 											</table>
+											<br/>
+											<button><a href="localhost:8080/BoVoyage/bovoyage/getvoyage?id=${v.id}" target="_new" >Afficher la carte</a></button>
 											<br />
-											<div id="map" style="width: 530px; height: 400px;"></div>
-											<br />
-
-											<div class="wrapper">
-												<!-- A wrapper for CSS-design -->
-												<h2>Weather Application in jQuery</h2>
-												<p>
-													What temperature is it at your <span class='italic'>exact</span>
-													location?
-												</p>
-												<!-- Some fancy text -->
-
-												<!-- Here we will show the final result -->
-												<p id="result">? °</p>
-
-
-											</div>
-
-
-
-											<br />
-
-
-
+																
 											<h3 style="text-align: center">Plus que
 												${v.stockPassager} places disponibles</h3>
 
@@ -170,86 +151,14 @@
 										</div>
 									</div>
 
-									<script
-										src="http://www.mapquestapi.com/sdk/js/v7.2.s/mqa.toolkit.js?key=KhXhyTLNG9H9fw4AZFoIzxnakIy4XEUj"></script>
-									<script type="text/javascript"></script>
-									<script type="text/javascript">
 
-  // An example of using the MQA.EventUtil to hook into the window load event and execute the defined
-  // function passed in as the last parameter. You could alternatively create a plain function here and
-  // have it executed whenever you like (e.g. <body onload="yourfunction">).
-
-  MQA.EventUtil.observe(window, 'load', function() {
-
-    // create an object for options
-    var options = {
-      elt: document.getElementById('map'),       // ID of map element on page
-      zoom:8,                                  // initial zoom level of the map
-      latLng: {lat: ${v.destination.latitude}, lng:${v.destination.longitude} },  	// center of map in latitude/longitude
-      mtype: 'map',                              // map type (map, sat, hyb); defaults to map
-      bestFitMargin: 0,                          // margin offset from map viewport when applying a bestfit on shapes
-      zoomOnDoubleClick: true                    // enable map to be zoomed in when double-clicking
-    };
-    
-    
-
-    // construct an instance of MQA.TileMap with the options object
-    window.map = new MQA.TileMap(options);
-  });
-
-</script>
-									<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-									<script>
-		$(document).ready(function () {
-			  var lat, lon, api_url;
-			  
-			  if ("geolocation" in navigator) {
-			    
-			    $('#showTemp').on('load', function () {
-			       navigator.geolocation.getCurrentPosition(gotLocation);
-
-			      function gotLocation(position) {
-			        lat = ${v.destination.latitude};
-			        lon = ${v.destination.longitude};
-			        
-			        api_url = 'http://api.openweathermap.org/data/2.5/forecast?lat=' +
-			                  lat + '&lon=' + 
-			                  lon + '&units=metric&appid=8feb5c49c43a8842da6a278e8bedc5cd';
-			       // http://api.openweathermap.org/data/2.5/weather?q=London,uk&callback=test&appid=b1b15e88fa79722
-			        
-			        $.ajax({
-			          url : api_url,
-			          method : 'GET',
-			          success : function (data) {
-			            
-
-
-			            var tempr = data.main.temp;
-			            var location = data.name;
-			            var desc = data.weather.description;
-			            
-
-			            $('#result').text(tempr + '°' + location);
-
-			          }
-			        });
-			     }
-			    });
-			    
-			  } else {
-			    alert('Your browser doesnt support geolocation. Sorry.');
-			  }
-			  
-			});
-
-</script>
 								</div>
-								<div class="modal-footer"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 	</c:forEach>
 </body>
 <footer>
