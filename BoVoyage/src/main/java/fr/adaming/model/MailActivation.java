@@ -26,7 +26,7 @@ public void sendMailToCl(Client cl) {
 		final String password = "zdigffsxabwwtpqj";
 
 		// Recipient's email ID needs to be mentioned.
-		String to = "ingridregada@gmail.com";
+		String to = cl.getMail();
 
 		// Sender's email ID needs to be mentioned
 		String from = "web@gmail.com";
