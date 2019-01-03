@@ -114,7 +114,7 @@
 					
 					<label for="passager">Nombre de passagers (total) :</label>
 				<br />
-				<form:input id="passager" type="number" path="nombrePersonne" />
+				<form:input id="passager" type="number" path="nombrePersonne" min="0" max="${voyage.stockPassager}"/>
 				<br />
 
 
