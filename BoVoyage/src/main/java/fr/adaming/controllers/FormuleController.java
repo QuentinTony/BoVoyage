@@ -244,14 +244,6 @@ public class FormuleController {
 	public String validvoyagepost(@ModelAttribute("formule") Formule fo, RedirectAttributes ra,
 			HttpServletRequest serreq) {
 
-		PdfFactureVoyage pdf = new PdfFactureVoyage();
-		try {
-			pdf.generarPdf(dest);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		MailConfirmation mail = new MailConfirmation();
 		Client cl = (Client) serreq.getSession(false).getAttribute("client");
 		try {
 		Voyage vo=voService.getVoyage(fo.getVoyage().getId());
@@ -264,7 +256,15 @@ public class FormuleController {
 		 fo.setVehicule(ve);
 		}catch (Exception ex) {
 			
+		}PdfFactureVoyage pdf = new PdfFactureVoyage();
+		try {
+			pdf.generarPdf(dest);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		MailConfirmation mail = new MailConfirmation();
+		
 		 System.out.println("client "+cl.toString());
 		mail.sendMailToCl(fo, cl);
 		foService.updateFormule(fo);

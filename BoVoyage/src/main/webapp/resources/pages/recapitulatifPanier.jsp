@@ -49,27 +49,64 @@
 				<h4>
 					Vous avez choisi la formule ${formule.voyage.villeDepart} -
 					${formule.voyage.destination.villeArrive} pour
-					${formule.nombrePersonne} personnes. <br /><br /> Vous partirez de
-					${formule.voyage.villeDepart} le ${formule.voyage.dateDepart} et
-					reviendrez de ${formule.voyage.destination.villeArrive} le
-					${formule.voyage.dateRetour}. <br /><br /> Vous avez choisi l'hôtel
-					${formule.hotel.type} ayant ${formule.hotel.categorie} étoiles se
-					situant à  ${formule.voyage.destination.villeArrive}. <br /><br /> Vous
-					avez choisi la location d'une ${formule.vehicule.type}. <br /> <br />Le
-					prix final est de :${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)}
-					¤. La remise est de ${formule.voyage.remise*100}%.
-					<br/><br/><br/><br/>
-					Détail du prix : 
-					<table class="table" style="width:40%;margin-left: 30%;margin-right: 30%"><tr><td>Prix du Voyage : </td><td>${formule.voyage.prix}</td></tr>
-					
-					<tr><td>Prix de l'hôtel : </td><td>${formule.hotel.prix}</td></tr>
-					<tr><td>Prix de la location : </td><td>${formule.vehicule.prix}</td></tr>
-					
-					<tr><td>Prix avant réduction par passager : </td><td>${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)}</td></tr>
-					<tr><td>Nombre de Passagers : </td><td>${formule.nombrePersonne}</td></tr>
-					<tr><td>Prix totale avant réduction : </td><td>${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)}</td></tr>
-										<tr><td><b>Prix totale après réduction : </b></td><td><b>${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)}</b></td></tr>
-					
+					${formule.nombrePersonne} personnes. <br />
+					<br /> Vous partirez de ${formule.voyage.villeDepart} le
+					${formule.voyage.dateDepart} et reviendrez de
+					${formule.voyage.destination.villeArrive} le
+					${formule.voyage.dateRetour}. <br />
+					<br /> Vous avez choisi l'hôtel ${formule.hotel.type} ayant
+					${formule.hotel.categorie} étoiles se situant à
+					${formule.voyage.destination.villeArrive}.<br />
+					<br /> Vous avez choisi l'assurance annulation :
+					${formule.assurance.type} pour ${formule.assurance.prix} ¤. <br />
+					<br /> Vous avez choisi la location d'une
+					${formule.vehicule.type}. <br /> <br />Le prix final est de
+					:${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)+(formule.assurance.prix)}
+					¤. La remise est de ${formule.voyage.remise*100}%. <br />
+					<br />
+					<br />
+					<br /> Détail du prix :
+					<table class="table"
+						style="width: 40%; margin-left: 30%; margin-right: 30%">
+						<tr>
+							<td>Prix du Voyage :</td>
+							<td>${formule.voyage.prix} ¤</td>
+						</tr>
+
+						<tr>
+							<td>Prix de l'hôtel :</td>
+							<td>${formule.hotel.prix} ¤</td>
+						</tr>
+						<tr>
+							<td>Prix de la location :</td>
+							<td>${formule.vehicule.prix} ¤</td>
+						</tr>
+
+						<tr>
+							<td>Prix avant réduction par passager :</td>
+							<td>${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)} ¤</td>
+						</tr>
+						<tr>
+							<td>Nombre de Passagers :</td>
+							<td>${formule.nombrePersonne}</td>
+						</tr>
+						<tr>
+							<td>Prix totale avant réduction :</td>
+							<td>${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)} ¤</td>
+						</tr>
+						<tr>
+							<td><b>Prix totale aprés réduction : </b></td>
+							<td><b>${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)} ¤</b></td>
+						</tr>
+						<tr>
+							<td>Prix de l'assurance :</td>
+							<td>${formule.assurance.prix} ¤</td>
+						</tr>
+						<tr>
+							<td><b>Prix total à payer : </b></td>
+							<td><b>${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)+(formule.assurance.prix)} ¤</b></td>
+						</tr>
+
 					</table>
 
 					<form:form method="POST" action="validformulep"
@@ -78,19 +115,19 @@
 
 						<div style="visibility: hidden;">
 							<form:input path="prixFinal"
-								value="${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)}" />
-						
+								value="${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)+(formule.assurance.prix)}" />
+
 							<form:input path="id" value="${formule.id}" />
-						
+
 							<form:input path="nombrePersonne"
 								value="${formule.nombrePersonne}" />
-						
+
 							<form:input path="hotel.id" value="${formule.hotel.id}" />
-						
+
 							<form:input path="vehicule.id" value="${formule.vehicule.id}" />
-						
+
 							<form:input path="voyage.id" value="${formule.voyage.id}" />
-					
+
 						</div>
 
 						<div id="validation" style="display: none">
@@ -110,8 +147,7 @@
 						data-modal-title="Details Property" data-modal-text="see details">Payer
 						en VISA</a>
 				</button>
-				<br/>
-				<br/>
+				<br /> <br />
 				<div id="paypal-button-container"></div>
 			</div>
 		</div>
@@ -125,7 +161,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<a href="#" data-dismiss="modal" aria-hidden="true" class="close">Ã—</a>
+					<a href="#" data-dismiss="modal" aria-hidden="true" class="close">X</a>
 
 				</div>
 				<div class="modal-body">
@@ -178,9 +214,9 @@
 											<br /> <label for="Somme">Somme</label> <br /> <input
 												type="number" class="form-control" id="Somme"
 												style="width: 80%; position: relative; left: 10%"
-												placeholder="Entrez la somme" required="required"
-												name="dSomme"
-												value="${(formule.voyage.prix + formule.hotel.prix + formule.vehicule.prix)*(1-formule.voyage.remise)}" />
+												placeholder="Entrez la somme" readonly="readonly"
+												required="required" name="dSomme"
+												value="${(formule.voyage.prix + formule.hotel.prix*formule.nombreNuit + formule.vehicule.prix*formule.nombreJour)*(formule.nombrePersonne)*(1-formule.voyage.remise)+(formule.assurance.prix)}" />
 											<input type="number" name="id" value="${formule.id }"
 												style="display: none;" />
 
@@ -198,7 +234,7 @@
 
 
 
-	
+
 
 	<script type="text/javascript">
 		paypal.Button

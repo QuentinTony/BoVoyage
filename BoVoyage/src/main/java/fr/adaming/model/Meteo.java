@@ -56,7 +56,7 @@ public class Meteo implements Serializable{
 	private String icon;
 	
 	private List<Weather> weather;
-	
+	@JsonIgnore
 	private Wind wind;
 	
 	private Object clouds;

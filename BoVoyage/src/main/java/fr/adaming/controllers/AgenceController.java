@@ -174,7 +174,7 @@ public class AgenceController {
 		vOut.setActive(true);
 		agService.updateAgence(vOut);
 		maSession.setAttribute("agence", vOut);
-		return "redirect:/BoVoyage/agence/login";
+		return "redirect:/agence/login";
 	}
 	
 }

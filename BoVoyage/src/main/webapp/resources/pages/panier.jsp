@@ -50,22 +50,22 @@
 
 				</div>
 				<div class="panel-body">
-				<h4>
-					Vous êtes intéressés par le voyage en ${voyage.destination.pays}
-					dans la ville de ${voyage.destination.villeArrive} en partance de
-					${voyage.villeDepart }.<br /><br /> Le voyage sélectionné a lieu du
-					${voyage.dateDepart} au ${voyage.dateRetour}. <br /><br /> Le prix
-					initial est de ${voyage.prix} ¤. <br /><br /> Grâce à BoVoyage, nous
-					avons réussi à vous obtenir ${voyage.remise*100}% de remise.<br /><br />
-					Le prix de base pour ce magnifique voyage est de ${voyage.prix *(1- voyage.remise) }
-					¤.
-				</h4>
+					<h4>
+						Vous êtes intéressés par le voyage en ${voyage.destination.pays}
+						dans la ville de ${voyage.destination.villeArrive} en partance de
+						${voyage.villeDepart }.<br /> <br /> Le voyage sélectionné a
+						lieu du ${voyage.dateDepart} au ${voyage.dateRetour}. <br /> <br />
+						Le prix initial est de ${voyage.prix} ¤. <br /> <br /> Grâce à
+						BoVoyage, nous avons réussi à vous obtenir ${voyage.remise*100}%
+						de remise.<br /> <br /> Le prix de base pour ce magnifique
+						voyage est de ${voyage.prix *(1- voyage.remise) } ¤.
+					</h4>
 					<div style="visibility: hidden">
 						<form:input path="voyage.id" value="${voyage.id}"
 							style="width:20%" />
 						<br />
 					</div>
-				
+
 					<h3 style="text-align: center">Plus que
 						${voyage.stockPassager} places disponibles</h3>
 					<br />
@@ -73,21 +73,29 @@
 						<br /> <br /> <label for="hotel">Voici la liste des
 							hôtels de ${voyage.destination.villeArrive }</label>
 						<form:select class="form-control" id="hotel" path="hotel.id">
-						
-								<c:forEach items="${listehotel}" var="list">
-									<form:option value="${list.id}"
-										label="${list.type} - ${list.categorie} - ${list.hebergement} - ${list.prix }¤" />
-								</c:forEach>
+
+							<c:forEach items="${listehotel}" var="list">
+								<form:option value="${list.id}"
+									label="${list.type} - ${list.categorie} - ${list.hebergement} - ${list.prix }¤" />
+							</c:forEach>
 						</form:select>
 
 
 						<br /> <br /> <label for="vehicule">Voici la liste des
 							Véhicule possibles de ${voyage.destination.villeArrive}</label>
 						<form:select class="form-control" id="vehicule" path="vehicule.id">
-								<c:forEach items="${listVehicule}" var="list">
-									<form:option value="${list.id}"
-										label="${list.type} - ${list.prix} ¤" />
-								</c:forEach>
+							<c:forEach items="${listVehicule}" var="list">
+								<form:option value="${list.id}"
+									label="${list.type} - ${list.prix} ¤" />
+							</c:forEach>
+						</form:select>
+
+						<br /> <br /> <label for="assurance">Assurance
+							annulation</label>
+						<form:select class="form-control" id="assurance"
+							path="assurance.id">
+							<form:option value="1" label="oui" />
+							<form:option value="2" label="non" />
 						</form:select>
 
 						<br /> <label for="passager">Nombre de passagers (total)

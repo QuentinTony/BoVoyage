@@ -95,19 +95,19 @@ System.out.println("personnes "+fo.getNombrePersonne());
 // Hotel ho= hoService.getHotel(fo.getHotel().getId());
 // Vehicule ve= veService.getVehicule(fo.getVehicule().getId());
 			// Now set the actual message
-			String recap = "Vous avez choisi la formule " + fo.getVoyage().getVilleDepart() + "-"
+			String recap = "\nVous avez choisi la formule " + fo.getVoyage().getVilleDepart() + "-"
 				+ fo.getVoyage().getDestination().getVilleArrive() + " pour " + fo.getNombrePersonne() + " personnes."
 					+ "\nVous partirez de " + fo.getVoyage().getVilleDepart() + " le " + fo.getVoyage().getDateDepart() + " et reviendrez de "
 					+ fo.getVoyage().getDestination().getVilleArrive() + " le " + fo.getVoyage().getDateRetour() + "."
 					+ "\nVous avez choisi l'hôtel " + fo.getHotel().getType() + " avant " + fo.getHotel().getCategorie()
 					+ " étoiles et se situant à " + fo.getVoyage().getDestination().getVilleArrive() + "."
-					+ "\nVous avez choisi la location d'une " + fo.getVehicule().getType();
+					+ "\nVous avez choisi la location d'une " + fo.getVehicule().getType()+".";
 
 			messageBodyPart.setText("Mr/Mme " + cl.getNom()
 					+ ", \nBonjour,\nNous vous confirmons l'enregistrement de votre commande numéro " + fo.getId()
-					+ ".\nRécapitulatif de votre voyage:" + recap + "\n\nMontant total du voyage: " + fo.getVoyage().getPrix()
-					+ fo.getHotel().getPrix() + fo.getVehicule().getPrix() + "€, avec une remise de " + fo.getVoyage().getRemise()+" en faisant une montant total de "+fo.getPrixFinal()
-							+ "."
+					+ ".\nRécapitulatif de votre voyage:" + recap + "\n\nMontant total du voyage: " 
+					+fo.getPrixFinal()
+							+ "€. \n Si vous avez souscrit l'assurance annulation, merci de contacter le service client."
 					+ "\n\nVous trouverez le détail de votre facture en pièce jointe au format pdf.\n\n"
 					+ "En espérant vous revoir bientôt sur notre site, cordialement\n\nToute l'équipe de BoVoyage");
 

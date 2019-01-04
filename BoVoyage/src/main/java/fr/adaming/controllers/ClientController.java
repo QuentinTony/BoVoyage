@@ -53,9 +53,14 @@ public class ClientController {
 	
 	@RequestMapping(value="/loginp", method=RequestMethod.POST)
 	public String submitLogin(Model model, @ModelAttribute(value="client") Client cl, HttpSession maSession) {
+		try {
 		Client clOut=clService.isExist(cl);
 		maSession.setAttribute("client", clOut);
 		return "redirect:/bovoyage/listvoyage";
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/login";
 	}
 	
 
